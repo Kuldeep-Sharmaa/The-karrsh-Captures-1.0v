@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--main-font);
+}
+
+@media screen and (max-width: 576px) {
+  .links {
+    text-align: center;
+
+    text-decoration: none;
+  }
+  #about {
+    text-align: center;
+    padding: 2rem 0rem !important;
+  }
+  .about_heading {
+    font-size: 2rem !important;
+    font-weight: bold;
+  }
+}
