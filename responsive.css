@@ -19,4 +19,14 @@
     font-size: 2rem !important;
     font-weight: bold;
   }
+  .skills {
+    text-align: center;
+  }
+  .skills-container {
+    text-align: start;
+  }
+  #contact_box {
+    padding: 10px !important;
+    margin: 10px;
+  }
 }

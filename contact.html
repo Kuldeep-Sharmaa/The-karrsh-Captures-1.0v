@@ -23,34 +23,81 @@
   </head>
   <body>
     <section class="main">
-      <!-- logo-nav -->
-      <div class="container-fluid" id="header_logo">
-        <div class="row text-center text-white into">
-          <div class="col-md-4">www.ThekarishCaptures.com</div>
-          <div class="col-md-4 fs-3">~ TKC ~</div>
-          <div class="col-md-4">
-            <i class="fa-brands fa-instagram mx-3"></i>
-            <i class="fa-brands fa-facebook mx-3"></i>
-            <i class="fa-brands fa-twitter mx-3"></i>
+      <!-- Desktop-version-navbar -->
+      <header class="d-none d-md-block">
+        <!-- logo-nav -->
+        <div class="container-fluid" id="header_logo">
+          <div class="row text-center text-white into">
+            <div class="col-md-4">www.ThekarrshCaptures.com</div>
+            <div class="col-md-4 fs-3">~ TKC ~</div>
+            <div class="col-md-4">
+              <i class="fa-brands fa-instagram mx-3"></i>
+              <i class="fa-brands fa-facebook mx-3"></i>
+              <i class="fa-brands fa-twitter mx-3"></i>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- nav-links -->
-      <div class="container-fluid" id="nav_links">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <a class="links mx-4" href="#">Skills</a>
-            <span>-</span>
-            <a class="links mx-4" href="#">About Us</a>
-            <span>-</span>
-            <a class="links mx-4" href="index.html">Home</a>
-            <span>-</span>
-            <a class="links mx-4" href="#">Reviews</a>
-            <span>-</span>
-            <a class="links mx-4" href="#">Portfolio</a>
+        <!-- nav-links -->
+        <div class="container-fluid" id="nav_links">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <a class="links mx-4" href="#">Skills</a>
+              <span>-</span>
+              <a class="links mx-4" href="#">About Us</a>
+              <span>-</span>
+              <a class="links mx-4" href="contact.html">Contact Us</a>
+              <span>-</span>
+              <a class="links mx-4" href="#">Reviews</a>
+              <span>-</span>
+              <a class="links mx-4" href="#">Portfolio</a>
+            </div>
           </div>
         </div>
-      </div>
+      </header>
+      <!-- Mobile-version-navbar -->
+      <header class="d-md-none">
+        <!-- Logo and toggle button -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">~ TKC ~</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#mobileNavbar"
+              aria-controls="mobileNavbar"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse bg-dark" id="mobileNavbar">
+          <div class="container-fluid text-white text-center py-3">
+            <!-- Links -->
+            <div>
+              <a class="links d-block py-2" href="#">Skills</a>
+              <a class="links d-block py-2" href="#">About Us</a>
+              <a class="links d-block py-2" href="contact.html">Contact Us</a>
+              <a class="links d-block py-2" href="#">Reviews</a>
+              <a class="links d-block py-2" href="#">Portfolio</a>
+            </div>
+            <!-- Logo section -->
+            <div class="mb-3">
+              www.ThekarrshCaptures.com
+
+              <div>
+                <i class="fa-brands fa-instagram mx-2"></i>
+                <i class="fa-brands fa-facebook mx-2"></i>
+                <i class="fa-brands fa-twitter mx-2"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
       <!-- developer working -->
       <div
         class="container justify-content-center text-center"
@@ -119,4 +166,8 @@
       </div>
     </footer>
   </body>
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- javaScript -->
+  <script src="script.js"></script>
 </html>
