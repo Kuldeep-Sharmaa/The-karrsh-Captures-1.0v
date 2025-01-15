@@ -5,6 +5,15 @@
   font-family: var(--main-font);
 }
 
+@media (max-width: 768px) {
+  .desktop-overlay {
+    display: none !important;
+  }
+
+  .mobile-text {
+    display: block !important;
+  }
+}
 @media screen and (max-width: 576px) {
   .links {
     text-align: center;

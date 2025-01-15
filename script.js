@@ -1,4 +1,3 @@
-// Select all elements with the class 'numb'
 const counters = document.querySelectorAll(".numb");
 
 // Function to animate the count
@@ -33,7 +32,7 @@ const observer = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.5, // Trigger when 50% of the section is visible
+    threshold: 0.5,
   }
 );
 
@@ -45,15 +44,14 @@ observer.observe(numbersSection);
 document.addEventListener("DOMContentLoaded", () => {
   const skillBars = document.querySelectorAll(".skill-bar-fill");
   const skillsSection = document.querySelector(".skills-container");
-  let animationStarted = false; // Flag to prevent multiple triggers
-
+  let animationStarted = false;
   const animateSkillBars = () => {
     skillBars.forEach((bar) => {
       const skillValue = bar.getAttribute("data-skill");
-      bar.style.width = "0"; // Reset the width to 0 before starting
+      bar.style.width = "0";
       setTimeout(() => {
         bar.style.width = skillValue;
-      }, 200); // Slight delay for smooth animation
+      }, 200);
     });
   };
 
@@ -68,65 +66,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const handleScroll = () => {
     if (isElementInViewport(skillsSection) && !animationStarted) {
-      animationStarted = true; // Prevent multiple animations
+      animationStarted = true;
       animateSkillBars();
 
       // Reset the flag when the section is out of view
       setTimeout(() => {
         animationStarted = false;
-      }, 2000); // Adjust based on your animation duration
+      }, 2000);
     }
   };
 
   window.addEventListener("scroll", handleScroll);
 });
 
-// flitter
-document.querySelectorAll(".filter-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    const category = button.getAttribute("data-category");
-    document.querySelectorAll(".portfolio-item").forEach((item) => {
-      if (
-        category === "all" ||
-        item.getAttribute("data-category") === category
-      ) {
-        item.style.display = "block";
-      } else {
-        item.style.display = "none";
+// Function to handle filtering and active class
+function handleFilterButtons() {
+  const filterButtons = document.querySelectorAll(".filter-button");
+  const portfolioItems = document.querySelectorAll(".portfolio-item");
+
+  // Add event listeners to all filter buttons
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const category = button.getAttribute("data-category");
+
+      // Update active class on filter buttons
+      filterButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Filter portfolio items based on category
+      portfolioItems.forEach((item) => {
+        const itemCategory = item.getAttribute("data-category");
+        item.style.display =
+          category === "all" || itemCategory === category ? "block" : "none";
+      });
+
+      // Center filtered items
+      const visibleItems = Array.from(portfolioItems).filter(
+        (item) =>
+          item.style.display === "block" ||
+          item.style.display === "inline-block"
+      );
+
+      if (visibleItems.length > 0) {
+        // Center the grid containing visible items
+        const firstItem = visibleItems[0];
+        firstItem.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center",
+        });
       }
     });
   });
-});
-// active class
-// Select all filter buttons
-const filterButtons = document.querySelectorAll(".filter-button");
-
-// Add event listeners to all buttons
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    // Remove the active class from all buttons
-    filterButtons.forEach((btn) => btn.classList.remove("active"));
-
-    // Add the active class to the clicked button
-    button.classList.add("active");
-
-    // Filter the portfolio items based on the selected category
-    const category = button.getAttribute("data-category");
-    filterPortfolioItems(category);
-  });
-});
-
-// Function to filter portfolio items
-function filterPortfolioItems(category) {
-  const portfolioItems = document.querySelectorAll(".portfolio-item");
-
-  portfolioItems.forEach((item) => {
-    const itemCategory = item.getAttribute("data-category");
-
-    if (category === "all" || itemCategory === category) {
-      item.style.display = "block";
-    } else {
-      item.style.display = "none";
-    }
-  });
 }
+
+// Initialize filter functionality
+document.addEventListener("DOMContentLoaded", handleFilterButtons);
