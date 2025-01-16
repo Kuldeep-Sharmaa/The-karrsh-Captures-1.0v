@@ -13,8 +13,8 @@
       crossorigin="anonymous"
     />
     <!-- Styling -->
-    <link rel="stylesheet" href="responsive.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style/responsive.css" />
+    <link rel="stylesheet" href="style/style.css" />
     <!-- font-kit -->
     <script
       src="https://kit.fontawesome.com/d8f48d71cd.js"
@@ -253,10 +253,9 @@
         <!-- heading -->
         <div class="row mt-5 text-white text-center">
           <h2 class="fw-bold heading">Check our Stunning Portfolio</h2>
-          <p>
+          <p class="additional_text">
             Explore our stunning portfolio, where each image tells a unique
-            story captured through our lens. From timeless moments to creative
-            artistry, witness the brilliance of our photography.
+            story captured through our lens.
           </p>
         </div>
 
@@ -308,7 +307,7 @@
           <div class="portfolio-grid mt-5">
             <!-- Landscapes -->
             <div class="portfolio-item" data-category="Landscapes">
-              <img src="img/landscape.jpg" alt="Landscapes" />
+              <img src="img-temp/landscape.jpg" alt="Landscapes" />
 
               <div class="overlay desktop-overlay">
                 <a href="category.html?category=Landscapes" class="hover-link"
@@ -322,7 +321,7 @@
             </div>
             <!-- Weddings -->
             <div class="portfolio-item" data-category="Weddings">
-              <img src="img/wedding.jpg" alt="Weddings" />
+              <img src="img-temp/wedding.jpg" alt="Weddings" />
               <div class="overlay desktop-overlay">
                 <a href="category.html?category=Weddings" class="hover-link"
                   >View Weddings</a
@@ -330,16 +329,14 @@
                 <!-- Mobile text  -->
               </div>
               <div class="mobile-text">
-                <a href="category.html?category=Weddings">Weddings</a>
+                <a href="wedding.html?category=Weddings">Weddings</a>
               </div>
             </div>
             <!-- Portraits -->
             <div class="portfolio-item" data-category="Portraits">
-              <img src="img/portrait.jpg" alt="Portraits" />
+              <img src="img-temp/portrait.jpg" alt="Portraits" />
               <div class="overlay desktop-overlay">
-                <a href="category.html?category=portraits" class="hover-link"
-                  >View Portraits</a
-                >
+                <a href="" class="hover-link">View Portraits</a>
                 <!-- Mobile text  -->
               </div>
               <div class="mobile-text">
@@ -348,7 +345,7 @@
             </div>
             <!-- Wild -->
             <div class="portfolio-item" data-category="Wildlife">
-              <img src="img/wildlife.jpg" alt="Wildlife" />
+              <img src="img-temp/wildlife.jpg" alt="Wildlife" />
               <div class="overlay desktop-overlay">
                 <a href="category.html?category=wild" class="hover-link"
                   >View Wildlife</a
@@ -361,7 +358,7 @@
             </div>
             <!-- Street -->
             <div class="portfolio-item" data-category="Street">
-              <img src="img/street-food.jpg" alt="Street" />
+              <img src="img-temp/street-food.jpg" alt="Street" />
               <div class="overlay desktop-overlay">
                 <a href="category.html?category=street" class="hover-link"
                   >View Street</a
@@ -503,7 +500,7 @@
                     </p>
                     <div class="review-date">
                       05-Jan-2025
-                      <img src="img/IMG_2661.PNG" alt="offical-logo" />
+                      <img src="img-temp/IMG_2661.PNG" alt="offical-logo" />
                     </div>
                   </div>
                 </div>
@@ -524,7 +521,7 @@
                     <p>The portrait session was smooth and professional.</p>
                     <div class="review-date">
                       08-Jan-2025
-                      <img src="img/IMG_2661.PNG" alt="offical-logo" />
+                      <img src="img-temp/IMG_2661.PNG" alt="offical-logo" />
                     </div>
                   </div>
                 </div>
@@ -545,7 +542,7 @@
                     <p>The aerial shots were breathtaking and unique.</p>
                     <div class="review-date">
                       10-Jan-2025
-                      <img src="img/IMG_2661.PNG" alt="offical-logo" />
+                      <img src="img-temp/IMG_2661.PNG" alt="offical-logo" />
                     </div>
                   </div>
                 </div>
@@ -572,7 +569,7 @@
                     <p>Captured every moment with such beauty.</p>
                     <div class="review-date">
                       15-Jan-2025
-                      <img src="img/IMG_2661.PNG" alt="offical-logo" />
+                      <img src="img-temp/IMG_2661.PNG" alt="offical-logo" />
                     </div>
                   </div>
                 </div>
@@ -593,7 +590,7 @@
                     <p>Loved the creative shots they took during the event.</p>
                     <div class="review-date">
                       20-Jan-2025
-                      <img src="img/IMG_2661.PNG" alt="offical-logo" />
+                      <img src="img-temp/IMG_2661.PNG" alt="offical-logo" />
                     </div>
                   </div>
                 </div>
@@ -616,7 +613,7 @@
                     </p>
                     <div class="review-date">
                       23-Dec-2024
-                      <img src="img/IMG_2661.PNG" alt="offical-logo" />
+                      <img src="img-temp/IMG_2661.PNG" alt="offical-logo" />
                     </div>
                   </div>
                 </div>
@@ -644,7 +641,245 @@
         </div>
       </div>
     </section>
+    <!-- FAQ section -->
+    <section class="FAQ">
+      <div class="container">
+        <div class="row text-center" id="FAQ_text">
+          <h3 class="heading fw-bold">FAQ</h3>
+          <p class="additional_text">
+            Here are some common questions that our clients ask
+          </p>
+        </div>
+        <!-- Q&A -->
+        <div class="row text-white">
+          <div class="col-md-12">
+            <div class="accordion" id="accordionExample">
+              <!-- Question 1 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    What are your photography rates?
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    Our rates vary based on the type of photography service you
+                    require. Please <a href="contact.html">contact us</a> for a
+                    detailed quote.
+                  </div>
+                </div>
+              </div>
+              <!-- Question 2 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Do you provide post-processing services?
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingTwo"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    Yes, we offer post-processing and editing services to
+                    enhance the quality of your photographs.
+                  </div>
+                </div>
+              </div>
+              <!-- Question 3 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    How long does it take to receive the final images?
+                  </button>
+                </h2>
+                <div
+                  id="collapseThree"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingThree"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    The turnaround time for receiving the final images depends
+                    on the type of photography service you choose. We will
+                    provide you with an estimated timeline during the
+                    consultation.
+                  </div>
+                </div>
+              </div>
+              <!-- Question 4 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    What is included in your photography packages?
+                  </button>
+                </h2>
+                <div
+                  id="collapseFour"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingFour"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    Our photography packages include a pre-session consultation,
+                    the photography session itself, and post-production editing
+                    of the images. Specific inclusions may vary based on the
+                    package you choose.
+                  </div>
+                </div>
+              </div>
 
+              <!-- Question 5 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive"
+                    aria-expanded="false"
+                    aria-controls="collapseFive"
+                  >
+                    Do you offer customized photography services?
+                  </button>
+                </h2>
+                <div
+                  id="collapseFive"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingFive"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    Yes, we offer fully customizable photography services to
+                    meet your unique needs and preferences. Feel free to discuss
+                    your ideas with us during the consultation.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 6 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix"
+                    aria-expanded="false"
+                    aria-controls="collapseSix"
+                  >
+                    Do you provide raw/unedited images?
+                  </button>
+                </h2>
+                <div
+                  id="collapseSix"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingSix"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    While we typically deliver fully edited images to ensure the
+                    highest quality, we can provide raw images upon request.
+                    Please note, additional charges may apply.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 7 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeven">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseSeven"
+                    aria-expanded="false"
+                    aria-controls="collapseSeven"
+                  >
+                    Do you travel for photoshoots?
+                  </button>
+                </h2>
+                <div
+                  id="collapseSeven"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingSeven"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    Yes, we are happy to travel for photoshoots. Additional
+                    travel fees may apply depending on the location. Contact us
+                    for details.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 8 -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEight">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseEight"
+                    aria-expanded="false"
+                    aria-controls="collapseEight"
+                  >
+                    How can I book a session with you?
+                  </button>
+                </h2>
+                <div
+                  id="collapseEight"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingEight"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    Booking a session is easy! You can contact us via email,
+                    phone, or by filling out the form on our website. We'll
+                    guide you through the process.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- footer -->
     <footer class="footer bg-dark text-white pt-5">
       <div class="container">
@@ -704,11 +939,23 @@
   <!-- Setup and start animation! -->
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   <script>
+    // Get the category from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get("category");
+
+    // Optionally, check if the category is present
+    if (category) {
+      console.log("Category:", category); // Logs 'Landscapes' if the URL is category.html?category=Landscapes
+    } else {
+      console.log("Category parameter is not found in the URL");
+    }
+  </script>
+  <script>
     var typed = new Typed(".lead", {
       strings: [
         " A freelance photography agency<br />Dedicated to capturing your best moments ",
       ],
-      typeSpeed: 80,
+      typeSpeed: 70,
     });
     // Hide the cursor
     document.addEventListener("DOMContentLoaded", () => {
