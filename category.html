@@ -216,20 +216,26 @@
       const urlParams = new URLSearchParams(window.location.search);
       const category = urlParams.get("category");
 
-      // Update the category name in the HTML
+      // Standardize the folder name (convert category to lowercase if necessary)
+      const categoryFolder = category ? category.toLowerCase() : null;
+
+      // Update the category name in the HTML (capitalize for display)
       if (category) {
-        document.getElementById("category-name").textContent = category;
+        const formattedCategory =
+          category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+        document.getElementById("category-name").textContent =
+          formattedCategory;
       }
 
       // Reference to the gallery container in the HTML
       const galleryElement = document.getElementById("gallery");
 
       // Define the folder path for the category
-      const categoryPath = category
-        ? `./images/${category.toLowerCase()}/` // Use "./" to ensure it's relative to the repository root
-        : `./images/default/`;
+      const categoryPath = categoryFolder
+        ? `images/${categoryFolder}/`
+        : `images/default/`; // Default folder if no category
 
-      const maxAttempts = 6; // Maximum number of images
+      const maxAttempts = 20; // Maximum number of images to check for
 
       function loadImages() {
         let imagesFound = false;
@@ -245,17 +251,15 @@
 
           imgElement.onload = () => {
             imagesFound = true;
-            galleryElement.appendChild(imgElement); // Add to gallery
+            galleryElement.appendChild(imgElement); // Add the image to the gallery
           };
-          console.log(`Category Path: ${categoryPath}`);
-          console.log(`Attempting to load image: ${imagePath}`);
 
           imgElement.onerror = () => {
             console.error(`Failed to load image: ${imagePath}`);
             if (i === maxAttempts && !imagesFound) {
               galleryElement.innerHTML = `
             <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
-              No images found for the selected category..
+              No images found for the selected category. Please try a different category or check back later.
             </p>`;
             }
           };

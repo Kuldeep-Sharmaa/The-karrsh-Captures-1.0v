@@ -45,7 +45,7 @@
 }
 
 .hero-section {
-  background-image: url(../images/Banners/bc.jpg) !important;
+  background-image: url(../images/banners/hero_background.jpg) !important;
   background-size: cover;
   background-position: center;
   font-family: var(--main-font);
@@ -216,22 +216,29 @@
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 15px;
 }
 
 .portfolio-item {
   position: relative;
-  margin: 10px;
-  max-width: 400px;
+  width: 400px; /* Set a fixed width */
+  height: 250px; /* Set a fixed height */
+  overflow: hidden;
+  margin: 5px;
+  border-radius: 6px;
   text-align: center;
 }
 
 .portfolio-item img {
   width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fits inside the box */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for zoom effect */
   border-radius: 6px;
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.1); /* Zoom effect on hover */
 }
 
 /* Desktop Overlay Styling */
