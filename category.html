@@ -217,20 +217,17 @@
       const category = urlParams.get("category");
 
       // Update the category name in the HTML
-      const categoryNameElement = document.getElementById("category-name");
       if (category) {
-        categoryNameElement.textContent = category;
-      } else {
-        categoryNameElement.textContent = "Default Category";
+        document.getElementById("category-name").textContent = category;
       }
 
       // Reference to the gallery container in the HTML
       const galleryElement = document.getElementById("gallery");
 
-      // Define the folder path for the category, with a fallback to a default category
+      // Define the folder path for the category
       const categoryPath = category
-        ? `../images/${category.toLowerCase()}/`
-        : `../images/default/`; // Default folder
+        ? `../images/${category.toLowerCase()}/` // Added "../" for GitHub compatibility
+        : `../images/default/`; // Default folder if no category is provided
 
       // Maximum number of attempts to find images
       const maxAttempts = 200; // Adjust this based on your needs
@@ -244,8 +241,9 @@
       // Function to dynamically load images
       function loadImages() {
         for (let i = 1; i <= maxAttempts; i++) {
-          // Construct the image path
-          const categoryPath = `../images/${category?.toLowerCase()}/`;
+          // Moved the declaration of `imagePath` inside the loop for proper scoping
+          const imagePath = `${categoryPath}image (${i}).jpg`; // Highlighted
+          console.log(`Image Path for index ${i}:`, imagePath); // Highlighted
 
           // Create an image element
           const imgElement = document.createElement("img");
@@ -256,12 +254,14 @@
           // Handle image loading success
           imgElement.onload = () => {
             imagesFound = true;
+            console.log(`Image loaded successfully: ${imagePath}`); // Highlighted
             images.push(imagePath); // Store image path in the images array
             galleryElement.appendChild(imgElement); // Add the image to the gallery
           };
 
-          // Handle image loading failure (only for the last attempt)
+          // Handle image loading failure
           imgElement.onerror = () => {
+            console.error(`Failed to load image: ${imagePath}`); // Highlighted
             if (i === maxAttempts && !imagesFound) {
               galleryElement.innerHTML = `
           <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
@@ -281,9 +281,9 @@
         carouselInner.innerHTML = images
           .map(
             (src, idx) => `
-      <div class="carousel-item ${idx === index ? "active" : ""}">
-        <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
-      </div>`
+        <div class="carousel-item ${idx === index ? "active" : ""}">
+          <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
+        </div>`
           )
           .join("");
         const modal = new bootstrap.Modal(
@@ -293,13 +293,10 @@
       }
 
       // Validate and load images for a valid category
-      if (category || category === null) {
-        loadImages();
+      if (category) {
+        loadImages(); // Load images if the category is valid
       } else {
-        galleryElement.innerHTML = `
-    <p style="font-size: 1.2rem; color: #666; text-align: center;">
-      Please select a category from the URL to view images.
-    </p>`;
+        galleryElement.innerHTML = `<p>Please select a valid category.</p>`;
       }
     </script>
   </body>
