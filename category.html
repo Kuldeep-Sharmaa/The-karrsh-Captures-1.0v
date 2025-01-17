@@ -226,53 +226,46 @@
 
       // Define the folder path for the category
       const categoryPath = category
-        ? `../images/${category.toLowerCase()}/` // Added "../" for GitHub compatibility
-        : `../images/default/`; // Default folder if no category is provided
+        ? `../images/${category.toLowerCase()}/`
+        : `../images/default/`;
 
-      // Maximum number of attempts to find images
-      const maxAttempts = 20; // Adjust based on your needs
-
-      // Variable to track if images were found
-      let imagesFound = false;
+      // Maximum number of images (adjust based on your needs)
+      const maxImages = 20;
 
       // Variable to store loaded images
       let images = [];
 
       // Function to dynamically load images
       function loadImages() {
-        for (let i = 1; i <= maxAttempts; i++) {
-          // Construct the image path with the updated naming convention
+        for (let i = 1; i <= maxImages; i++) {
           const imagePath = `${categoryPath}image-${i}.jpg`;
-          console.log(`Attempting to load image: ${imagePath}`); // Debugging
 
-          // Create an image element
           const imgElement = document.createElement("img");
           imgElement.src = imagePath;
           imgElement.alt = `${category || "Default"} photo`;
           imgElement.classList.add("gallery-image");
 
-          // Handle image loading success
+          // Handle successful loading
           imgElement.onload = () => {
-            imagesFound = true;
-            console.log(`Image loaded successfully: ${imagePath}`); // Debugging
-            images.push(imagePath); // Store image in the array
-            galleryElement.appendChild(imgElement); // Add image to gallery
+            images.push(imagePath);
+            galleryElement.appendChild(imgElement);
           };
 
-          // Handle image loading failure
+          // Handle error
           imgElement.onerror = () => {
-            console.error(`Failed to load image: ${imagePath}`); // Debugging
-            if (i === maxAttempts && !imagesFound) {
-              galleryElement.innerHTML = `
+            console.error(`Failed to load image: ${imagePath}`);
+          };
+        }
+
+        // Display a message if no images are found after loading
+        setTimeout(() => {
+          if (!galleryElement.querySelector(".gallery-image")) {
+            galleryElement.innerHTML = `
           <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
             No images found for the selected category. Please try a different category or check back later.
           </p>`;
-            }
-          };
-
-          // Add click event to open modal
-          imgElement.onclick = () => openModal(images.length - 1);
-        }
+          }
+        }, 1000); // Delay to allow all loading attempts to complete
       }
 
       // Function to open the modal with the selected image
