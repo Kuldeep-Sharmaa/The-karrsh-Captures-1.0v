@@ -13,6 +13,31 @@
   .mobile-text {
     display: block !important;
   }
+  /* Remove Hover Effect on Mobile */
+  .portfolio-item:hover img {
+    transform: none !important; /* Disable zoom effect */
+  }
+
+  .portfolio-item:hover .desktop-overlay {
+    opacity: 0; /* Disable overlay effect */
+  }
+
+  .desktop-overlay {
+    display: none !important; /* Completely hide the overlay on mobile */
+  }
+
+  .mobile-text {
+    display: block !important; /* Make mobile text visible */
+    margin-top: 5px; /* Add spacing */
+  }
+
+  /* Ensure .portfolio-item works correctly with overflow: hidden */
+  .portfolio-item {
+    overflow: visible !important; /* Allow text to display properly */
+  }
+  .portfolio-grid {
+    gap: calc(35vw / 2) !important; /* Tighter gap for smaller screens */
+  }
 }
 @media screen and (max-width: 576px) {
   .links {
@@ -37,5 +62,8 @@
   #contact_box {
     padding: 10px !important;
     margin: 10px;
+  }
+  .filter-button:hover {
+    transform: none !important;
   }
 }
