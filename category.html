@@ -226,8 +226,8 @@
 
       // Define the folder path for the category
       const categoryPath = category
-        ? `images/${category.toLowerCase()}/` // Adjusted for GitHub Pages
-        : `images/default/`;
+        ? `./images/${category.toLowerCase()}/` // Use "./" to ensure it's relative to the repository root
+        : `./images/default/`;
 
       const maxAttempts = 6; // Maximum number of images
 
