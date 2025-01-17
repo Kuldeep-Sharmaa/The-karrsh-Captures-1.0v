@@ -221,8 +221,8 @@
 
 .portfolio-item {
   position: relative;
-  width: 400px; /* Set a fixed width */
-  height: 250px; /* Set a fixed height */
+  width: 400px;
+  height: 250px;
   overflow: hidden;
   margin: 5px;
   border-radius: 6px;
