@@ -18,7 +18,10 @@
   z-index: 1;
   position: relative;
 }
-
+#header_logo a {
+  text-decoration: none;
+  color: white;
+}
 /* header links */
 .into {
   display: flex;
@@ -30,8 +33,8 @@
 #nav_links {
   background-color: #252525 !important;
   color: white !important;
-  z-index: 1;
-  position: relative;
+  font-size: 1.1rem;
+  padding: 5px;
 }
 
 .links {
@@ -43,7 +46,38 @@
   color: #f1f1f1;
   text-decoration: underline;
 }
+/* socail-media */
+#social_media {
+  font-size: 1.3rem;
+}
+.fa-brands:hover {
+  cursor: pointer;
+  filter: brightness(1.2); /* Slightly brighten the color */
+  transform: scale(1.1); /* Slightly enlarge the icon */
+  transition: all 0.3s ease; /* Smooth animation */
+}
 
+#social_media .fa-instagram {
+  color: #bf7a19;
+}
+#social_media .fa-facebook {
+  color: #0072bc;
+}
+#social_media .fa-twitter {
+  color: #00adef;
+}
+#social_media .fa-instagram:hover {
+  color: #e67e22; /* Highlighted color for Instagram */
+}
+
+#social_media .fa-facebook:hover {
+  color: #0056a8; /* Highlighted color for Facebook */
+}
+
+#social_media .fa-twitter:hover {
+  color: #0084cc; /* Highlighted color for Twitter */
+}
+/* end */
 .hero-section {
   background-image: url(../images/banners/hero_background.jpg) !important;
   background-size: cover;

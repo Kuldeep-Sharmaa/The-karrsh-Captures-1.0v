@@ -66,4 +66,7 @@
   .filter-button:hover {
     transform: none !important;
   }
+  .filter-button.active {
+    border: 0px solid #ff5722 !important;
+  }
 }

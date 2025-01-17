@@ -216,10 +216,10 @@
       const urlParams = new URLSearchParams(window.location.search);
       const category = urlParams.get("category");
 
-      // Standardize the folder name (convert category to lowercase if necessary)
+      // Standardize the folder name
       const categoryFolder = category ? category.toLowerCase() : null;
 
-      // Update the category name in the HTML (capitalize for display)
+      // Update the category name in the HTML
       if (category) {
         const formattedCategory =
           category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
@@ -227,22 +227,19 @@
           formattedCategory;
       }
 
-      // Reference to the gallery container in the HTML
       const galleryElement = document.getElementById("gallery");
-
-      // Define the folder path for the category
       const categoryPath = categoryFolder
         ? `images/${categoryFolder}/`
         : `images/default/`; // Default folder if no category
 
-      const maxAttempts = 20; // Maximum number of images to check for
+      const maxAttempts = 20;
+      const images = []; // Array to store loaded image paths
 
       function loadImages() {
         let imagesFound = false;
 
         for (let i = 1; i <= maxAttempts; i++) {
           const imagePath = `${categoryPath}image-${i}.jpg`;
-          console.log(`Attempting to load image: ${imagePath}`); // Debugging
 
           const imgElement = document.createElement("img");
           imgElement.src = imagePath;
@@ -251,30 +248,34 @@
 
           imgElement.onload = () => {
             imagesFound = true;
-            galleryElement.appendChild(imgElement); // Add the image to the gallery
+            images.push(imagePath); // Add image to the array
+            galleryElement.appendChild(imgElement); // Add image to the gallery
+
+            // Add click event to open modal
+            imgElement.addEventListener("click", () => {
+              openModal(images.indexOf(imagePath));
+            });
           };
 
           imgElement.onerror = () => {
-            console.error(`Failed to load image: ${imagePath}`);
             if (i === maxAttempts && !imagesFound) {
               galleryElement.innerHTML = `
-            <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
-            We are currently updating our content. Please check back soon.
-            </p>`;
+              <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
+              We are currently updating our content. Please check back soon.
+              </p>`;
             }
           };
         }
       }
 
-      // Function to open the modal with the selected image
       function openModal(index) {
         const carouselInner = document.getElementById("carouselImages");
         carouselInner.innerHTML = images
           .map(
             (src, idx) => `
-        <div class="carousel-item ${idx === index ? "active" : ""}">
-          <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
-        </div>`
+          <div class="carousel-item ${idx === index ? "active" : ""}">
+            <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
+          </div>`
           )
           .join("");
         const modal = new bootstrap.Modal(
@@ -283,9 +284,8 @@
         modal.show();
       }
 
-      // Validate and load images for a valid category
       if (category) {
-        loadImages(); // Load images if the category is valid
+        loadImages();
       } else {
         galleryElement.innerHTML = `<p>Please select a valid category.</p>`;
       }
