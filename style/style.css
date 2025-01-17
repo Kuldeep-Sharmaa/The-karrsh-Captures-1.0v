@@ -52,9 +52,9 @@
 }
 .fa-brands:hover {
   cursor: pointer;
-  filter: brightness(1.2); /* Slightly brighten the color */
-  transform: scale(1.1); /* Slightly enlarge the icon */
-  transition: all 0.3s ease; /* Smooth animation */
+  filter: brightness(1.2);
+  transform: scale(1.1);
+  transition: all 0.3s ease;
 }
 
 #social_media .fa-instagram {
@@ -67,17 +67,17 @@
   color: #00adef;
 }
 #social_media .fa-instagram:hover {
-  color: #e67e22; /* Highlighted color for Instagram */
+  color: #e67e22;
 }
 
 #social_media .fa-facebook:hover {
-  color: #0056a8; /* Highlighted color for Facebook */
+  color: #0056a8;
 }
 
 #social_media .fa-twitter:hover {
-  color: #0084cc; /* Highlighted color for Twitter */
+  color: #0084cc;
 }
-/* end */
+
 .hero-section {
   background-image: url(../images/banners/hero_background.jpg) !important;
   background-size: cover;
