@@ -239,7 +239,7 @@
       // Function to dynamically load images
       function loadImages() {
         for (let i = 1; i <= maxAttempts; i++) {
-          // Construct the image path with the format "image (i).jpg"
+          // Construct the image path
           const imagePath = `${categoryPath}image (${i}).jpg`;
 
           // Create an image element
@@ -256,23 +256,22 @@
           };
 
           // Handle image loading failure
-          // Handle image loading failure
           imgElement.onerror = () => {
             if (i === maxAttempts && !imagesFound) {
               galleryElement.innerHTML = `
-      <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
-        We are currently updating our content. Please check back soon.
-      </p>`;
+              <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
+            We are currently updating our content. Please check back soon.
+         </p>`;
             }
           };
 
-          imgElement.onclick = () => openModal(i - 1); // Open the modal and start from clicked image
+          imgElement.onclick = () => openModal(i - 1);
         }
       }
 
       // Function to open the modal with the selected image
       function openModal(index) {
-        const carouselInner = document.getElementById("carouselImages"); // Define carouselInner
+        const carouselInner = document.getElementById("carouselImages");
         carouselInner.innerHTML = images
           .map(
             (src, idx) => `

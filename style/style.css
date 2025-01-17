@@ -45,7 +45,7 @@
 }
 
 .hero-section {
-  background-image: url(/img-temp/bc.jpg) !important;
+  background-image: url(/images/Banners/bc.jpg) !important;
   background-size: cover;
   background-position: center;
   font-family: var(--main-font);
