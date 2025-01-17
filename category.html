@@ -238,12 +238,14 @@
       // Variable to store loaded images
       let images = [];
 
-      // Function to dynamically load images
       function loadImages() {
         for (let i = 1; i <= maxAttempts; i++) {
-          // Moved the declaration of `imagePath` inside the loop for proper scoping
-          const imagePath = `${categoryPath}image (${i}).jpg`; // Highlighted
-          console.log(`Image Path for index ${i}:`, imagePath); // Highlighted
+          // Construct the image path and encode spaces
+          const imagePath = `${categoryPath}image (${i}).jpg`.replace(
+            / /g,
+            "%20"
+          ); // Encode spaces
+          console.log(`Image Path for index ${i}:`, imagePath);
 
           // Create an image element
           const imgElement = document.createElement("img");
@@ -254,14 +256,14 @@
           // Handle image loading success
           imgElement.onload = () => {
             imagesFound = true;
-            console.log(`Image loaded successfully: ${imagePath}`); // Highlighted
+            console.log(`Image loaded successfully: ${imagePath}`);
             images.push(imagePath); // Store image path in the images array
             galleryElement.appendChild(imgElement); // Add the image to the gallery
           };
 
           // Handle image loading failure
           imgElement.onerror = () => {
-            console.error(`Failed to load image: ${imagePath}`); // Highlighted
+            console.error(`Failed to load image: ${imagePath}`);
             if (i === maxAttempts && !imagesFound) {
               galleryElement.innerHTML = `
           <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
