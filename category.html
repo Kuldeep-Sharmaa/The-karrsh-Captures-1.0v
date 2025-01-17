@@ -229,8 +229,8 @@
 
       // Define the folder path for the category, with a fallback to a default category
       const categoryPath = category
-        ? `images/${category.toLowerCase()}/`
-        : `images/default/`;
+        ? `../images/${category.toLowerCase()}/`
+        : `../images/default/`; // Default folder
 
       // Maximum number of attempts to find images
       const maxAttempts = 200; // Adjust this based on your needs
@@ -245,7 +245,7 @@
       function loadImages() {
         for (let i = 1; i <= maxAttempts; i++) {
           // Construct the image path
-          const imagePath = `${categoryPath}image (${i}).jpg`;
+          const categoryPath = `../images/${category?.toLowerCase()}/`;
 
           // Create an image element
           const imgElement = document.createElement("img");
