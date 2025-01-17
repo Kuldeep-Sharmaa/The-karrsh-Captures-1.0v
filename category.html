@@ -217,15 +217,20 @@
       const category = urlParams.get("category");
 
       // Update the category name in the HTML
+      const categoryNameElement = document.getElementById("category-name");
       if (category) {
-        document.getElementById("category-name").textContent = category;
+        categoryNameElement.textContent = category;
+      } else {
+        categoryNameElement.textContent = "Default Category";
       }
 
       // Reference to the gallery container in the HTML
       const galleryElement = document.getElementById("gallery");
 
-      // Define the folder path for the category
-      const categoryPath = `images/${category?.toLowerCase()}/`;
+      // Define the folder path for the category, with a fallback to a default category
+      const categoryPath = category
+        ? `images/${category.toLowerCase()}/`
+        : `images/default/`;
 
       // Maximum number of attempts to find images
       const maxAttempts = 200; // Adjust this based on your needs
@@ -245,7 +250,7 @@
           // Create an image element
           const imgElement = document.createElement("img");
           imgElement.src = imagePath;
-          imgElement.alt = `${category} photo`;
+          imgElement.alt = `${category || "Default"} photo`;
           imgElement.classList.add("gallery-image");
 
           // Handle image loading success
@@ -255,17 +260,18 @@
             galleryElement.appendChild(imgElement); // Add the image to the gallery
           };
 
-          // Handle image loading failure
+          // Handle image loading failure (only for the last attempt)
           imgElement.onerror = () => {
             if (i === maxAttempts && !imagesFound) {
               galleryElement.innerHTML = `
-              <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
-            We are currently updating our content. Please check back soon.
-         </p>`;
+          <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
+            No images found for the selected category. Please try a different category or check back later.
+          </p>`;
             }
           };
 
-          imgElement.onclick = () => openModal(i - 1);
+          // Add click event to open modal
+          imgElement.onclick = () => openModal(images.length - 1);
         }
       }
 
@@ -275,9 +281,9 @@
         carouselInner.innerHTML = images
           .map(
             (src, idx) => `
-        <div class="carousel-item ${idx === index ? "active" : ""}">
-          <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
-        </div>`
+      <div class="carousel-item ${idx === index ? "active" : ""}">
+        <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
+      </div>`
           )
           .join("");
         const modal = new bootstrap.Modal(
@@ -287,10 +293,13 @@
       }
 
       // Validate and load images for a valid category
-      if (category) {
+      if (category || category === null) {
         loadImages();
       } else {
-        galleryElement.innerHTML = `<p>Please select a valid category.</p>`;
+        galleryElement.innerHTML = `
+    <p style="font-size: 1.2rem; color: #666; text-align: center;">
+      Please select a category from the URL to view images.
+    </p>`;
       }
     </script>
   </body>
