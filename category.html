@@ -244,8 +244,8 @@
           const imagePath = `${categoryPath}image (${i}).jpg`.replace(
             / /g,
             "%20"
-          ); // Encode spaces
-          console.log(`Image Path for index ${i}:`, imagePath);
+          );
+          console.log(`Attempting to load image: ${imagePath}`);
 
           // Create an image element
           const imgElement = document.createElement("img");
@@ -257,8 +257,8 @@
           imgElement.onload = () => {
             imagesFound = true;
             console.log(`Image loaded successfully: ${imagePath}`);
-            images.push(imagePath); // Store image path in the images array
-            galleryElement.appendChild(imgElement); // Add the image to the gallery
+            images.push(imagePath);
+            galleryElement.appendChild(imgElement);
           };
 
           // Handle image loading failure
