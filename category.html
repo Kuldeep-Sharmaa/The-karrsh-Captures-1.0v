@@ -230,7 +230,7 @@
         : `../images/default/`; // Default folder if no category is provided
 
       // Maximum number of attempts to find images
-      const maxAttempts = 200; // Adjust this based on your needs
+      const maxAttempts = 20; // Adjust based on your needs
 
       // Variable to track if images were found
       let imagesFound = false;
@@ -238,14 +238,12 @@
       // Variable to store loaded images
       let images = [];
 
+      // Function to dynamically load images
       function loadImages() {
         for (let i = 1; i <= maxAttempts; i++) {
-          // Construct the image path and encode spaces
-          const imagePath = `${categoryPath}image (${i}).jpg`.replace(
-            / /g,
-            "%20"
-          );
-          console.log(`Attempting to load image: ${imagePath}`);
+          // Construct the image path with the updated naming convention
+          const imagePath = `${categoryPath}image-${i}.jpg`;
+          console.log(`Attempting to load image: ${imagePath}`); // Debugging
 
           // Create an image element
           const imgElement = document.createElement("img");
@@ -256,14 +254,14 @@
           // Handle image loading success
           imgElement.onload = () => {
             imagesFound = true;
-            console.log(`Image loaded successfully: ${imagePath}`);
-            images.push(imagePath);
-            galleryElement.appendChild(imgElement);
+            console.log(`Image loaded successfully: ${imagePath}`); // Debugging
+            images.push(imagePath); // Store image in the array
+            galleryElement.appendChild(imgElement); // Add image to gallery
           };
 
           // Handle image loading failure
           imgElement.onerror = () => {
-            console.error(`Failed to load image: ${imagePath}`);
+            console.error(`Failed to load image: ${imagePath}`); // Debugging
             if (i === maxAttempts && !imagesFound) {
               galleryElement.innerHTML = `
           <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
