@@ -42,6 +42,10 @@ const observer = new IntersectionObserver(
   }
 );
 
+// Observe the numbers section
+const numbersSection = document.querySelector(".numbers");
+observer.observe(numbersSection);
+
 // skills
 document.addEventListener("DOMContentLoaded", () => {
   const skillBars = document.querySelectorAll(".skill-bar-fill");
@@ -124,7 +128,8 @@ function handleFilterButtons() {
 
 // Initialize filter functionality
 document.addEventListener("DOMContentLoaded", handleFilterButtons);
-// loading images
+
+//  loaidng images
 document.addEventListener("DOMContentLoaded", () => {
   const lazyImages = document.querySelectorAll(".lazy-load");
 
