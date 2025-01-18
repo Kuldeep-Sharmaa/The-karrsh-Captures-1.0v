@@ -1,50 +1,59 @@
+// Select all elements with the class "numb"
 const counters = document.querySelectorAll(".numb");
 
 // Function to animate the count
 function animateCount(element, target) {
-  let current = 0;
-  const increment = Math.ceil(target / 100); // Increment for smoother animation
+  let current = 0; // Initial value
   const duration = 3000; // Total duration in milliseconds
-  const interval = duration / (target / increment);
+  const startTime = performance.now(); // Start time of animation
 
-  const counterInterval = setInterval(() => {
-    current += increment;
-    if (current >= target) {
-      element.textContent = target + "+"; // Set final value to target with "+"
-      clearInterval(counterInterval);
-    } else {
-      element.textContent = current; // Update value
+  function updateCount(timestamp) {
+    const elapsed = timestamp - startTime; // Time elapsed since animation start
+    current = Math.min(
+      target,
+      Math.ceil((elapsed / duration) * target) // Calculate current value
+    );
+
+    element.textContent = current + "+"; // Update the element text
+
+    if (current < target) {
+      requestAnimationFrame(updateCount); // Continue animation
     }
-  }, interval);
-}
+  }
 
-// Apply animation to all counters
-counters.forEach((counter) => {
-  const target = parseInt(counter.getAttribute("data-target")); // Assuming a `data-target` attribute
-  animateCount(counter, target);
-});
+  requestAnimationFrame(updateCount); // Start the animation
+}
 
 // Intersection observer to detect when the section is in view
 const observer = new IntersectionObserver(
-  (entries) => {
+  (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // For each counter, get the target value and start animation
+        // Trigger animation for each counter
         counters.forEach((counter) => {
           const target = parseInt(counter.getAttribute("data-target"), 10);
-          animateCount(counter, target);
+          if (!counter.classList.contains("animated")) {
+            // Check if the animation is already applied
+            animateCount(counter, target);
+            counter.classList.add("animated"); // Mark as animated
+          }
         });
+
+        // Optionally, unobserve the section to prevent redundant animations
+        observer.unobserve(entry.target);
       }
     });
   },
   {
-    threshold: 0.5,
+    threshold: 0.5, // Trigger when at least 50% of the section is visible
   }
 );
 
-// Observe the numbers section
+// Observe the section containing the numbers
 const numbersSection = document.querySelector(".numbers");
-observer.observe(numbersSection);
+if (numbersSection) {
+  observer.observe(numbersSection);
+}
 
 // skills
 document.addEventListener("DOMContentLoaded", () => {
