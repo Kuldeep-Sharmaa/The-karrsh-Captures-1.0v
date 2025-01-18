@@ -83,17 +83,18 @@
           <div class="container-fluid text-white text-center py-3">
             <!-- Links -->
             <div>
-              <a class="links d-block py-2" href="#">Skills</a>
               <a class="links d-block py-2" href="#">About Us</a>
-              <a class="links d-block py-2" href="contact.html">Contact Us</a>
+              <a class="links d-block py-2" href="#">Skills & Expertise</a>
+              <a class="links d-block py-2" href="contact.html">Portfolio</a>
+              <a class="links d-block py-2" href="#">Services</a>
               <a class="links d-block py-2" href="#">Reviews</a>
-              <a class="links d-block py-2" href="#">Portfolio</a>
+              <a class="links d-block py-2" href="#">Contact Us</a>
             </div>
             <!-- Logo section -->
             <div class="mb-3">
               www.ThekarrshCaptures.com
 
-              <div>
+              <div id="social_media">
                 <i class="fa-brands fa-instagram mx-2"></i>
                 <i class="fa-brands fa-facebook mx-2"></i>
                 <i class="fa-brands fa-twitter mx-2"></i>
@@ -175,7 +176,7 @@
             <p>Years of Experience <i class="fa-solid fa-camera"></i></p>
           </div>
           <div class="col-md-4 box">
-            <span class="numb" data-target="45">0</span>
+            <span class="numb" data-target="350">0</span>
             <p>Projects Completed <i class="fa-regular fa-circle-check"></i></p>
           </div>
           <div class="col-md-4 box">
@@ -251,10 +252,12 @@
       </div>
     </section>
     <!-- Portfolio -->
+
+    <!-- Portfolio -->
     <section class="photos">
       <hr class="text-white" />
       <div class="container">
-        <!-- heading -->
+        <!-- Heading -->
         <div class="row mt-5 text-white text-center">
           <h2 class="fw-bold heading">Check our Stunning Portfolio</h2>
           <p class="additional_text">
@@ -262,141 +265,138 @@
             story captured through our lens.
           </p>
         </div>
-        <!-- Samples -->
-        <div class="row text-white">
-          <!-- Filters -->
-          <div class="filters text-center mt-3">
-            <button
-              type="button"
-              class="filter-button active"
-              data-category="all"
-            >
-              All
-            </button>
-            <button
-              type="button"
-              class="filter-button"
-              data-category="Portraits"
-            >
-              Portraits
-            </button>
-            <button type="button" class="filter-button" data-category="wedding">
-              Weddings
-            </button>
-            <button
-              type="button"
-              class="filter-button"
-              data-category="Landscapes"
-            >
-              Landscapes
-            </button>
-            <button type="button" class="filter-button" data-category="Fashion">
-              Fashion
-            </button>
-            <button
-              type="button"
-              class="filter-button"
-              data-category="Commercial"
-            >
-              Commercial
-            </button>
-
-            <button
-              type="button"
-              class="filter-button"
-              data-category="Architecture"
-            >
-              Architecture
-            </button>
+        <!-- Filters -->
+        <div class="filters text-center mt-3">
+          <button
+            type="button"
+            class="filter-button active"
+            data-category="all"
+          >
+            All
+          </button>
+          <button type="button" class="filter-button" data-category="Portraits">
+            Portraits
+          </button>
+          <button type="button" class="filter-button" data-category="wedding">
+            Weddings
+          </button>
+          <button
+            type="button"
+            class="filter-button"
+            data-category="Landscapes"
+          >
+            Landscapes
+          </button>
+          <button type="button" class="filter-button" data-category="Fashion">
+            Fashion
+          </button>
+          <button
+            type="button"
+            class="filter-button"
+            data-category="Commercial"
+          >
+            Commercial
+          </button>
+          <button
+            type="button"
+            class="filter-button"
+            data-category="Architecture"
+          >
+            Architecture
+          </button>
+        </div>
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid mt-5">
+          <!-- Example Portfolio Item -->
+          <div class="portfolio-item" data-category="Landscapes">
+            <img
+              src="images/placeholder.jpg"
+              data-src="images/banners/landscape.jpg"
+              alt="Landscapes"
+              class="lazy-load"
+              loading="lazy"
+            />
+            <div class="overlay desktop-overlay">
+              <a href="category.html?category=landscapes" class="hover-link">
+                View Landscapes
+              </a>
+            </div>
+            <div class="mobile-text">
+              <a href="category.html?category=landscapes">View Landscapes</a>
+            </div>
           </div>
-          <!-- Portfolio Grid -->
-          <div class="portfolio-grid mt-5">
-            <!-- Landscapes -->
-            <div class="portfolio-item" data-category="Landscapes">
-              <img src="images/banners/landscape.jpg" alt="Landscapes" />
+          <!-- Weddings -->
+          <div class="portfolio-item" data-category="wedding">
+            <img src="images/banners/wedding.jpg" alt="Wedding" />
+            <div class="overlay desktop-overlay">
+              <a href="category.html?category=Wedding" class="hover-link"
+                >View Weddings</a
+              >
+            </div>
+            <div class="mobile-text">
+              <a href="category.html?category=Wedding">View Weddings</a>
+            </div>
+          </div>
 
-              <div class="overlay desktop-overlay">
-                <a href="category.html?category=landscapes" class="hover-link"
-                  >View Landscapes</a
-                >
-              </div>
+          <!-- Portraits -->
+          <div class="portfolio-item" data-category="Portraits">
+            <img src="images/banners/portraits.jpg" alt="Portraits" />
+            <div class="overlay desktop-overlay">
+              <a href="category.html?category=Portraits" class="hover-link"
+                >View Portraits</a
+              >
               <!-- Mobile text  -->
-              <div class="mobile-text">
-                <a href="category.html?category=landscapes">View Landscapes</a>
-              </div>
             </div>
-            <!-- Weddings -->
-            <div class="portfolio-item" data-category="wedding">
-              <img src="images/banners/wedding.jpg" alt="Wedding" />
-              <div class="overlay desktop-overlay">
-                <a href="category.html?category=Wedding" class="hover-link"
-                  >View Weddings</a
-                >
-              </div>
-              <div class="mobile-text">
-                <a href="category.html?category=Wedding">View Weddings</a>
-              </div>
+            <div class="mobile-text">
+              <a href="category.html?category=Portraits">View Portraits</a>
             </div>
+          </div>
+          <!-- Fashion -->
+          <div class="portfolio-item" data-category="Fashion">
+            <img src="images/banners/fashion.jpg" alt="Fashion" />
+            <div class="overlay desktop-overlay">
+              <a href="category.html?category=Fashion" class="hover-link"
+                >View Fashion</a
+              >
+              <!-- Mobile text -->
+            </div>
+            <div class="mobile-text">
+              <a href="category.html?category=Fashion">View Fashion</a>
+            </div>
+          </div>
+          <!-- Commercial -->
+          <div class="portfolio-item" data-category="Commercial">
+            <img src="images/banners/commercial.jpg" alt="Commercial" />
+            <div class="overlay desktop-overlay">
+              <a href="category.html?category=Commercial" class="hover-link"
+                >View Commercial</a
+              >
+              <!-- Mobile text -->
+            </div>
+            <div class="mobile-text">
+              <a href="category.html?category=Commercial">View Commercial</a>
+            </div>
+          </div>
+          <!-- Architecture -->
+          <div class="portfolio-item" data-category="Architecture">
+            <img src="images/banners/architecture.jpg" alt="Architecture" />
 
-            <!-- Portraits -->
-            <div class="portfolio-item" data-category="Portraits">
-              <img src="images/banners/portraits.jpg" alt="Portraits" />
-              <div class="overlay desktop-overlay">
-                <a href="category.html?category=Portraits" class="hover-link"
-                  >View Portraits</a
-                >
-                <!-- Mobile text  -->
-              </div>
-              <div class="mobile-text">
-                <a href="category.html?category=Portraits">View Portraits</a>
-              </div>
+            <div class="overlay desktop-overlay">
+              <a href="category.html?category=Architecture" class="hover-link"
+                >View Architecture</a
+              >
+              <!-- Mobile text -->
             </div>
-            <!-- Fashion -->
-            <div class="portfolio-item" data-category="Fashion">
-              <img src="images/banners/fashion.jpg" alt="Fashion" />
-              <div class="overlay desktop-overlay">
-                <a href="category.html?category=Fashion" class="hover-link"
-                  >View Fashion</a
-                >
-                <!-- Mobile text -->
-              </div>
-              <div class="mobile-text">
-                <a href="category.html?category=Fashion">View Fashion</a>
-              </div>
-            </div>
-            <!-- Commercial -->
-            <div class="portfolio-item" data-category="Commercial">
-              <img src="images/banners/commercial.jpg" alt="Commercial" />
-              <div class="overlay desktop-overlay">
-                <a href="category.html?category=Commercial" class="hover-link"
-                  >View Commercial</a
-                >
-                <!-- Mobile text -->
-              </div>
-              <div class="mobile-text">
-                <a href="category.html?category=Commercial">View Commercial</a>
-              </div>
-            </div>
-            <!-- Architecture -->
-            <div class="portfolio-item" data-category="Architecture">
-              <img src="images/banners/architecture.jpg" alt="Architecture" />
-
-              <div class="overlay desktop-overlay">
-                <a href="category.html?category=Architecture" class="hover-link"
-                  >View Architecture</a
-                >
-                <!-- Mobile text -->
-              </div>
-              <div class="mobile-text">
-                <a href="category.html?category=Architecture"
-                  >View Architecture</a
-                >
-              </div>
+            <div class="mobile-text">
+              <a href="category.html?category=Architecture"
+                >View Architecture</a
+              >
             </div>
           </div>
         </div>
       </div>
     </section>
+
     <!-- Contact us -->
     <section class="contact">
       <div class="container">
@@ -1007,8 +1007,10 @@
       }
     });
   </script>
+
   <!-- Bootstrap-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- JavaScript -->
   <script src="script.js"></script>
+  <!-- portfolio section -->
 </html>

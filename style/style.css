@@ -9,7 +9,9 @@
 :root {
   --main-font: Montserrat, sans-serif;
 }
-
+body {
+  overflow-x: hidden;
+}
 /* Header logo */
 #header_logo {
   background-color: #111111;
@@ -243,6 +245,16 @@
   padding: 40px 20px;
   background-color: #222;
   color: #fff;
+}
+.lazy-load {
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+  filter: blur(0);
 }
 
 .portfolio-grid {

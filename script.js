@@ -4,19 +4,25 @@ const counters = document.querySelectorAll(".numb");
 function animateCount(element, target) {
   let current = 0;
   const increment = Math.ceil(target / 100); // Increment for smoother animation
-  const duration = 2000; // Total duration in milliseconds
+  const duration = 3000; // Total duration in milliseconds
   const interval = duration / (target / increment);
 
   const counterInterval = setInterval(() => {
     current += increment;
     if (current >= target) {
-      element.textContent = target; // Set final value to target
+      element.textContent = target + "+"; // Set final value to target with "+"
       clearInterval(counterInterval);
     } else {
       element.textContent = current; // Update value
     }
   }, interval);
 }
+
+// Apply animation to all counters
+counters.forEach((counter) => {
+  const target = parseInt(counter.getAttribute("data-target")); // Assuming a `data-target` attribute
+  animateCount(counter, target);
+});
 
 // Intersection observer to detect when the section is in view
 const observer = new IntersectionObserver(
@@ -35,10 +41,6 @@ const observer = new IntersectionObserver(
     threshold: 0.5,
   }
 );
-
-// Observe the numbers section
-const numbersSection = document.querySelector(".numbers");
-observer.observe(numbersSection);
 
 // skills
 document.addEventListener("DOMContentLoaded", () => {
@@ -122,3 +124,31 @@ function handleFilterButtons() {
 
 // Initialize filter functionality
 document.addEventListener("DOMContentLoaded", handleFilterButtons);
+// loading images
+document.addEventListener("DOMContentLoaded", () => {
+  const lazyImages = document.querySelectorAll(".lazy-load");
+
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        const src = img.dataset.src;
+
+        // Preload the image for smooth rendering
+        const imgLoader = new Image();
+        imgLoader.src = src;
+        imgLoader.onload = () => {
+          img.src = src;
+          img.classList.add("loaded");
+        };
+        imgLoader.onerror = () => {
+          console.error("Image failed to load:", src);
+        };
+
+        observer.unobserve(img);
+      }
+    });
+  });
+
+  lazyImages.forEach((img) => imageObserver.observe(img));
+});
