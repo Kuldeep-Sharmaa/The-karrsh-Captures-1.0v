@@ -39,13 +39,12 @@ const observer = new IntersectionObserver(
           }
         });
 
-        // Optionally, unobserve the section to prevent redundant animations
         observer.unobserve(entry.target);
       }
     });
   },
   {
-    threshold: 0.5, // Trigger when at least 50% of the section is visible
+    threshold: 0.5,
   }
 );
 

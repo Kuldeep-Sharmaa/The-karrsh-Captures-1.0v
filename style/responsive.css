@@ -13,9 +13,9 @@
   .mobile-text {
     display: block !important;
   }
-  /* Remove Hover Effect on Mobile */
+
   .portfolio-item:hover img {
-    transform: none !important; /* Disable zoom effect */
+    transform: none !important;
   }
 
   .portfolio-item:hover .desktop-overlay {
@@ -23,22 +23,36 @@
   }
 
   .desktop-overlay {
-    display: none !important; /* Completely hide the overlay on mobile */
+    display: none !important;
   }
 
   .mobile-text {
-    display: block !important; /* Make mobile text visible */
-    margin-top: 5px; /* Add spacing */
+    display: block !important;
+    margin-top: 5px;
   }
 
-  /* Ensure .portfolio-item works correctly with overflow: hidden */
   .portfolio-item {
-    overflow: visible !important; /* Allow text to display properly */
+    overflow: visible !important;
   }
   .portfolio-grid {
-    gap: calc(35vw / 2) !important; /* Tighter gap for smaller screens */
+    gap: calc(35vw / 2) !important;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+  .core-values .value-img {
+    width: 100px;
+    height: 100px;
+  }
+  .core-values .value-title {
+    font-size: 1.1rem;
+  }
+  .btn {
+    margin: 2rem 0 !important;
+    text-align: center !important;
   }
 }
+
 @media screen and (max-width: 576px) {
   .links {
     text-align: center;
@@ -53,11 +67,15 @@
     font-size: 2rem !important;
     font-weight: bold;
   }
-  .skills {
+  #skills {
     text-align: center;
   }
   .skills-container {
     text-align: start;
+  }
+
+  .numbers {
+    margin: 10px !important;
   }
   #contact_box {
     padding: 10px !important;
@@ -68,5 +86,11 @@
   }
   .filter-button.active {
     border: 0px solid #ff5722 !important;
+  }
+  #about_page {
+    text-align: center;
+  }
+  .contact-main .col-left {
+    display: none;
   }
 }
