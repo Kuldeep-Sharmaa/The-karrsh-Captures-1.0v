@@ -234,10 +234,10 @@
 
       const maxAttempts = 20;
       const images = []; // Array to store loaded image paths
+      let imagesLoaded = 0; // Count of attempted image loads
+      let imagesFound = false; // Flag to check if any images were found
 
       function loadImages() {
-        let imagesFound = false;
-
         for (let i = 1; i <= maxAttempts; i++) {
           const imagePath = `${categoryPath}image-${i}.jpg?nocache=${Date.now()}`; // Added cache-busting
 
@@ -261,11 +261,17 @@
           // When an image fails to load
           imgElement.onerror = () => {
             console.warn(`Image not found: ${imagePath}`);
-            if (i === maxAttempts && !imagesFound) {
+          };
+
+          // Increment the count of attempted loads (success or error)
+          imgElement.onloadend = imgElement.onerror = () => {
+            imagesLoaded++;
+            if (imagesLoaded === maxAttempts && !imagesFound) {
+              // Only show error message if no images were found after all attempts
               galleryElement.innerHTML = `
-          <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
-          We are currently updating our content. Please check back soon.
-          </p>`;
+                <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
+                We are currently updating our content. Please check back soon.
+                </p>`;
             }
           };
         }
@@ -276,9 +282,9 @@
         carouselInner.innerHTML = images
           .map(
             (src, idx) => `
-        <div class="carousel-item ${idx === index ? "active" : ""}">
-          <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
-        </div>`
+            <div class="carousel-item ${idx === index ? "active" : ""}">
+              <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
+            </div>`
           )
           .join("");
         const modal = new bootstrap.Modal(
