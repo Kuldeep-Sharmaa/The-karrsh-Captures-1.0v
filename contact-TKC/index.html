@@ -121,33 +121,35 @@
       </header>
     </section>
 
-    <div class="text-center py-5">
-      <h1 class="heading-page">Contact Us</h1>
-      <p class="get-in-touch-description">
-        Have an idea or project in mind? Fill out the form below, and we’ll
-        connect with you to make it happen.
-      </p>
-    </div>
-
     <main class="contact-main">
+      <div class="text-center py-5">
+        <h1 class="heading-page">Contact Us</h1>
+        <p class="get-in-touch-description">
+          Have an idea or project in mind? Fill out the form below, and we’ll
+          connect with you to make it happen.
+        </p>
+      </div>
+
       <div class="container">
         <!-- Left Column for Images -->
         <div class="col-left">
-          <img
-            src="../images/banners/wedding-contact.jpg"
-            alt="Photography"
-            class="contact-img"
-          />
-          <img
-            src="../images/banners/studio-contact.jpg"
-            alt="Photography"
-            class="contact-img"
-          />
-          <img
-            src="../images/banners/landcape-contact.jpg"
-            alt="Photography"
-            class="contact-img"
-          />
+          <div class="image-gallery">
+            <img
+              src="../images/banners/wedding-contact.jpg"
+              alt="Wedding"
+              class="contact-img"
+            />
+            <img
+              src="../images/banners/studio-contact.jpg"
+              alt="Studio"
+              class="contact-img"
+            />
+            <img
+              src="../images/banners/landcape-contact.jpg"
+              alt="Landscape"
+              class="contact-img"
+            />
+          </div>
         </div>
 
         <!-- Right Column for Form -->
@@ -156,7 +158,6 @@
             <h2 class="get-in-touch-heading">
               Let’s Create Something Amazing Together
             </h2>
-
             <form>
               <label for="name">Your Name (Required)</label>
               <input
@@ -185,16 +186,19 @@
               />
 
               <label for="service">Service You're Interested In</label>
-              <select id="service" name="service">
-                <option>Studio Portraits</option>
-                <option>Landscapes</option>
-                <option>Food & Drinks</option>
-                <option>Product Photography</option>
-                <option>Social Media Content Shoots</option>
-                <option>Real Estate Photography</option>
-                <option>Pre-Weddings</option>
-                <option>Fashion</option>
-                <option>Event Photography</option>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Select Service</option>
+                <option value="studio-portraits">Studio Portraits</option>
+                <option value="landscapes">Landscapes</option>
+                <option value="food-drinks">Food & Drinks</option>
+                <option value="product-photography">Product Photography</option>
+                <option value="social-media">
+                  Social Media Content Shoots
+                </option>
+                <option value="real-estate">Real Estate Photography</option>
+                <option value="pre-weddings">Pre-Weddings</option>
+                <option value="fashion">Fashion</option>
+                <option value="event-photography">Event Photography</option>
               </select>
 
               <label for="message">Your Message</label>
@@ -210,15 +214,27 @@
         </div>
       </div>
 
-      <!-- WhatsApp Floating Chat -->
+      <div class="map-container">
+        <h3>Find Us Here</h3>
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14013.555187307983!2d77.21027627216913!3d28.613939169747003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2ebcb72261d%3A0x3030b072a224c28!2sDelhi%2C%20India!5e0!3m2!1sen!2sus!4v1679131302554!5m2!1sen!2sus"
+            title="Google Maps showing location of Delhi"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
       <div class="whatsapp-chat">
-        <p class="animate-whatsapp">Chat with us instantly on WhatsApp!</p>
         <a
           href="https://wa.me/+91798654321"
           rel="noopener noreferrer"
           target="_blank"
         >
-          <img src="../images/banners/whatsapp.png" alt="WhatsApp Icon" />
+          <div class="whatsapp-container">
+            <img src="../images/banners/whatsapp.png" alt="WhatsApp Icon" />
+            <p>Chat with us on WhatsApp!</p>
+          </div>
         </a>
       </div>
     </main>
