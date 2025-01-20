@@ -239,13 +239,14 @@
         let imagesFound = false;
 
         for (let i = 1; i <= maxAttempts; i++) {
-          const imagePath = `${categoryPath}image-${i}.jpg`;
+          const imagePath = `${categoryPath}image-${i}.jpg?nocache=${Date.now()}`; // Added cache-busting
 
           const imgElement = document.createElement("img");
           imgElement.src = imagePath;
           imgElement.alt = `${category || "Default"} photo`;
           imgElement.classList.add("gallery-image");
 
+          // When an image loads successfully
           imgElement.onload = () => {
             imagesFound = true;
             images.push(imagePath); // Add image to the array
@@ -257,12 +258,14 @@
             });
           };
 
+          // When an image fails to load
           imgElement.onerror = () => {
+            console.warn(`Image not found: ${imagePath}`);
             if (i === maxAttempts && !imagesFound) {
               galleryElement.innerHTML = `
-              <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
-              We are currently updating our content. Please check back soon.
-              </p>`;
+          <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
+          We are currently updating our content. Please check back soon.
+          </p>`;
             }
           };
         }
@@ -273,9 +276,9 @@
         carouselInner.innerHTML = images
           .map(
             (src, idx) => `
-          <div class="carousel-item ${idx === index ? "active" : ""}">
-            <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
-          </div>`
+        <div class="carousel-item ${idx === index ? "active" : ""}">
+          <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
+        </div>`
           )
           .join("");
         const modal = new bootstrap.Modal(
@@ -284,6 +287,7 @@
         modal.show();
       }
 
+      // Start loading images if category exists
       if (category) {
         loadImages();
       } else {
