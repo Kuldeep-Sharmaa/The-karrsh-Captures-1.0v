@@ -715,7 +715,7 @@ body {
 }
 
 /* General Styles */
-.container {
+.contact_headind {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
