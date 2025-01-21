@@ -47,7 +47,7 @@
   .core-values .value-title {
     font-size: 1.1rem;
   }
-  .btn {
+  .about_btn {
     margin: 2rem 0 !important;
     text-align: center !important;
   }
@@ -109,5 +109,30 @@
   }
   .contact-main .col-left {
     display: none;
+  }
+  .toast {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .toast-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .toast-title {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  .toast-logo {
+    margin-bottom: 5px;
+  }
+
+  .dismiss-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
   }
 }

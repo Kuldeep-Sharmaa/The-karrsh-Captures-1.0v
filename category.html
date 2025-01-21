@@ -133,12 +133,59 @@
       </div>
       <div id="gallery" class="gallery-container"></div>
 
+      <!-- Button to Explore Next Category -->
       <div class="button-container text-center mt-4">
         <button type="button" class="btn-next-category">
           Explore Next Category
         </button>
       </div>
     </main>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <img
+            src="images/banners/TKC_logo.png"
+            class="rounded me-2"
+            alt="TKC Logo"
+            width="26"
+            height="26"
+          />
+
+          <strong class="me-auto">www.TheKrashCapture.com</strong>
+          <small class="text-muted">Just now</small>
+          <button
+            type="button"
+            class="btn-close"
+            id="closeToast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">
+          <p>
+            We're glad to have you here. <br />
+            <span class="fw-bold">
+              Click on an image to view it in the carousel or in a larger size.
+            </span>
+          </p>
+          <div class="button-container">
+            <button
+              type="button"
+              id="dontShowAgain"
+              class="btn btn-secondary btn-sm"
+            >
+              Don't show again
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Modal for Image Viewer with Bootstrap Carousel -->
     <div
@@ -237,7 +284,44 @@
         </div>
       </div>
     </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toastEl = document.getElementById("liveToast");
+        const dontShowAgainButton = document.getElementById("dontShowAgain");
+        const closeToastButton = document.getElementById("closeToast");
+        const localStorageKey = "toastShown";
 
+        // Show the toast with smooth animation
+        const showToast = () => {
+          toastEl.classList.add("show");
+          setTimeout(() => {
+            toastEl.classList.remove("hide");
+          }, 10); // Small delay to ensure smooth animation
+        };
+
+        // Hide the toast with smooth animation
+        const hideToast = () => {
+          toastEl.classList.add("hide");
+          setTimeout(() => {
+            toastEl.classList.remove("show");
+          }, 500); // Matches the CSS transition duration
+        };
+
+        // Check localStorage and show toast
+        if (!localStorage.getItem(localStorageKey)) {
+          setTimeout(showToast, 2000); // Delay of 2 seconds
+        }
+
+        // Handle "Don't show again" button click
+        dontShowAgainButton.addEventListener("click", () => {
+          localStorage.setItem(localStorageKey, "true");
+          hideToast();
+        });
+
+        // Handle 'X' button click
+        closeToastButton.addEventListener("click", hideToast);
+      });
+    </script>
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 

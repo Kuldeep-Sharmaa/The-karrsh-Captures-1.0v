@@ -511,6 +511,72 @@ body {
   margin-bottom: 2rem;
 }
 
+/* toast */
+.toast {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.hide {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.toast-container {
+  max-width: 400px;
+  width: 100%;
+}
+
+.button-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#dontShowAgain {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#dontShowAgain:hover {
+  background-color: #b02a37;
+}
+
+/* Toast Header Styles */
+.toast-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+}
+
+.toast-header .me-auto {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.toast-header small {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
 .gallery-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -665,7 +731,7 @@ body {
 }
 
 /* Buttons */
-.btn {
+.about_btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background-color: var(--btn-color);
@@ -675,7 +741,7 @@ body {
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
-.btn:hover {
+.about_btn:hover {
   background-color: var(--btn-hover);
   color: #fff;
 }
