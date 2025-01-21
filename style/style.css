@@ -592,25 +592,6 @@ body {
   transform: scale(1.05);
 }
 
-@media screen and (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .section-subtitle {
-    font-size: 1rem;
-  }
-
-  .gallery-container {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery-image {
-    width: 100%; /* Full width for smaller screens */
-    height: 250px; /* Adjusted height for better mobile display */
-  }
-}
-
 /* footer */
 .footer h3 {
   font-family: "Georgia", serif;
