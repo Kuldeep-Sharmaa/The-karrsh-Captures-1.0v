@@ -56,23 +56,37 @@ body {
 /* social-media */
 #social_media {
   font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
-.fa-brands:hover {
+
+#social_media .social-link {
+  text-decoration: none;
+}
+
+#social_media .fa-brands {
+  transition: all 0.3s ease;
+}
+
+#social_media .fa-brands:hover {
   cursor: pointer;
   filter: brightness(1.2);
   transform: scale(1.1);
-  transition: all 0.3s ease;
 }
 
 #social_media .fa-instagram {
   color: #bf7a19;
 }
+
 #social_media .fa-facebook {
   color: #0072bc;
 }
-#social_media .fa-twitter {
+
+#social_media .fa-threads {
   color: #00adef;
 }
+
 #social_media .fa-instagram:hover {
   color: #e67e22;
 }
@@ -81,7 +95,7 @@ body {
   color: #0056a8;
 }
 
-#social_media .fa-twitter:hover {
+#social_media .fa-threads:hover {
   color: #0084cc;
 }
 
@@ -139,18 +153,17 @@ body {
 
 .portfolio_button {
   padding: 8px 30px;
-  background-color: #111111;
-  color: #bcba8d;
-  border-radius: 0px;
-  border: 1px solid #bcba8d;
+  background-color: var(--btn-color);
+  color: white;
+  border-radius: 5px;
+  border: none;
   font-size: 1rem;
   font-weight: bold;
   transition: 0.3s ease-in-out;
 }
 
 .portfolio_button:hover {
-  background-color: #bcba8d;
-  color: #111111;
+  background-color: var(--btn-hover);
 }
 
 .about_text {
@@ -687,6 +700,9 @@ footer a {
   color: #adb5bd;
   font-size: 1.5rem;
   transition: color 0.3s ease;
+}
+.name {
+  color: var(--btn-color);
 }
 
 .footer-icon:hover {
