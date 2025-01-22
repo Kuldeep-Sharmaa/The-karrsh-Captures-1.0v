@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
           img.classList.add("loaded");
         };
         imgLoader.onerror = () => {
-          console.error("Image failed to load:", src);
+          console.error("Failed to load image:", src);
         };
 
         observer.unobserve(img);
