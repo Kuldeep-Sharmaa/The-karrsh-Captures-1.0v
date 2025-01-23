@@ -68,6 +68,22 @@
     height: 250px;
     margin: 0 auto;
   }
+  .carousel {
+    transform: translateX(0);
+  }
+
+  .review-card {
+    flex: 0 0 100% !important; /* Show only one card per row */
+    margin: 0 auto; /* Center the card */
+  }
+
+  .carousel-controls {
+    display: none; /* Hide controls for simplicity on mobile */
+  }
+
+  .cards_container {
+    padding: 0 15px; /* Add some padding for smaller screens */
+  }
 }
 
 @media screen and (max-width: 576px) {

@@ -165,3 +165,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
   lazyImages.forEach((img) => imageObserver.observe(img));
 });
+
+const carousel = document.querySelector(".carousel");
+const prevBtn = document.querySelector(".prev-btn");
+const nextBtn = document.querySelector(".next-btn");
+const cards = document.querySelectorAll(".review-card");
+
+const visibleCards = 3;
+const totalCards = cards.length;
+const gap = 16;
+
+for (let i = 0; i < visibleCards; i++) {
+  const firstClone = cards[i].cloneNode(true);
+  const lastClone = cards[totalCards - 1 - i].cloneNode(true);
+  carousel.appendChild(firstClone);
+  carousel.prepend(lastClone);
+}
+
+const updatedCards = document.querySelectorAll(".review-card");
+const updatedTotalCards = updatedCards.length;
+
+let currentIndex = visibleCards;
+carousel.style.transform = `translateX(-${
+  currentIndex * (cards[0].offsetWidth + gap)
+}px)`;
+
+nextBtn.addEventListener("click", () => {
+  if (currentIndex < updatedTotalCards - visibleCards) {
+    currentIndex++;
+    carousel.style.transition = "transform 0.5s ease-in-out";
+    carousel.style.transform = `translateX(-${
+      currentIndex * (cards[0].offsetWidth + gap)
+    }px)`;
+  }
+
+  if (currentIndex === updatedTotalCards - visibleCards) {
+    setTimeout(() => {
+      carousel.style.transition = "none";
+      currentIndex = visibleCards;
+      carousel.style.transform = `translateX(-${
+        currentIndex * (cards[0].offsetWidth + gap)
+      }px)`;
+    }, 500);
+  }
+});
+
+prevBtn.addEventListener("click", () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    carousel.style.transition = "transform 0.5s ease-in-out";
+    carousel.style.transform = `translateX(-${
+      currentIndex * (cards[0].offsetWidth + gap)
+    }px)`;
+  }
+
+  if (currentIndex === 0) {
+    setTimeout(() => {
+      carousel.style.transition = "none";
+      currentIndex = updatedTotalCards - visibleCards - 1;
+      carousel.style.transform = `translateX(-${
+        currentIndex * (cards[0].offsetWidth + gap)
+      }px)`;
+    }, 500);
+  }
+});
+
+window.addEventListener("resize", () => {
+  carousel.style.transition = "none";
+  carousel.style.transform = `translateX(-${
+    currentIndex * (cards[0].offsetWidth + gap)
+  }px)`;
+});

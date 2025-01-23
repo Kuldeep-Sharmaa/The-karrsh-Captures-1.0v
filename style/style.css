@@ -553,46 +553,86 @@ body {
   font-weight: bold;
 }
 
-/* review section */
+/* cards */
+.cards_container {
+  max-width: 1400px;
+  margin: auto;
+}
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+}
+
+.carousel {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.5s ease-in-out;
+}
+
 .review-card {
-  background-color: #ffff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  flex: 0 0 calc(33.33% - 16px); /* 3 cards per row */
+  background: #fff;
   padding: 20px;
-  min-height: 250px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.review-container {
-  display: flex;
-  gap: 20px;
+
+.review-card h5 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #222;
 }
+
+.review-card p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
 .star-rating i {
   color: #ffc107;
 }
-.carousel-indicators {
-  position: relative;
-  margin-top: 15px;
-}
-.carousel-indicators [data-bs-target] {
-  background-color: black;
-}
-.carousel-indicators .active {
-  background-color: #007bff;
-}
-.carousel-controls {
-  margin-top: 20px;
-}
+
 .review-date {
-  margin-top: auto;
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 8px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
+
 .review-date img {
-  width: 60px;
+  width: 50px;
+  height: 50px;
+  margin-left: 8px;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+
+.carousel-controls button {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.carousel-controls button:hover {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 /* FAQ-section */
