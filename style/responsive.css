@@ -54,6 +54,13 @@
   .section-title {
     font-size: 2rem !important;
   }
+  .fw-bold {
+    font-size: 1.5rem;
+  }
+
+  .portfolio_button {
+    padding: 10px 20px;
+  }
 
   .section-subtitle {
     font-size: 1rem;
@@ -73,16 +80,44 @@
   }
 
   .review-card {
-    flex: 0 0 100% !important; /* Show only one card per row */
-    margin: 0 auto; /* Center the card */
+    flex: 0 0 100% !important;
+    margin: 0 auto;
   }
 
   .carousel-controls {
-    display: none; /* Hide controls for simplicity on mobile */
+    display: none;
   }
 
   .cards_container {
-    padding: 0 15px; /* Add some padding for smaller screens */
+    padding: 0 15px;
+  }
+  .carousel-controls {
+    display: flex !important;
+  }
+  .container {
+    flex-direction: column !important;
+  }
+
+  .col-left,
+  .col-right {
+    max-width: 100% !important;
+  }
+
+  #map {
+    height: 300px !important;
+  }
+  .whatsapp-container {
+    padding: 8px 15px !important;
+    border-radius: 40px !important;
+  }
+
+  .whatsapp-container img {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .whatsapp-container p {
+    font-size: 0.9rem !important;
   }
 }
 
@@ -156,5 +191,8 @@
   }
   #services_text {
     text-align: center !important;
+  }
+  .social-icons {
+    flex-direction: row !important;
   }
 }

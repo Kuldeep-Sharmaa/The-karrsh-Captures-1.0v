@@ -165,7 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   lazyImages.forEach((img) => imageObserver.observe(img));
 });
-
 const carousel = document.querySelector(".carousel");
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
@@ -175,6 +174,7 @@ const visibleCards = 3;
 const totalCards = cards.length;
 const gap = 16;
 
+// Clone cards to create an infinite loop effect
 for (let i = 0; i < visibleCards; i++) {
   const firstClone = cards[i].cloneNode(true);
   const lastClone = cards[totalCards - 1 - i].cloneNode(true);
@@ -190,7 +190,21 @@ carousel.style.transform = `translateX(-${
   currentIndex * (cards[0].offsetWidth + gap)
 }px)`;
 
+// Add auto-scroll functionality
+let autoScrollInterval;
+const startAutoScroll = () => {
+  autoScrollInterval = setInterval(() => {
+    nextBtn.click();
+  }, 2000); // Adjust timing (e.g., 3000ms = 3 seconds)
+};
+
+const stopAutoScroll = () => {
+  clearInterval(autoScrollInterval);
+};
+
+// Manual navigation: Next button
 nextBtn.addEventListener("click", () => {
+  stopAutoScroll(); // Stop auto-scroll temporarily
   if (currentIndex < updatedTotalCards - visibleCards) {
     currentIndex++;
     carousel.style.transition = "transform 0.5s ease-in-out";
@@ -208,9 +222,12 @@ nextBtn.addEventListener("click", () => {
       }px)`;
     }, 500);
   }
+  startAutoScroll(); // Restart auto-scroll
 });
 
+// Manual navigation: Previous button
 prevBtn.addEventListener("click", () => {
+  stopAutoScroll(); // Stop auto-scroll temporarily
   if (currentIndex > 0) {
     currentIndex--;
     carousel.style.transition = "transform 0.5s ease-in-out";
@@ -228,11 +245,20 @@ prevBtn.addEventListener("click", () => {
       }px)`;
     }, 500);
   }
+  startAutoScroll(); // Restart auto-scroll
 });
 
+// Handle resizing
 window.addEventListener("resize", () => {
   carousel.style.transition = "none";
   carousel.style.transform = `translateX(-${
     currentIndex * (cards[0].offsetWidth + gap)
   }px)`;
 });
+
+// Start auto-scroll when the page loads
+startAutoScroll();
+
+// Optional: Stop auto-scroll when hovering over the carousel
+carousel.addEventListener("mouseenter", stopAutoScroll);
+carousel.addEventListener("mouseleave", startAutoScroll);

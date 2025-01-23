@@ -195,16 +195,6 @@ body {
   transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
-  .fw-bold {
-    font-size: 1.5rem;
-  }
-
-  .portfolio_button {
-    padding: 10px 20px;
-  }
-}
-
 .about_text {
   line-height: 1.8;
   font-size: 1rem;
@@ -491,7 +481,7 @@ body {
   font-size: 1.5rem;
   border: none;
   cursor: pointer;
-  background-color: white; /* Keeps the button's background unchanged */
+  background-color: white;
   transition: all 0.3s ease;
 }
 
@@ -570,10 +560,11 @@ body {
   display: flex;
   gap: 16px;
   transition: transform 0.5s ease-in-out;
+  cursor: grab;
 }
 
 .review-card {
-  flex: 0 0 calc(33.33% - 16px); /* 3 cards per row */
+  flex: 0 0 calc(33.33% - 16px);
   background: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -606,8 +597,8 @@ body {
 }
 
 .review-date img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   margin-left: 8px;
 }
 
@@ -618,6 +609,7 @@ body {
   top: 50%;
   width: 100%;
   transform: translateY(-50%);
+  display: none;
 }
 
 .carousel-controls button {
@@ -807,45 +799,72 @@ body {
   transform: scale(1.05);
 }
 
-footer {
-  font-family: "Arial", sans-serif;
-  font-size: 0.9rem;
+/* footer */
+.footer {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 40px 20px;
 }
-
-footer h5 {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--btn-color);
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
 }
-
-footer p,
-footer a {
-  margin-bottom: 0.5rem;
+.footer-brand,
+.footer-links,
+.footer-contact,
+.footer-social {
+  flex: 1 1 200px;
+  text-align: center;
 }
-
-/* Link Hover Effect */
-.footer-link {
-  color: #adb5bd;
+.footer-brand h2 {
+  color: #ff6b6b;
+  margin-bottom: 10px;
+  font-family: "Georgia", serif !important;
+  font-style: italic !important;
+}
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-links li {
+  margin: 5px 0;
+}
+.footer-links a,
+.footer-contact a {
+  color: #ff6b6b;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
-
-.footer-link:hover {
-  color: var(--btn-hover);
+.footer-links a:hover,
+.footer-contact a:hover {
+  text-decoration: underline;
 }
-
-/* Icon Hover Effect */
-.footer-icon {
-  color: #adb5bd;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 10px 0;
+  flex-direction: column;
 }
-.name {
-  color: var(--btn-color);
+.social-icons a {
+  color: #ff6b6b;
+  font-size: 20px;
+  text-decoration: none;
 }
-
-.footer-icon:hover {
-  color: var(--btn-hover);
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+  font-size: 14px;
+}
+.footer-bottom a {
+  color: #ff6b6b;
+  text-decoration: none;
+}
+.footer-bottom a:hover {
+  text-decoration: underline;
 }
 
 /* Headings */
@@ -1073,38 +1092,5 @@ footer a {
   }
   50% {
     transform: translateY(-5px);
-  }
-}
-
-/* Responsive Design for Mobile */
-@media screen and (max-width: 768px) {
-  .whatsapp-container {
-    padding: 8px 15px;
-    border-radius: 40px;
-  }
-
-  .whatsapp-container img {
-    width: 35px;
-    height: 35px;
-  }
-
-  .whatsapp-container p {
-    font-size: 0.9rem;
-  }
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .col-left,
-  .col-right {
-    max-width: 100%;
-  }
-
-  #map {
-    height: 300px;
   }
 }

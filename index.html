@@ -3,28 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The karrsh Captures</title>
+    <title>The Karrsh Captures | Premier Photography Agency</title>
+    <meta
+      name="description"
+      content="The Karrsh Captures is a premier photography agency specializing in weddings, portraits, events, and commercial projects. Explore our Website and book your session today!"
+    />
+    <meta
+      name="keywords"
+      content="The Karrsh Captures, professional photography, wedding photography, portrait photography, event photography, commercial photography, photography agency"
+    />
+    <meta name="author" content="The Karrsh Captures" />
+    <meta name="robots" content="index, follow" />
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta
+      property="og:title"
+      content="The Karrsh Captures | Premier Photography Agency"
+    />
+    <meta
+      property="og:description"
+      content="Discover world-class photography services by The Karrsh Captures. Let us capture your most cherished moments beautifully."
+    />
+    <meta property="og:image" content="./images/banners/og-image.jpg" />
+    <meta property="og:url" content="https://thekarrshcaptures.com/" />
+    <meta property="og:type" content="website" />
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="The Karrsh Captures | Premier Photography Agency"
+    />
+    <meta
+      name="twitter:description"
+      content="Explore The Karrsh Captures' professional photography services for weddings, portraits, events, and commercial projects."
+    />
+    <meta name="twitter:image" content="./images/banners/twitter-image.jpg" />
+    <!-- Favicon -->
     <link
       rel="shortcut icon"
-      href="images/banners/TKC_logo.png"
+      href="./images/banners/TKC_logo.png"
       type="image/x-icon"
     />
-    <!-- bootstrap -->
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://thekarrshcaptures.com/" />
+    <!-- Stylesheets -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <!-- Styling -->
-    <link rel="stylesheet" href="style/responsive.css" />
-    <link rel="stylesheet" href="style/style.css" />
-    <!-- font-kit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style/responsive.css" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <!-- FontAwesome for Icons -->
     <script
       src="https://kit.fontawesome.com/d8f48d71cd.js"
       crossorigin="anonymous"
     ></script>
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "The Karrsh Captures",
+        "url": "https://thekarrshcaptures.com/",
+        "logo": "https://thekarrshcaptures.com/images/banners/TKC_logo.png",
+        "description": "Professional photography agency specializing in weddings, portraits, and events.",
+        "founder":"Karrsh Saxena",
+        "sameAs": [
+          "https://www.facebook.com/share/18R3tDPQna/?mibextid=wwXIfr",
+          "https://www.instagram.com/karrshhh?igsh=MW1iZGRnOWViMjE5dQ==",
+
+        ],
+        "image": "https://thekarrshcaptures.com/images/banners/og-image.jpg",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service"
+        },
+        "address": {
+          "@type": "PostalAddress",,
+          "addressCountry": "India"
+        }
+      }
+    </script>
   </head>
+
   <body>
     <!-- header-section -->
     <section class="main">
@@ -72,17 +140,19 @@
         <div class="container-fluid" id="nav_links">
           <div class="row">
             <div class="col-md-12 text-center">
-              <a class="links mx-4" href="./about-TKC/">About Us</a>
+              <a class="links mx-3" href="./about-TKC/">About Us</a>
               <span>-</span>
-              <a class="links mx-4" href="#skills">Skills & Expertise</a>
+              <a class="links mx-3" href="#skills">Skills & Expertise</a>
               <span>-</span>
-              <a class="links mx-4" href="#portfolio">Portfolio</a>
+              <a class="links mx-3" href="#portfolio">Photographs</a>
               <span>-</span>
-              <a class="links mx-4" href="#services"> Services</a>
+              <a class="links mx-3" href="./films/">Films</a>
               <span>-</span>
-              <a class="links mx-4" href="#review">Reviews</a>
+              <a class="links mx-3" href="#services"> Services</a>
               <span>-</span>
-              <a class="links mx-4" href="./contact-TKC/">Contact Us</a>
+              <a class="links mx-3" href="#review">Reviews</a>
+              <span>-</span>
+              <a class="links mx-3" href="./contact-TKC/">Contact Us</a>
             </div>
           </div>
         </div>
@@ -116,7 +186,8 @@
               <a class="links d-block py-2" href="#skills"
                 >Skills & Expertise</a
               >
-              <a class="links d-block py-2" href="#portfolio">Portfolio</a>
+              <a class="links d-block py-2" href="#portfolio">Photographs</a>
+              <a class="links d-block py-2" href="./films/">Films</a>
               <a class="links d-block py-2" href="#services">Services</a>
               <a class="links d-block py-2" href="#review">Reviews</a>
               <a class="links d-block py-2" href="./contact-TKC/">Contact Us</a>
@@ -239,8 +310,10 @@
             </p>
           </div>
           <div class="col-md-4 box">
-            <span class="numb" data-target="07">0</span>
-            <p class="fw-bold">Awards Won <i class="fa-solid fa-award"></i></p>
+            <span class="numb" data-target="200">0</span>
+            <p class="fw-bold">
+              Events Covered <i class="fa-solid fa-calendar-check"></i>
+            </p>
           </div>
         </div>
       </div>
@@ -277,37 +350,44 @@
           <div class="col-md-6">
             <div class="skills-container">
               <div class="skill">
-                <p>Portraits Photography <i class="fa-solid fa-image"></i></p>
+                <p>Portraits Photography <i class="fa fa-user"></i></p>
                 <div class="skill-bar">
-                  <div class="skill-bar-fill" data-skill="90%"></div>
+                  <div class="skill-bar-fill" data-skill="94%"></div>
                 </div>
               </div>
               <div class="skill">
                 <p>
-                  Nature Photography <i class="fa-solid fa-mountain-sun"></i>
+                  Street and Landscape Photography
+                  <i class="fa-solid fa-map"></i>
                 </p>
                 <div class="skill-bar">
-                  <div class="skill-bar-fill" data-skill="80%"></div>
+                  <div class="skill-bar-fill" data-skill="86%"></div>
                 </div>
               </div>
               <div class="skill">
                 <p>Wedding Photography <i class="fa-solid fa-film"></i></p>
                 <div class="skill-bar">
-                  <div class="skill-bar-fill" data-skill="90%"></div>
+                  <div class="skill-bar-fill" data-skill="97%"></div>
+                </div>
+              </div>
+              <div class="skill">
+                <p>Fashion shoots <i class="fa fa-camera-retro"></i></p>
+                <div class="skill-bar">
+                  <div class="skill-bar-fill" data-skill="91%"></div>
+                </div>
+              </div>
+              <div class="skill">
+                <p>Commercial Photography <i class="fa fa-briefcase"></i></p>
+                <div class="skill-bar">
+                  <div class="skill-bar-fill" data-skill="92%"></div>
                 </div>
               </div>
               <div class="skill">
                 <p>
-                  Professional shoots <i class="fa-solid fa-photo-film"></i>
+                  Architecture Photography <i class="fa-solid fa-landmark"></i>
                 </p>
                 <div class="skill-bar">
-                  <div class="skill-bar-fill" data-skill="85%"></div>
-                </div>
-              </div>
-              <div class="skill">
-                <p>Street Photography <i class="fa-solid fa-archway"></i></p>
-                <div class="skill-bar">
-                  <div class="skill-bar-fill" data-skill="83%"></div>
+                  <div class="skill-bar-fill" data-skill="88%"></div>
                 </div>
               </div>
             </div>
@@ -615,6 +695,11 @@
             </button>
           </div>
         </div>
+        <!-- Notice for users -->
+        <p class="text-center text-muted mb-3 d-none d-md-block">
+          <i class="fa-solid fa-triangle-exclamation fa-fade"></i> Hover over
+          the cards to pause the movement.
+        </p>
       </div>
     </section>
     <!-- FAQ section -->
@@ -857,120 +942,105 @@
       </div>
     </section>
     <!-- footer -->
-    <footer class="bg-dark text-light py-4 text-center">
-      <div class="container">
-        <div class="row">
-          <!-- Company Info -->
-          <div class="col-md-3 mb-3">
-            <h5 class="text-uppercase">~ TKC ~</h5>
-            <p>Freelance Photography Agency</p>
-            <p>© 2025 All Rights Reserved.</p>
-            <p>Capturing moments, preserving memories.</p>
-          </div>
-
-          <!-- Our Office Address -->
-          <div class="col-md-3 mb-3">
-            <h5 class="text-uppercase">Our Office Address</h5>
-            <p>11th Avenue, Gaur City 2, Greater Noida</p>
-            <p>Region: Delhi NCR, India</p>
-            <p>
-              Phone:
-              <a
-                href="tel:+919876543210"
-                class="text-light text-decoration-none"
-                >+91 8899704714
-              </a>
-            </p>
-            <p>
-              Email:
-              <a
-                href="mailto:thekarrshcaptures@gmail.com"
-                class="text-light text-decoration-none"
-                >thekarrshcaptures@gmail.com</a
-              >
-            </p>
-          </div>
-
-          <!-- Quick Links -->
-          <div class="col-md-3 mb-3">
-            <h5 class="text-uppercase">Quick Links</h5>
-            <ul class="list-unstyled">
-              <li><a href="index.html" class="footer-link">Home</a></li>
-              <li><a href="./about-TKC/" class="footer-link">About Us</a></li>
-              <li>
-                <a href="index.html#portfolio" class="footer-link"
-                  >Photography</a
-                >
-              </li>
-              <li>
-                <a href="index.html#services" class="footer-link">Services</a>
-              </li>
-              <li>
-                <a href="./contact-TKC/" class="footer-link">Contact Us</a>
-              </li>
-              <li>
-                <a href="index.html#review" class="footer-link">Reviews</a>
-              </li>
-            </ul>
-          </div>
-          <!-- Follow Us -->
-          <div
-            class="col-md-3 mb-3 d-flex flex-column align-items-center justify-content-center"
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Brand Section -->
+        <div class="footer-brand">
+          <a href="index.html" class="text-decoration-none">
+            <h2 class="fw-bold">~ TKC ~</h2></a
           >
-            <h5 class="text-uppercase">Follow Us</h5>
-            <div class="d-flex gap-5">
-              <a
-                href="https://www.instagram.com/the.karrsh.captures?igsh=MXhkOTQxZzduam1qNA=="
-                target="_blank"
-                class="footer-icon"
-                rel="noopener"
-                ><span class="d-none">TKC instagram</span>
-                <i class="fa-brands fa-instagram mx-3"></i>
-              </a>
-              <a
-                href="https://www.facebook.com/share/1Av2erFxWH/?mibextid=wwXIfr"
-                target="_blank"
-                class="footer-icon"
-                rel="noopener"
-              >
-                <span class="d-none">TKC facebook</span>
-                <i class="fa-brands fa-facebook"></i>
-              </a>
+          <p>Freelance Photography Agency</p>
+          <p>© 2025 All Rights Reserved.</p>
+          <p>Capturing moments, preserving memories.</p>
+        </div>
 
-              <a
-                href="https://www.threads.net/@the.karrsh.captures?igshid=NTc4MTIwNjQ2YQ=="
-                target="_blank"
-                rel="noopener"
-                class="footer-icon"
-              >
-                <span class="d-none">TKC threads</span>
-                <i class="fa-brands fa-threads"></i>
-              </a>
-              <a
-                href="https://youtube.com/@thekarrshcaptures6549?si=HQ9D6gNyyp8wAIwb"
-                target="_blank"
-                rel="noopener"
-                class="footer-icon"
-              >
-                <span class="d-none">TKC You-Tube</span>
-                <i class="fa-brands fa-youtube"></i>
-              </a>
-            </div>
+        <!-- Quick Links -->
+        <div class="footer-links">
+          <h3 class="fw-bold">Quick Links</h3>
+          <ul>
+            <li><a href="./about-TKC/">About Us</a></li>
+            <li><a href="index.html#portfolio">Photography</a></li>
+            <li><a href="./films/">Films</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="./contact-TKC/">Contact Us</a></li>
+            <li><a href="index.html#review">Reviews</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-contact">
+          <h3 class="fw-bold">Contact Info</h3>
+          <p>11th Avenue, Gaur City 2, Greater Noida</p>
+          <p>Region: Delhi NCR, India</p>
+          <p>Phone: +91 8899704714</p>
+          <p>
+            Email:
+            <a href="mailto:thekarrshcaptures@gmail.com"
+              >thekarrshcaptures@gmail.com</a
+            >
+          </p>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-social">
+          <h3 class="fw-bold">Follow Us</h3>
+          <div class="social-icons">
+            <a
+              href="https://www.instagram.com/the.karrsh.captures?igsh=MXhkOTQxZzduam1qNA=="
+              target="_blank"
+              class="footer-icon"
+              rel="noopener"
+              ><span class="d-none">TKC instagram</span>
+              <i class="fa-brands fa-instagram fs-3"></i>
+            </a>
+            <a
+              href="https://www.facebook.com/share/1Av2erFxWH/?mibextid=wwXIfr"
+              target="_blank"
+              class="footer-icon"
+              rel="noopener"
+            >
+              <span class="d-none">TKC facebook</span>
+              <i class="fa-brands fa-facebook fs-3"></i>
+            </a>
+
+            <a
+              href="https://www.threads.net/@the.karrsh.captures?igshid=NTc4MTIwNjQ2YQ=="
+              target="_blank"
+              rel="noopener"
+              class="footer-icon"
+            >
+              <span class="d-none">TKC threads</span>
+              <i class="fa-brands fa-threads fs-3"></i>
+            </a>
+            <a
+              href="https://youtube.com/@thekarrshcaptures6549?si=HQ9D6gNyyp8wAIwb"
+              target="_blank"
+              rel="noopener"
+              class="footer-icon"
+            >
+              <span class="d-none">TKC You-Tube</span>
+              <i class="fa-brands fa-youtube fs-3"></i>
+            </a>
           </div>
         </div>
-        <div class="text-center mt-4">
-          <small>
-            Made with <span class="text-danger">❤️</span> by
-            <a
-              href="https://kuldeep-sharmaa.github.io/Portfolio"
-              class="footer-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="name text-decoration-underline">Kuldeep Sharma</span>
-            </a>
-          </small>
-        </div>
+      </div>
+
+      <!-- Bottom Line -->
+      <div class="footer-bottom">
+        <p>
+          All Images and Videos Are Copyrighted © 2025 The Karrsh Captures -
+          ESTD 2017
+        </p>
+        <p>
+          Made with ❤️ by
+          <a
+            href="https://kuldeep-sharmaa.github.io/Portfolio"
+            class="footer-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Kuldeep Sharma</a
+          >
+        </p>
       </div>
     </footer>
   </body>
