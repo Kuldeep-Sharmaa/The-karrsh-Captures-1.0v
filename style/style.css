@@ -466,7 +466,7 @@ body {
 }
 
 #contact_box h3 {
-  font-size: 4.75rem;
+  font-size: 4.3rem;
 }
 
 #contact_box p {
@@ -523,6 +523,9 @@ body {
 #services {
   background-color: #111111;
   padding: 5rem 0rem 5rem 0rem;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
 }
 #services_text h3 {
   font-size: 3.75rem;
@@ -579,7 +582,6 @@ body {
 
 .review-card p {
   font-size: 0.9rem;
-  color: #666;
   margin-bottom: 8px;
 }
 
