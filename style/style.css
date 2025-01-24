@@ -43,7 +43,7 @@ body {
   font-size: 1.1rem;
   padding: 5px;
 }
-
+.nav-link,
 .links {
   font-family: var(--main-font);
   color: #ffffff;
@@ -52,6 +52,7 @@ body {
   transition: color 0.3s ease-in-out;
 }
 
+.nav-link::after,
 .links::after {
   content: "";
   position: absolute;
@@ -63,10 +64,12 @@ body {
   transition: width 0.3s ease-in-out;
 }
 
+.nav-link:hover,
 .links:hover {
   color: #ff5722;
 }
 
+.nav-link:hover::after,
 .links:hover::after {
   width: 100%;
 }
@@ -1094,5 +1097,87 @@ body {
   }
   50% {
     transform: translateY(-5px);
+  }
+}
+
+/* FILMS page */
+
+/* Hero Section */
+.hero-section-films {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  width: 100%; /* Full width */
+  overflow: hidden;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the entire section */
+  z-index: -1; /* Places the video behind other elements */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.2
+  ); /* Adds a semi-transparent overlay for readability */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1; /* Ensures the overlay content stays above the video */
+}
+
+.overlay .container {
+  text-align: center;
+  color: white; /* White text for contrast */
+  z-index: 2;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Adds depth to text */
+}
+
+.overlay p {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Adds depth to text */
+}
+
+/* Styling for the video titles on hover */
+.card-title {
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.card:hover .card-title {
+  color: #00bcd4; /* Highlight effect */
+}
+
+/* Section background */
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .overlay h1 {
+    font-size: 2rem; /* Adjust font size for smaller screens */
+  }
+
+  .overlay p {
+    font-size: 1.2rem;
   }
 }
