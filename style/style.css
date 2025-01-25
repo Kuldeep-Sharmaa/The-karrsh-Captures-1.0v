@@ -1186,7 +1186,7 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
-.navbar {
+.navbar-films {
   background-color: transparent !important;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
