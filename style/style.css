@@ -1176,22 +1176,6 @@ body {
   overflow: hidden;
 }
 
-@media (max-width: 576px) {
-  .text-center h2 {
-    font-size: 1.5rem;
-  }
-  h5 {
-    font-size: 0.9rem;
-  }
-}
-
-.mb-4 {
-  margin-bottom: 1.5rem !important;
-}
-
-.mt-3 {
-  margin-top: 1rem !important;
-}
 /* Responsive Styling */
 @media (max-width: 768px) {
   .overlay h1 {

@@ -64,9 +64,6 @@
   .section-title {
     font-size: 2rem !important;
   }
-  .fw-bold {
-    font-size: 1.5rem;
-  }
 
   .portfolio_button {
     padding: 10px 20px;
@@ -142,7 +139,7 @@
     padding: 2rem 0rem !important;
   }
   .about_heading {
-    font-size: 2rem !important;
+    font-size: 3rem !important;
     font-weight: bold;
   }
   #skills {
