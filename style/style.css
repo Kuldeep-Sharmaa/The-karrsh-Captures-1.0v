@@ -7,9 +7,10 @@
 }
 
 :root {
-  --main-font: Montserrat, sans-serif;
+  --main-font: "Roboto", serif;
   --btn-color: #ff6f61;
   --btn-hover: #ff5722;
+  --heading-font: "Bruno Ace", serif;
 }
 body {
   overflow-x: hidden;
@@ -136,9 +137,9 @@ body {
 }
 
 .hero-section h1 {
-  font-size: 3.5rem;
   font-weight: 700;
   line-height: 1.2;
+  font-family: var(--heading-font);
 }
 
 .hero-section p {
@@ -1105,8 +1106,8 @@ body {
 /* Hero Section */
 .hero-section-films {
   position: relative;
-  height: 100vh; /* Full viewport height */
-  width: 100%; /* Full width */
+  height: 100vh;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -1116,7 +1117,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the video covers the entire section */
+  object-fit: cover;
   z-index: -1; /* Places the video behind other elements */
 }
 
@@ -1126,34 +1127,29 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.2
-  ); /* Adds a semi-transparent overlay for readability */
+  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1; /* Ensures the overlay content stays above the video */
+  z-index: 1; /*  overlay content stays above the video */
 }
 
 .overlay .container {
   text-align: center;
-  color: white; /* White text for contrast */
+  color: white;
   z-index: 2;
 }
 
 .overlay h1 {
-  font-size: 3rem;
   font-weight: bold;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Adds depth to text */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  font-family: var(--heading-font);
 }
 
 .overlay p {
   font-size: 1.5rem;
   margin-top: 10px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Adds depth to text */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 /* Styling for the video titles on hover */
@@ -1166,11 +1162,36 @@ body {
   color: #00bcd4; /* Highlight effect */
 }
 
-/* Section background */
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #f9f9f9;
 }
 
+.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Video Gallery */
+.ratio {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (max-width: 576px) {
+  .text-center h2 {
+    font-size: 1.5rem;
+  }
+  h5 {
+    font-size: 0.9rem;
+  }
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.mt-3 {
+  margin-top: 1rem !important;
+}
 /* Responsive Styling */
 @media (max-width: 768px) {
   .overlay h1 {

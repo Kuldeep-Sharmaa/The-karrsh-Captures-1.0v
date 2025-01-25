@@ -2,10 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: var(--main-font);
+
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 3rem;
+  }
   .desktop-overlay {
     display: none !important;
   }
@@ -93,9 +97,6 @@
   }
   .carousel-controls {
     display: flex !important;
-  }
-  .container {
-    flex-direction: column !important;
   }
 
   .col-left,
