@@ -93,10 +93,9 @@
       }
     </script>
   </head>
-
   <body>
     <!-- header-section -->
-    <section class="main">
+    <section class="main section">
       <!-- Desktop-version-navbar -->
       <header class="d-none d-md-block">
         <!-- logo-nav -->
@@ -1049,38 +1048,48 @@
         </p>
       </div>
     </footer>
-  </body>
-  <!-- Setup and start animation! -->
-  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-  <script>
-    // Get the category from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get("category");
+    <!-- Setup and start animation! -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const heroSection = document.querySelector(".hero-section");
 
-    // Optionally, check if the category is present
-    if (category) {
-      console.log("Category:", category); //
-    } else {
-      console.log("Category parameter is not found in the URL");
-    }
-  </script>
-  <script>
-    var typed = new Typed(".lead", {
-      strings: [" We Capture  with creativity, concept and passion "],
-      typeSpeed: 70,
-    });
-    // Hide the cursor
-    document.addEventListener("DOMContentLoaded", () => {
-      const cursor = document.querySelector(".typed-cursor");
-      if (cursor) {
-        cursor.style.display = "none"; // Hide the cursor
+        // Add the 'animate' class to trigger the animation
+        if (heroSection) {
+          heroSection.classList.add("animate");
+        }
+      });
+    </script>
+    <!-- Get the category -->
+    <script>
+      // Get the category from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const category = urlParams.get("category");
+
+      // Optionally, check if the category is present
+      if (category) {
+        console.log("Category:", category); //
+      } else {
+        console.log("Category parameter is not found in the URL");
       }
-    });
-  </script>
-
-  <!-- Bootstrap-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- JavaScript -->
-  <script src="script.js"></script>
-  <!-- portfolio section -->
+    </script>
+    <!-- Auto tying -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+      var typed = new Typed(".lead", {
+        strings: [" We Capture  with creativity, concept and passion "],
+        typeSpeed: 70,
+      });
+      // Hide the cursor
+      document.addEventListener("DOMContentLoaded", () => {
+        const cursor = document.querySelector(".typed-cursor");
+        if (cursor) {
+          cursor.style.display = "none"; // Hide the cursor
+        }
+      });
+    </script>
+    <!-- Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+  </body>
 </html>
