@@ -62,13 +62,13 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--btn-color);
+  background-color: #007bff;
   transition: width 0.3s ease-in-out;
 }
 
 .nav-link:hover,
 .links:hover {
-  color: var(--btn-color);
+  color: #007bff;
 }
 
 .nav-link:hover::after,
@@ -1184,7 +1184,7 @@ body {
 }
 
 .card:hover .card-title {
-  color: #00bcd4; /* Highlight effect */
+  color: #00bcd4;
 }
 
 .bg-light {
@@ -1225,6 +1225,9 @@ body {
 .navbar.scrolled .nav-link {
   color: black !important;
   transition: color 0.4s ease;
+}
+.navbar.scrolled .nav-link:hover {
+  color: #007bff !important;
 }
 
 .navbar.scrolled .navbar-brand {

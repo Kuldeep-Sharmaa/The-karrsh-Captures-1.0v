@@ -259,6 +259,5 @@ window.addEventListener("resize", () => {
 // Start auto-scroll when the page loads
 startAutoScroll();
 
-// Optional: Stop auto-scroll when hovering over the carousel
 carousel.addEventListener("mouseenter", stopAutoScroll);
 carousel.addEventListener("mouseleave", startAutoScroll);
