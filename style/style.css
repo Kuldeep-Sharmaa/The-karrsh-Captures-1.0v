@@ -182,7 +182,7 @@ body {
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
-  animation: fadeInUp 2s ease-out forwards;
+  animation: fadeInUp 1.5s ease-out forwards;
 }
 
 /* about section */
@@ -1005,6 +1005,7 @@ body {
 .contact-form label {
   font-weight: bold;
   margin-bottom: 5px;
+  margin-top: 10px;
   display: block;
 }
 
@@ -1013,7 +1014,6 @@ body {
 .contact-form textarea {
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -1032,6 +1032,20 @@ body {
 .contact-form .btn-submit:hover {
   background-color: #1abc9c;
 }
+/* error message */
+.error {
+  font-size: 0.875rem;
+  color: red;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.error + input,
+.error + select,
+.error + textarea {
+  margin-bottom: 1rem;
+}
+
 /* Map Section */
 .map-container {
   margin-top: 50px;
@@ -1269,35 +1283,3 @@ body {
   }
 }
 /* form validation */
-
-/* General error message styles */
-.error {
-  font-size: 0.875rem; /* Small font size for error text */
-  color: red; /* Error text color */
-  margin-top: 0.25rem; /* Space between input and error message */
-  display: block; /* Ensure the error spans are block elements */
-}
-
-/* Highlight invalid input fields */
-input:invalid,
-select:invalid,
-textarea:invalid {
-  border-color: red; /* Red border for invalid fields */
-  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* Subtle glow for invalid fields */
-  outline: none; /* Remove the default focus outline */
-}
-
-/* Add focus state for invalid inputs */
-input:invalid:focus,
-select:invalid:focus,
-textarea:invalid:focus {
-  border-color: darkred; /* Darker red on focus */
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.7); /* Intense glow when focused */
-}
-
-/* Error container for better spacing */
-.error + input,
-.error + select,
-.error + textarea {
-  margin-bottom: 1rem; /* Add spacing between fields and errors */
-}
