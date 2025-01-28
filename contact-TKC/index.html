@@ -275,7 +275,7 @@
                 type="tel"
                 id="phone"
                 name="phone"
-                placeholder="e.g., 9876543210"
+                placeholder="e.g., +919876543210"
                 value="+91"
               />
               <span class="error" id="phoneError"></span>
@@ -532,7 +532,7 @@
             return false;
           }
 
-          // Check if the phone number length is exactly 13 characters including "+91" (so, 10 digits after +91)
+          // if the phone number length is exactly 13 characters including "+91" (so, 10 digits after +91)
           if (phone.length !== 13) {
             showError(
               phoneError,
