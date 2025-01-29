@@ -3,17 +3,197 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test YouTube Embed</title>
+    <title>Contact Form</title>
+    <style>
+      label {
+        display: block;
+        margin: 10px 0 5px;
+      }
+      input,
+      select,
+      textarea,
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .error {
+        color: red;
+        font-size: 0.9em;
+        margin-top: -5px;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .btn-submit {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-submit:hover {
+        background-color: #45a049;
+      }
+    </style>
   </head>
   <body>
-    <iframe
-      width="560"
-      height="315"
-      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
+    <form id="contactForm">
+      <label for="name">Your Name (Required)</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Full Name"
+        required
+      />
+      <span class="error" id="nameError"></span>
+
+      <label for="email">Email (Required)</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Your Email"
+        required
+      />
+      <span class="error" id="emailError"></span>
+
+      <label for="phone">Phone Number</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="e.g., 9876543210"
+        value="+91"
+        required
+      />
+      <span class="error" id="phoneError"></span>
+
+      <label for="service">Service You're Interested In</label>
+      <select id="service" name="service" required>
+        <option value="" disabled selected>Select Service</option>
+        <option value="studio-portraits">Studio Portraits</option>
+        <option value="landscapes">Landscapes</option>
+        <option value="food-drinks">Food & Drinks</option>
+        <option value="product-photography">Product Photography</option>
+        <option value="social-media">Social Media Content Shoots</option>
+        <option value="real-estate">Real Estate Photography</option>
+        <option value="pre-weddings">Pre-Weddings</option>
+        <option value="fashion">Fashion</option>
+        <option value="event-photography">Event Photography</option>
+      </select>
+      <span class="error" id="serviceError"></span>
+
+      <label for="type">Are you looking for Photography or Films?</label>
+      <select id="type" name="type" required>
+        <option value="" disabled selected>Select an Option</option>
+        <option value="photography">Photography</option>
+        <option value="films">Films</option>
+      </select>
+      <span class="error" id="typeError"></span>
+
+      <label for="message">Your Message</label>
+      <textarea
+        id="message"
+        name="message"
+        placeholder="Tell us more about your project or event"
+      ></textarea>
+      <span class="error" id="messageError"></span>
+
+      <button type="submit" class="btn-submit">Send Message</button>
+    </form>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("contactForm");
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          // Clear previous errors
+          document
+            .querySelectorAll(".error")
+            .forEach((el) => (el.textContent = ""));
+
+          // Form field values
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const service = document.getElementById("service").value;
+          const type = document.getElementById("type").value;
+          const message = document.getElementById("message").value.trim();
+
+          // Validation flags
+          let isValid = true;
+
+          // Name Validation
+          if (!name) {
+            document.getElementById("nameError").textContent =
+              "Name is required.";
+            isValid = false;
+          } else if (name.length < 3) {
+            document.getElementById("nameError").textContent =
+              "Name must be at least 3 characters long.";
+            isValid = false;
+          }
+
+          // Email Validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email) {
+            document.getElementById("emailError").textContent =
+              "Email is required.";
+            isValid = false;
+          } else if (!emailRegex.test(email)) {
+            document.getElementById("emailError").textContent =
+              "Enter a valid email address.";
+            isValid = false;
+          }
+
+          // Phone Validation
+          const phoneRegex = /^[0-9]{10}$/;
+          if (!phone || phone === "+91") {
+            document.getElementById("phoneError").textContent =
+              "Phone number is required.";
+            isValid = false;
+          } else if (!phoneRegex.test(phone.slice(3))) {
+            document.getElementById("phoneError").textContent =
+              "Enter a valid 10-digit phone number.";
+            isValid = false;
+          }
+
+          // Service Validation
+          if (!service) {
+            document.getElementById("serviceError").textContent =
+              "Please select a service.";
+            isValid = false;
+          }
+
+          // Type Validation
+          if (!type) {
+            document.getElementById("typeError").textContent =
+              "Please select an option.";
+            isValid = false;
+          }
+
+          // Message Validation (Optional)
+          if (message && message.length < 10) {
+            document.getElementById("messageError").textContent =
+              "Message must be at least 10 characters long.";
+            isValid = false;
+          }
+
+          // If invalid, stop submission
+          if (!isValid) {
+            return;
+          }
+
+          // If valid, simulate successful submission
+          alert("Form submitted successfully!");
+          form.reset();
+          document.getElementById("phone").value = "+91"; // Reset phone prefix
+        });
+      });
+    </script>
   </body>
 </html>
