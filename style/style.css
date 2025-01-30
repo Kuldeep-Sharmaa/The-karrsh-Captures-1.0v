@@ -332,9 +332,15 @@ body {
 }
 
 /* portfolio section */
+.head {
+  font-size: 3.5rem;
+  letter-spacing: 1px;
+  color: #bcba8d;
+}
 .heading {
   font-size: 3.5rem;
   letter-spacing: 1px;
+  color: black;
 }
 #portfolio {
   background-color: #111111;
@@ -500,6 +506,7 @@ body {
 
 #contact_box h3 {
   font-size: 4.3rem;
+  color: #bcba8d;
 }
 
 #contact_box p {
@@ -562,6 +569,7 @@ body {
 }
 #services_text h3 {
   font-size: 3.75rem;
+  color: #bcba8d;
 }
 #services_text p {
   font-size: 1.5rem;
@@ -854,7 +862,7 @@ body {
   text-align: center;
 }
 .footer-brand h2 {
-  color: #6ba6ff;
+  color: #007bff;
   margin-bottom: 10px;
   font-family: "Georgia", serif !important;
   font-style: italic !important;
@@ -868,7 +876,7 @@ body {
 }
 .footer-links a,
 .footer-contact a {
-  color: #6ba6ff;
+  color: #007bff;
   text-decoration: none;
 }
 .footer-links a:hover,
@@ -883,7 +891,7 @@ body {
   flex-direction: column;
 }
 .social-icons a {
-  color: #6ba6ff;
+  color: #007bff;
   font-size: 20px;
   text-decoration: none;
 }
@@ -895,7 +903,7 @@ body {
   font-size: 14px;
 }
 .footer-bottom a {
-  color: #6ba6ff;
+  color: #007bff;
   text-decoration: none;
 }
 .footer-bottom a:hover {
