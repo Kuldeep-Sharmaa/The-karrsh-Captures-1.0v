@@ -14,6 +14,7 @@
     font-size: 3rem;
   }
   .logo {
+    margin-left: 20px !important;
     height: 50px !important;
   }
   .desktop-overlay {
