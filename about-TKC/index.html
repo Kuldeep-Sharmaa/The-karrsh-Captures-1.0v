@@ -322,11 +322,32 @@
     </footer>
     <!-- navbar -->
     <script>
-      document
-        .querySelector(".menu-toggle")
-        .addEventListener("click", function () {
-          document.querySelector(".nav-container").classList.toggle("show");
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar-custom");
+        const navbarToggler = document.querySelector(".menu-toggle");
+        const navContainer = document.querySelector(".nav-container");
+        const navLinks = document.querySelectorAll(".nav-container a");
+
+        // Toggle menu
+        navbarToggler.addEventListener("click", function () {
+          toggleNavbar();
         });
+
+        function toggleNavbar() {
+          navContainer.classList.toggle("show");
+          navbarToggler.classList.toggle("active");
+
+          navbarToggler.innerHTML = navContainer.classList.contains("show")
+            ? "<span>&#10006;</span>" // "X" icon
+            : "<span>&#9776;</span>"; // "☰" icon
+
+          if (navContainer.classList.contains("show")) {
+            navbar.classList.add("navbar-scrolled");
+          } else if (window.scrollY <= 50) {
+            navbar.classList.remove("navbar-scrolled");
+          }
+        }
+      });
     </script>
   </body>
   <!-- Bootstrap -->

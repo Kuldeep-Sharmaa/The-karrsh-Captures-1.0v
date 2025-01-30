@@ -152,6 +152,7 @@
     opacity: 1;
     transform: translateY(0);
     padding: 20px 0px;
+    z-index: 1;
   }
   .nav-container a {
     margin-bottom: 5px !important;

@@ -309,6 +309,39 @@
         </p>
       </div>
     </footer>
+    <!-- navbar -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar-custom");
+        const navbarToggler = document.querySelector(".menu-toggle");
+        const navContainer = document.querySelector(".nav-container");
+        const navLinks = document.querySelectorAll(".nav-container a"); // Select all links
+
+        // Toggle menu
+        navbarToggler.addEventListener("click", function () {
+          toggleNavbar();
+        });
+
+        // Function to toggle navbar visibility
+        function toggleNavbar() {
+          navContainer.classList.toggle("show");
+          navbarToggler.classList.toggle("active");
+
+          // Change icon from ☰ to ✖
+          navbarToggler.innerHTML = navContainer.classList.contains("show")
+            ? "<span>&#10006;</span>" // "X" icon
+            : "<span>&#9776;</span>"; // "☰" icon
+
+          // Ensure navbar background appears when menu is open
+          if (navContainer.classList.contains("show")) {
+            navbar.classList.add("navbar-scrolled");
+          } else if (window.scrollY <= 50) {
+            navbar.classList.remove("navbar-scrolled");
+          }
+        }
+      });
+    </script>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const toastEl = document.getElementById("liveToast");
