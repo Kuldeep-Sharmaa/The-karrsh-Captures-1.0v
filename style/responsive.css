@@ -7,8 +7,6 @@
 }
 :root {
   --main-font: "Roboto", serif;
-  --btn-color: #ff6f61;
-  --btn-hover: #ff5722;
   --heading-font: "Bruno Ace", serif !important;
 }
 @media (max-width: 768px) {
@@ -128,10 +126,10 @@
 }
 
 @media screen and (max-width: 576px) {
-  .links {
-    text-align: center;
-
-    text-decoration: none;
+  .navbar-custom,
+  .navbar-custom-page {
+    top: -1px !important;
+    padding: 5px 8px !important;
   }
   #about {
     text-align: center;

@@ -16,124 +16,115 @@
 body {
   overflow-x: hidden;
 }
-/* Header logo */
-#header_logo {
-  background-color: #111111;
-  font-family: var(--main-font);
-  color: white !important;
-  z-index: 1;
-  position: relative;
-}
-#header_logo a {
-  text-decoration: none;
-  color: white;
-  font-family: "Georgia", serif !important;
-  font-style: italic !important;
-}
-
-/* header links */
-.into {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-}
-
-#nav_links {
-  background-color: #252525 !important;
-  color: white !important;
-  font-size: 1.1rem;
-  padding: 5px;
-}
-.nav-link,
-.links {
-  font-family: var(--main-font);
-  color: #ffffff;
-  text-decoration: none;
-  position: relative;
-  transition: color 0.3s ease-in-out;
-}
-
-.nav-link::after,
-.links::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
+/* Header navrbar */
+.navbar-custom {
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #007bff;
-  transition: width 0.3s ease-in-out;
-}
-
-.nav-link:hover,
-.links:hover {
-  color: #007bff;
-}
-
-.nav-link:hover::after,
-.links:hover::after {
+  right: 0;
   width: 100%;
+  background: transparent;
+  padding: 15px 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
 }
 
-/* social-media */
-#social_media {
-  font-size: 1.3rem;
+.navbar-scrolled {
+  background: rgb(0, 0, 0);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  margin-left: 20px;
+  height: 50px;
+  width: 80px;
+}
+
+.nav-container {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  flex-wrap: wrap;
 }
-
-#social_media .social-link {
+/* navbar for other */
+.nav-container a {
+  color: white;
   text-decoration: none;
+  font-weight: bold;
+  margin: 0 15px;
+  transition: color 0.3s;
 }
 
-#social_media .fa-brands {
-  transition: all 0.3s ease;
+.navbar-custom-page {
+  width: 100%;
+  background: black;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
-
-#social_media .fa-brands:hover {
-  cursor: pointer;
-  filter: brightness(1.2);
-  transform: scale(1.1);
+.nav-container a:hover {
+  color: var(--btn-hover);
 }
-
-#social_media .fa-instagram {
-  color: #bf7a19;
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  margin-right: 20px;
 }
-
-#social_media .fa-facebook {
-  color: #0072bc;
-}
-
-#social_media .fa-threads {
-  color: #00adef;
-}
-
-#social_media .fa-instagram:hover {
-  color: #e67e22;
-}
-
-#social_media .fa-facebook:hover {
-  color: #0056a8;
-}
-
-#social_media .fa-threads:hover {
-  color: #0084cc;
+@media (max-width: 768px) {
+  .nav-container {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+  .nav-container.show {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
 }
 
 .hero-section {
+  position: relative;
   background-image: url(../images/banners/hero_background.jpg) !important;
   background-size: cover;
-  font-family: var(--main-font);
   background-repeat: no-repeat;
   height: 101vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
   text-align: center;
+  color: white;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust opacity here */
+  z-index: 1;
+}
+
+.hero-section .container-fluid {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-section h1 {
@@ -171,17 +162,18 @@ body {
   }
 }
 
-.hero-section {
+.animated {
   opacity: 0;
   transform: translateY(50px);
   visibility: hidden;
 }
 
-.hero-section.animate {
+.animated {
+  padding-top: 5rem;
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
-  animation: fadeInUp 1.5s ease-out forwards;
+  animation: fadeInUp 2s ease-out forwards;
 }
 
 /* about section */
