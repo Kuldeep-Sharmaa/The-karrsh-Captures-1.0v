@@ -611,7 +611,8 @@ body {
   font-size: 0.8rem;
   color: #999;
   margin-top: 8px;
-  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .carousel-controls {
