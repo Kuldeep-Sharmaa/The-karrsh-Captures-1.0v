@@ -98,41 +98,47 @@ function handleFilterButtons() {
   const filterButtons = document.querySelectorAll(".filter-button");
   const portfolioItems = document.querySelectorAll(".portfolio-item");
 
+  // Default category set to "Portraits"
+  let defaultCategory = "Portraits";
+
+  // Find and activate the default category button
+  const defaultButton = document.querySelector(
+    `.filter-button[data-category="${defaultCategory}"]`
+  );
+  if (defaultButton) {
+    defaultButton.classList.add("active");
+  }
+
+  // Function to filter items
+  function filterItems(category) {
+    // Update active class on buttons
+    filterButtons.forEach((btn) => btn.classList.remove("active"));
+    document
+      .querySelector(`.filter-button[data-category="${category}"]`)
+      ?.classList.add("active");
+
+    // Filter portfolio items
+    portfolioItems.forEach((item) => {
+      const itemCategory = item.getAttribute("data-category");
+      item.style.display =
+        category === "all" || itemCategory === category ? "block" : "none";
+    });
+  }
+
+  // Apply filtering for default category when the page loads
+  filterItems(defaultCategory);
+
   // Add event listeners to all filter buttons
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const category = button.getAttribute("data-category");
-
-      // Update active class on filter buttons
-      filterButtons.forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
-
-      // Filter portfolio items based on category
-      portfolioItems.forEach((item) => {
-        const itemCategory = item.getAttribute("data-category");
-        item.style.display =
-          category === "all" || itemCategory === category ? "block" : "none";
-      });
-
-      // Center filtered items
-      const visibleItems = Array.from(portfolioItems).filter(
-        (item) =>
-          item.style.display === "block" ||
-          item.style.display === "inline-block"
-      );
-
-      if (visibleItems.length > 0) {
-        // Center the grid containing visible items
-        const firstItem = visibleItems[0];
-        firstItem.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-          inline: "center",
-        });
-      }
+      filterItems(category);
     });
   });
 }
+
+// Call the function to activate filtering on page load
+document.addEventListener("DOMContentLoaded", handleFilterButtons);
 
 // Initialize filter functionality
 document.addEventListener("DOMContentLoaded", handleFilterButtons);

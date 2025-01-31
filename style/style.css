@@ -611,15 +611,7 @@ body {
   font-size: 0.8rem;
   color: #999;
   margin-top: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.review-date img {
-  width: 60px;
-  height: 60px;
-  margin-left: 8px;
+  text-align: center;
 }
 
 .carousel-controls {
