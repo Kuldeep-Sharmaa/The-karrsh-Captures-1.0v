@@ -167,6 +167,10 @@
   .menu-toggle.active {
     transform: rotate(90deg);
   }
+  .footer-logo {
+    width: auto;
+    height: 80px !important;
+  }
 }
 
 @media screen and (max-width: 576px) {

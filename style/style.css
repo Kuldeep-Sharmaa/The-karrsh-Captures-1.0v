@@ -831,6 +831,10 @@ body {
   justify-content: space-between;
   gap: 20px;
 }
+.footer-logo {
+  width: auto;
+  height: 110px;
+}
 .footer-brand,
 .footer-links,
 .footer-contact,
