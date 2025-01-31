@@ -1060,8 +1060,39 @@
         </p>
       </div>
     </footer>
+    <!-- top Button -->
+    <button
+      type="button"
+      id="goTopBtn"
+      class="go-top-btn"
+      onclick="scrollToTop()"
+    >
+      <i class="fa-solid fa-up-long"></i> <span class="d-none">Button</span>
+    </button>
     <!-- Scripts -->
+    <!--   Function to show/hide the button based on scroll position -->
+    <script>
+      window.onscroll = function () {
+        let goTopBtn = document.getElementById("goTopBtn");
+        let targetSection = document.getElementById("skills");
 
+        if (targetSection) {
+          let sectionPosition = targetSection.offsetTop;
+          let scrollPosition = window.scrollY;
+
+          if (scrollPosition > sectionPosition) {
+            goTopBtn.style.display = "block";
+          } else {
+            goTopBtn.style.display = "none";
+          }
+        }
+      };
+
+      // Function to scroll back to the top
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    </script>
     <!-- navbar -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {

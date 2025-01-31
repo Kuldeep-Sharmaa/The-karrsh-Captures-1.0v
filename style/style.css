@@ -1238,6 +1238,26 @@ body {
   transition: color 0.4s ease;
 }
 
+/* Go to Top Button Styling */
+.go-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.go-top-btn:hover {
+  background-color: #555;
+}
+
 /* Responsive Styling */
 @media (max-width: 768px) {
   .overlay h1 {
