@@ -94,7 +94,7 @@
         <div class="row text-center text-white fw-bold">
           <div class="category-section-title">
             <h1>
-              <span id="category-name"></span> <br />
+              <span class="mb-1" id="category-name"></span> <br />
               Through the Lens
             </h1>
           </div>
@@ -105,7 +105,11 @@
         </div>
       </div>
       <div id="gallery" class="gallery-container"></div>
-
+      <div class="text-center">
+        <div class="spinner-border" id="loadingButton" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
       <!-- Button to Explore Next Category -->
       <div class="button-container text-center mt-4">
         <button type="button" class="btn-next-category">
@@ -354,6 +358,7 @@
         const dontShowAgainButton = document.getElementById("dontShowAgain");
         const closeToastButton = document.getElementById("closeToast");
         const localStorageKey = "toastShown";
+        const loadingButton = document.getElementById("loadingButton");
 
         // Show the toast with smooth animation
         const showToast = () => {
@@ -373,7 +378,7 @@
 
         // Check localStorage and show toast
         if (!localStorage.getItem(localStorageKey)) {
-          setTimeout(showToast, 3000); // Delay of 2 seconds
+          setTimeout(showToast, 3000); // Delay of 3 seconds
         }
 
         // Handle "Don't show again" button click
@@ -383,6 +388,37 @@
         });
 
         closeToastButton.addEventListener("click", hideToast);
+
+        // Show the loading button initially
+        loadingButton.style.display = "inline-block";
+
+        // Simulate image loading process
+        const images = document.querySelectorAll("img");
+        let loadedImages = 0;
+
+        images.forEach((img) => {
+          if (img.complete) {
+            loadedImages++;
+          } else {
+            img.addEventListener("load", () => {
+              loadedImages++;
+              if (loadedImages === images.length) {
+                loadingButton.style.display = "none"; // Hide the loading button when all images are loaded
+              }
+            });
+            img.addEventListener("error", () => {
+              loadedImages++;
+              if (loadedImages === images.length) {
+                loadingButton.style.display = "none";
+              }
+            });
+          }
+        });
+
+        // If all images are already loaded, hide the button
+        if (loadedImages === images.length) {
+          loadingButton.style.display = "none";
+        }
       });
     </script>
     <!-- Bootstrap JS and Popper.js -->
