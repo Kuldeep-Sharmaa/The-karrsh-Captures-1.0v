@@ -441,6 +441,28 @@
       let imagesLoaded = 0;
       let imagesFound = false;
 
+      // This function checks if all image attempts are done
+      function checkIfAllImagesAttempted() {
+        imagesLoaded++;
+        if (imagesLoaded === maxAttempts) {
+          loadingSpinner.style.display = "none";
+          if (!imagesFound) {
+            galleryElement.innerHTML = `
+              <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
+                We are currently updating our content. Please check back soon.
+              </p>`;
+          } else {
+            // Show "No more content" note with an emoji when images have loaded successfully
+            const noMoreContent = document.createElement("p");
+            noMoreContent.textContent = "No more content";
+            noMoreContent.style.cssText =
+              "font-size: 1.5rem; color: #888; align-items: center; display: flex; justify-content: center; margin-top: 5rem;";
+            galleryElement.appendChild(noMoreContent);
+          }
+        }
+      }
+
+      // Load Images
       function loadImages() {
         for (let i = 1; i <= maxAttempts; i++) {
           const imagePath = `${categoryPath}image-${i}.jpg?nocache=${Date.now()}`;
@@ -452,6 +474,7 @@
           // Show the spinner before loading each image
           loadingSpinner.style.display = "block";
 
+          // On successful image load
           imgElement.onload = () => {
             imagesFound = true;
             galleryElement.appendChild(imgElement);
@@ -459,20 +482,13 @@
             imgElement.classList.remove("hidden");
             imgElement.addEventListener("click", () => openModal(imagePath));
             observeImage(imgElement);
+            checkIfAllImagesAttempted();
           };
 
+          // On image error
           imgElement.onerror = () => {
             console.warn(`Image not found: ${imagePath}`);
-          };
-
-          imgElement.onloadend = imgElement.onerror = () => {
-            imagesLoaded++;
-            if (imagesLoaded === maxAttempts && !imagesFound) {
-              loadingSpinner.style.display = "none";
-              galleryElement.innerHTML = `<p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
-              We are currently updating our content. Please check back soon.
-            </p>`;
-            }
+            checkIfAllImagesAttempted();
           };
         }
       }
@@ -480,10 +496,10 @@
       // Open the modal with the selected image
       function openModal(imagePath) {
         document.getElementById("carouselImages").innerHTML = `
-        <div class="carousel-item active">
-          <img src="${imagePath}" class="d-block w-100" alt="Image">
-        </div>
-      `;
+          <div class="carousel-item active">
+            <img src="${imagePath}" class="d-block w-100" alt="Image">
+          </div>
+        `;
         new bootstrap.Modal(document.getElementById("imageModal")).show();
       }
 
