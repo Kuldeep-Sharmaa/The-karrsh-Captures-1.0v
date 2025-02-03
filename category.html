@@ -404,13 +404,11 @@
 
       // Update the category name in the HTML
       if (category) {
-        const formattedCategory =
-          category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
         document.getElementById("category-name").textContent =
-          formattedCategory;
+          category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
       }
 
-      // Define the order of categories (excluding "banners")
+      // Define category list (excluding "banners")
       const categories = [
         "fashion",
         "landscapes",
@@ -420,74 +418,59 @@
         "portraits",
       ];
 
-      // Determine the current and next categories
-      const currentIndex = categories.indexOf(category);
-      const nextIndex = (currentIndex + 1) % categories.length;
-      const nextCategory = categories[nextIndex];
+      // Determine the next category
+      const nextCategory =
+        categories[(categories.indexOf(category) + 1) % categories.length];
 
-      // Add click event to the Next Category button
+      // Add event listener for Next Category button
       document
         .querySelector(".btn-next-category")
         .addEventListener("click", () => {
-          window.location.href = `category.html?category=${nextCategory}`;
+          window.location.href = `?category=${nextCategory}`;
         });
 
-      // Folder path for images and gallery loading
+      // Gallery Elements
       const galleryElement = document.getElementById("gallery");
-      const loadingSpinner = document.getElementById("loadingSpinner"); // Reference the spinner
+      const loadingSpinner = document.getElementById("loadingSpinner");
       const categoryPath = categoryFolder
         ? `images/${categoryFolder}/`
-        : `images/default/`; // Default folder if no category
+        : "images/default/";
 
-      // Load images from the category folder and display them in the gallery
-      const maxAttempts = 40; // Maximum number of images to attempt loading
-      const images = []; // Array to store image paths
+      // Image Loading Variables
+      const maxAttempts = 40;
       let imagesLoaded = 0;
       let imagesFound = false;
 
       function loadImages() {
         for (let i = 1; i <= maxAttempts; i++) {
-          const imagePath = `${categoryPath}image-${i}.jpg?nocache=${Date.now()}`; // Cache-busting
-
+          const imagePath = `${categoryPath}image-${i}.jpg?nocache=${Date.now()}`;
           const imgElement = document.createElement("img");
           imgElement.src = imagePath;
           imgElement.alt = `${category || "Default"} photo`;
-          imgElement.classList.add("gallery-image", "hidden"); // Class for animation
+          imgElement.classList.add("gallery-image", "hidden");
 
-          // When an image loads successfully
+          // Show the spinner before loading each image
+          loadingSpinner.style.display = "block";
+
           imgElement.onload = () => {
             imagesFound = true;
-            images.push(imagePath); // Add image to the array
-            galleryElement.appendChild(imgElement); // Add image to the gallery
-
-            // Hide the loading spinner once the first image loads
+            galleryElement.appendChild(imgElement);
             loadingSpinner.style.display = "none";
-
-            // Add click event to open modal
-            imgElement.addEventListener("click", () => {
-              openModal(images.indexOf(imagePath));
-            });
-
-            // Observe the image for scroll-based animation
+            imgElement.classList.remove("hidden");
+            imgElement.addEventListener("click", () => openModal(imagePath));
             observeImage(imgElement);
           };
 
-          // When an image fails to load
           imgElement.onerror = () => {
             console.warn(`Image not found: ${imagePath}`);
           };
 
-          // Increment the count of attempted loads (success or error)
           imgElement.onloadend = imgElement.onerror = () => {
             imagesLoaded++;
             if (imagesLoaded === maxAttempts && !imagesFound) {
-              // Hide the spinner if no images were found
               loadingSpinner.style.display = "none";
-
-              // Only show error message if no images were found after all attempts
-              galleryElement.innerHTML = `
-            <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
-            We are currently updating our content. Please check back soon.
+              galleryElement.innerHTML = `<p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
+              We are currently updating our content. Please check back soon.
             </p>`;
             }
           };
@@ -495,44 +478,36 @@
       }
 
       // Open the modal with the selected image
-      function openModal(index) {
-        const carouselInner = document.getElementById("carouselImages");
-        carouselInner.innerHTML = images
-          .map(
-            (src, idx) => `
-        <div class="carousel-item ${idx === index ? "active" : ""}">
-          <img src="${src}" class="d-block w-100" alt="Image ${idx + 1}">
-        </div>`
-          )
-          .join("");
-        const modal = new bootstrap.Modal(
-          document.getElementById("imageModal")
-        );
-        modal.show();
+      function openModal(imagePath) {
+        document.getElementById("carouselImages").innerHTML = `
+        <div class="carousel-item active">
+          <img src="${imagePath}" class="d-block w-100" alt="Image">
+        </div>
+      `;
+        new bootstrap.Modal(document.getElementById("imageModal")).show();
       }
 
-      // Intersection Observer for scroll animations
+      // Observe images for animations
       function observeImage(img) {
-        const observer = new IntersectionObserver(
-          (entries) => {
+        new IntersectionObserver(
+          (entries, observer) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                entry.target.classList.add("visible"); // Add animation class
-                observer.unobserve(entry.target); // Stop observing once visible
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
               }
             });
           },
-          { threshold: 0.2 } // Trigger when 20% of the image is visible
-        );
-        observer.observe(img);
+          { threshold: 0.2 }
+        ).observe(img);
       }
 
-      // Start loading images if category exists
+      // Start loading images if a category exists
       if (category) {
         loadImages();
       } else {
-        galleryElement.innerHTML = `<p>Please select a valid category.</p>`;
-        loadingSpinner.style.display = "none"; // Hide spinner if no valid category
+        galleryElement.innerHTML = "<p>Please select a valid category.</p>";
+        loadingSpinner.style.display = "none";
       }
     </script>
   </body>
