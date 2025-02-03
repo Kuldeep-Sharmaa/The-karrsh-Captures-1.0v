@@ -440,6 +440,7 @@
       const maxAttempts = 40;
       let imagesLoaded = 0;
       let imagesFound = false;
+      let imagePaths = []; // Store all successfully loaded image paths
 
       // This function checks if all image attempts are done
       function checkIfAllImagesAttempted() {
@@ -448,15 +449,22 @@
           loadingSpinner.style.display = "none";
           if (!imagesFound) {
             galleryElement.innerHTML = `
-              <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
-                We are currently updating our content. Please check back soon.
-              </p>`;
+            <p style="font-size: 1.5rem; color: #888; text-align: center; margin-top: 20px;">
+              We are currently updating our content. Please check back soon.
+            </p>`;
           } else {
-            // Show "No more content" note with an emoji when images have loaded successfully
+            // Show "No more content" note with FontAwesome icon when images have loaded successfully
             const noMoreContent = document.createElement("p");
-            noMoreContent.textContent = "No more content";
             noMoreContent.style.cssText =
               "font-size: 1.5rem; color: #888; align-items: center; display: flex; justify-content: center; margin-top: 5rem;";
+
+            const textNode = document.createTextNode("No more content ");
+            const iconElement = document.createElement("i");
+            iconElement.className = "fa-solid fa-road-barrier";
+            iconElement.style.marginLeft = "5px";
+
+            noMoreContent.appendChild(textNode);
+            noMoreContent.appendChild(iconElement);
             galleryElement.appendChild(noMoreContent);
           }
         }
@@ -477,6 +485,7 @@
           // On successful image load
           imgElement.onload = () => {
             imagesFound = true;
+            imagePaths.push(imagePath); // Store image path for modal
             galleryElement.appendChild(imgElement);
             loadingSpinner.style.display = "none";
             imgElement.classList.remove("hidden");
@@ -493,13 +502,21 @@
         }
       }
 
-      // Open the modal with the selected image
-      function openModal(imagePath) {
-        document.getElementById("carouselImages").innerHTML = `
-          <div class="carousel-item active">
-            <img src="${imagePath}" class="d-block w-100" alt="Image">
+      // Open the modal and populate the Bootstrap carousel
+      function openModal(selectedImagePath) {
+        const carouselContainer = document.getElementById("carouselImages");
+        carouselContainer.innerHTML = ""; // Clear existing images
+
+        imagePaths.forEach((path, index) => {
+          const isActive = path === selectedImagePath ? "active" : ""; // Set the clicked image as active
+          const carouselItem = `
+          <div class="carousel-item ${isActive}">
+            <img src="${path}" class="d-block w-100" alt="Image">
           </div>
         `;
+          carouselContainer.innerHTML += carouselItem;
+        });
+
         new bootstrap.Modal(document.getElementById("imageModal")).show();
       }
 
