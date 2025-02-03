@@ -161,6 +161,7 @@
   /* Show menu button */
   .menu-toggle {
     display: block !important;
+    margin-right: 5px !important;
   }
 
   /* Rotate X button */

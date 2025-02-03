@@ -72,7 +72,7 @@
 
   <body>
     <!-- header-section -->
-    <header class="container-fluid navbar-custom-page px-5">
+    <header class="container-fluid navbar-custom px-5">
       <a href="../index.html">
         <img src="../images/banners/logo-black.png" alt="Logo" class="logo"
       /></a>
@@ -88,137 +88,104 @@
       <button type="button" class="menu-toggle">&#9776;</button>
     </header>
 
-    <main class="contact-main">
-      <div class="text-center py-5">
-        <h1 class="heading-page">Contact Us</h1>
-        <p class="subheading">
-          Have an idea or project in mind? Fill out the form below, and we’ll
-          connect with you to make it happen.
+    <main>
+      <div class="contact-banner"></div>
+      <div class="banner-text fw-medium text-center mt-5">
+        <h1 class="display-5">Your Story, Our Lens – Let’s Make Magic</h1>
+        <p class="mt-2">
+          We’re excited to hear from you. Share your vision, and let’s create
+          something extraordinary together. Fill out the form below, and we’ll
+          get back to you as soon as possible
+        </p>
+
+        <p class="mt-3 text-muted">
+          Please go through our
+          <a class="text-decoration-none" href="../index.html#FAQ"
+            >FAQ section</a
+          >
+          to find answers to some common questions
         </p>
       </div>
-
-      <div class="container d-flex justify-content-between">
-        <!-- Left Column for Images -->
-        <div class="col-left">
-          <div class="image-gallery">
-            <img
-              src="../images/banners/wedding-contact.jpg"
-              alt="Wedding"
-              class="contact-img"
-            />
-            <img
-              src="../images/banners/studio-contact.jpg"
-              alt="Studio"
-              class="contact-img"
-            />
-            <img
-              src="../images/banners/landcape-contact.jpg"
-              alt="Landscape"
-              class="contact-img"
-            />
-          </div>
-        </div>
-
-        <!-- Right Column for Form -->
-        <div class="col-right">
-          <div class="contact-form">
-            <h2 class="get-in-touch-heading text-center fw-bold mb-3">
-              Let’s Create Something Amazing Together
-            </h2>
-
-            <!-- Form -->
-            <form id="contactForm" novalidate>
-              <label for="name">Your Name (Required)</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Full Name"
-              />
-              <span class="error" id="nameError"></span>
-
-              <label for="email">Email (Required)</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Your Email"
-              />
-              <span class="error" id="emailError"></span>
-
-              <label for="phone">Phone Number (Required)</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="e.g., +919876543210"
-                value="+91"
-              />
-              <span class="error" id="phoneError"></span>
-
-              <label for="service">Service You're Interested In</label>
-              <select id="service" name="service">
-                <option value="" disabled selected>Select Service</option>
-                <option value="studio-portraits">Studio Portraits</option>
-                <option value="landscapes">Landscapes</option>
-                <option value="food-drinks">Food & Drinks</option>
-                <option value="product-photography">Product Photography</option>
-                <option value="social-media">
-                  Social Media Content Shoots
-                </option>
-                <option value="real-estate">Real Estate Photography</option>
-                <option value="pre-weddings">Pre-Weddings</option>
-                <option value="fashion">Fashion</option>
-                <option value="event-photography">Event Photography</option>
-              </select>
-              <span class="error" id="serviceError"></span>
-
-              <label for="type">What Are you looking for ?</label>
-              <select id="type" name="type">
-                <option value="" disabled selected>Select an Option</option>
-                <option value="photography">Photography</option>
-                <option value="films">Films</option>
-              </select>
-              <span class="error" id="typeError"></span>
-
-              <label for="message">Your Message</label>
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Tell us more about your project or event"
-              ></textarea>
-              <span class="error" id="messageError"></span>
-
-              <button type="submit" class="btn-submit">Send Message</button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="map-container">
-        <h3>Find Us Here</h3>
-        <div class="map-embed">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.726013847522!2d77.4229708!3d28.6192236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cee4abb71c135%3A0xb32384dc06877073!2s11th%20Ave%2C%20Gaur%20City%202%2C%20Greater%20Noida%2C%20Uttar%20Pradesh%20201009!5e0!3m2!1sen!2sin!4v1688899999999!5m2!1sen!2sin"
-            allowfullscreen=""
-            title="11th Avenue, Gaur City 2, Greater Noida location on Google Maps"
-          ></iframe>
-        </div>
-      </div>
-
-      <div class="whatsapp-chat">
-        <a
-          href="https://wa.me/+918899704714"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <div class="whatsapp-container">
-            <img src="../images/banners/whatsapp.png" alt="WhatsApp Icon" />
-            <p>Chat with us on WhatsApp!</p>
-          </div>
-        </a>
-      </div>
     </main>
+    <!-- Form -->
+    <div class="contact-form">
+      <form id="contactForm" novalidate>
+        <label for="name">Your Name (Required)</label>
+        <input type="text" id="name" name="name" placeholder="Full Name" />
+        <span class="error" id="nameError"></span>
+
+        <label for="email">Email (Required)</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" />
+        <span class="error" id="emailError"></span>
+
+        <label for="phone">Phone Number (Required)</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="e.g., +919876543210"
+          value="+91"
+        />
+        <span class="error" id="phoneError"></span>
+
+        <label for="service">Service You're Interested In</label>
+        <select id="service" name="service">
+          <option value="" disabled selected>Select Service</option>
+          <option value="studio-portraits">Studio Portraits</option>
+          <option value="landscapes">Landscapes</option>
+          <option value="food-drinks">Food & Drinks</option>
+          <option value="product-photography">Product Photography</option>
+          <option value="social-media">Social Media Content Shoots</option>
+          <option value="real-estate">Real Estate Photography</option>
+          <option value="pre-weddings">Pre-Weddings</option>
+          <option value="fashion">Fashion</option>
+          <option value="event-photography">Event Photography</option>
+        </select>
+        <span class="error" id="serviceError"></span>
+
+        <label for="type">What Are you looking for ?</label>
+        <select id="type" name="type">
+          <option value="" disabled selected>Select an Option</option>
+          <option value="photography">Photography</option>
+          <option value="films">Films</option>
+        </select>
+        <span class="error" id="typeError"></span>
+
+        <label for="message">Your Message</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Tell us more about your project or event"
+        ></textarea>
+        <span class="error" id="messageError"></span>
+
+        <button type="submit" class="btn-submit">Let’s Connect</button>
+      </form>
+    </div>
+
+    <div class="map-container">
+      <h3 class="fs-1">Find Us Here</h3>
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.726013847522!2d77.4229708!3d28.6192236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cee4abb71c135%3A0xb32384dc06877073!2s11th%20Ave%2C%20Gaur%20City%202%2C%20Greater%20Noida%2C%20Uttar%20Pradesh%20201009!5e0!3m2!1sen!2sin!4v1688899999999!5m2!1sen!2sin"
+          allowfullscreen=""
+          title="11th Avenue, Gaur City 2, Greater Noida location on Google Maps"
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="whatsapp-chat">
+      <a
+        href="https://wa.me/+918899704714"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <div class="whatsapp-container">
+          <img src="../images/banners/whatsapp.png" alt="WhatsApp Icon" />
+          <p>Chat with us on WhatsApp!</p>
+        </div>
+      </a>
+    </div>
 
     <!-- footer -->
     <footer class="footer">
@@ -331,18 +298,27 @@
         const navbar = document.querySelector(".navbar-custom");
         const navbarToggler = document.querySelector(".menu-toggle");
         const navContainer = document.querySelector(".nav-container");
-        const navLinks = document.querySelectorAll(".nav-container a");
+        const navLinks = document.querySelectorAll(".nav-container a"); // Select all links
 
         // Toggle menu
         navbarToggler.addEventListener("click", function () {
           toggleNavbar();
         });
 
+        // Change navbar background on scroll
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50 || navContainer.classList.contains("show")) {
+            navbar.classList.add("navbar-scrolled");
+          } else {
+            navbar.classList.remove("navbar-scrolled");
+          }
+        });
+
+        // Function to toggle navbar visibility
         function toggleNavbar() {
           navContainer.classList.toggle("show");
           navbarToggler.classList.toggle("active");
 
-          // Change icon from ☰ to ✖
           navbarToggler.innerHTML = navContainer.classList.contains("show")
             ? "<span>&#10006;</span>" // "X" icon
             : "<span>&#9776;</span>"; // "☰" icon
