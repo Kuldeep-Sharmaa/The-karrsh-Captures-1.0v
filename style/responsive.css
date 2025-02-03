@@ -145,8 +145,9 @@
     transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out,
       transform 0.4s ease-in-out;
   }
-  .category-section-title {
-    letter-spacing: 0px !important;
+  #category-name {
+    font-size: 2.2rem !important;
+    font-family: var(--heading-font) !important;
   }
   /* When menu is active */
   .nav-container.show {

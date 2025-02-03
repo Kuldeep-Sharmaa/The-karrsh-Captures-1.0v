@@ -655,15 +655,14 @@ body {
 
 .category-section-title {
   font-size: 2.3rem;
-  font-weight: bold;
   text-transform: uppercase !important;
+}
+#category-name {
+  font-weight: bold;
+  font-size: 4rem;
+  font-family: var(--heading-font) !important;
   margin-bottom: 0.5rem;
-  letter-spacing: 2px;
 }
-.category-section-title span {
-  font-family: var(--heading-font);
-}
-
 .section-subtitle {
   font-size: 1.2rem;
   color: #bbbbbb;
