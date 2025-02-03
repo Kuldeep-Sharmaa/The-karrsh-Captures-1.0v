@@ -656,6 +656,8 @@ body {
 .category-section-title {
   font-size: 2.3rem;
   text-transform: uppercase !important;
+  display: flex;
+  justify-content: center;
 }
 #category-name {
   font-weight: bold;
