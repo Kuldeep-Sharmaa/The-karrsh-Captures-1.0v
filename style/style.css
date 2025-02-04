@@ -664,7 +664,9 @@ body {
   font-size: 4rem;
   font-family: var(--heading-font) !important;
   margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* Adjust values as needed */
 }
+
 .section-subtitle {
   font-size: 1.2rem;
   color: #bbbbbb;
@@ -1015,22 +1017,6 @@ body {
   background: #333;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .banner-text {
-    max-width: 95%;
-  }
-  .contact-form {
-    max-width: 95%;
-  }
-
-  .contact-form input,
-  .contact-form select,
-  .contact-form textarea {
-    font-size: 14px;
-  }
-}
-
 /* error message */
 .error {
   font-size: 0.875rem;
@@ -1273,33 +1259,4 @@ body {
 
 .go-top-btn:hover {
   background-color: #555;
-}
-
-/* Responsive Styling */
-@media (max-width: 768px) {
-  .overlay h1 {
-    font-size: 2rem;
-  }
-
-  .overlay p {
-    font-size: 1.2rem;
-  }
-  .navbar.bg-white {
-    background-color: white !important;
-    transition: background-color 0.3s;
-  }
-
-  .navbar.bg-white .nav-link,
-  .navbar.bg-white .navbar-brand {
-    color: black !important;
-    transition: color 0.3s;
-  }
-
-  .navbar-toggler {
-    border-color: transparent;
-  }
-
-  .navbar.bg-white .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0,0,0,0.8)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  }
 }
