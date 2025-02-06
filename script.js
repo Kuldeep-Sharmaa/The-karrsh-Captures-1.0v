@@ -171,6 +171,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   lazyImages.forEach((img) => imageObserver.observe(img));
 });
+
+// carousel
 const carousel = document.querySelector(".carousel");
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
@@ -268,6 +270,7 @@ startAutoScroll();
 carousel.addEventListener("mouseenter", stopAutoScroll);
 carousel.addEventListener("mouseleave", startAutoScroll);
 
+// auto scroling text
 document.addEventListener("DOMContentLoaded", function () {
   const words = document.querySelectorAll(".rolling-text .word");
   let index = 0;
@@ -279,8 +282,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(() => {
       words[index].style.transform = "translateY(-100%)";
-    }, 1500);
+    }, 3000);
 
     index = (index + 1) % words.length;
-  }, 2000);
+  }, 4000);
 });
