@@ -569,6 +569,67 @@ body {
 }
 
 /* cards */
+.rolling-text {
+  display: flex;
+  height: 1.5em;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.rolling-text .word {
+  display: block;
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  animation: rollWords 8s linear infinite;
+  font-weight: bold;
+}
+.rolling-text .word:nth-child(1) {
+  color: #e63946;
+  animation-delay: 0s;
+  text-shadow: 3px 3px 6px rgba(230, 57, 70, 0.6);
+}
+.rolling-text .word:nth-child(2) {
+  color: #f4a261;
+  animation-delay: 2s;
+  text-shadow: 3px 3px 6px rgba(244, 162, 97, 0.6);
+}
+.rolling-text .word:nth-child(3) {
+  color: #2a9d8f;
+  animation-delay: 4s;
+  text-shadow: 3px 3px 6px rgba(42, 157, 143, 0.6);
+}
+.rolling-text .word:nth-child(4) {
+  color: #457b9d;
+  animation-delay: 6s;
+  text-shadow: 3px 3px 6px rgba(69, 123, 157, 0.6);
+}
+
+@keyframes rollWords {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
 .cards_container {
   max-width: 1400px;
   margin: auto;
