@@ -269,21 +269,3 @@ startAutoScroll();
 
 carousel.addEventListener("mouseenter", stopAutoScroll);
 carousel.addEventListener("mouseleave", startAutoScroll);
-
-// auto scroling text
-document.addEventListener("DOMContentLoaded", function () {
-  const words = document.querySelectorAll(".rolling-text .word");
-  let index = 0;
-
-  setInterval(() => {
-    words.forEach((word) => (word.style.opacity = 0));
-    words[index].style.opacity = 1;
-    words[index].style.transform = "translateY(0)";
-
-    setTimeout(() => {
-      words[index].style.transform = "translateY(-100%)";
-    }, 3000);
-
-    index = (index + 1) % words.length;
-  }, 4000);
-});
