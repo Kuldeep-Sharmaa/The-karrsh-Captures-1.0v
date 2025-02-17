@@ -59,38 +59,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const skillBars = document.querySelectorAll(".skill-bar-fill");
   const skillsSection = document.querySelector(".skills-container");
   let animationStarted = false;
+
   const animateSkillBars = () => {
     skillBars.forEach((bar) => {
       const skillValue = bar.getAttribute("data-skill");
-      bar.style.width = "0";
-      setTimeout(() => {
-        bar.style.width = skillValue;
-      }, 200);
+      bar.style.width = skillValue;
     });
   };
 
-  const isElementInViewport = (el) => {
-    const rect = el.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight)
-    );
-  };
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animationStarted) {
+          animationStarted = true;
+          animateSkillBars();
+          observer.unobserve(skillsSection);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
 
-  const handleScroll = () => {
-    if (isElementInViewport(skillsSection) && !animationStarted) {
-      animationStarted = true;
-      animateSkillBars();
-
-      // Reset the flag when the section is out of view
-      setTimeout(() => {
-        animationStarted = false;
-      }, 2000);
-    }
-  };
-
-  window.addEventListener("scroll", handleScroll);
+  observer.observe(skillsSection);
 });
 
 // Function to handle filtering and active class

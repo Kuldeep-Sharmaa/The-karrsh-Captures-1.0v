@@ -68,57 +68,22 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-films fixed-top">
-      <div class="container">
-        <!-- Brand -->
-        <a class="navbar-brand fs-3" href="../index.html"
-          ><img
-            src="../images/banners/TKC_logo-removebg-preview.png"
-            alt="brand-logo"
-        /></a>
-
-        <!-- Toggle Button for Mobile -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarFilms"
-          aria-controls="navbarFilms"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Navbar Links -->
-        <div class="collapse navbar-collapse" id="navbarFilms">
-          <ul class="navbar-nav ms-auto text-center">
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="../index.html">Home</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="../index.html#skills"
-                >Skills & Expertise</a
-              >
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="../index.html#portfolio">Photography</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="../index.html#services">Services</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="../index.html#review">Reviews</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="../about-TKC/">About Us</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="../contact-TKC/">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <nav class="container-fluid navbar-custom navbar-films px-5">
+      <a href="../index.html">
+        <img
+          src="../images/banners/TKC_logo-removebg-preview.png"
+          alt="Brand-Logo"
+          class="logo"
+      /></a>
+      <nav class="nav-container nav-container-films">
+        <a href="../about-TKC/" class="mx-3">About Us</a>
+        <a href="../index.html#skills" class="mx-3">Skills & Expertise</a>
+        <a href="../index.html#portfolio" class="mx-3">Photography</a>
+        <a href="../index.html#services" class="mx-3">Services</a>
+        <a href="../index.html#review" class="mx-3">Reviews</a>
+        <a href="../contact-TKC/" class="mx-3">Contact Us</a>
+      </nav>
+      <button type="button" class="menu-toggle">&#9776;</button>
     </nav>
 
     <!-- Hero Section -->
@@ -332,55 +297,67 @@
         </p>
       </div>
     </footer>
-    <!-- backgoround color -->
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const navbar = document.querySelector(".navbar");
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar-custom");
+        const navbarToggler = document.querySelector(".menu-toggle");
+        const navContainer = document.querySelector(".nav-container");
+        const navLinks = document.querySelectorAll(".nav-container a");
 
-        const handleScroll = () => {
-          if (window.innerWidth > 991) {
-            // Only apply on desktop (Bootstrap's lg breakpoint)
-            if (window.scrollY > 50) {
-              navbar.classList.add("scrolled");
-            } else {
-              navbar.classList.remove("scrolled");
+        // Toggle menu when the toggle button is clicked
+        navbarToggler.addEventListener("click", toggleNavbar);
+
+        // Close menu when a link is clicked (for responsive/mobile behavior)
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            if (navContainer.classList.contains("show")) {
+              toggleNavbar();
             }
-          } else {
-            navbar.classList.remove("scrolled"); // Ensure it's transparent on mobile
-          }
-        };
-
-        // Run on scroll
-        window.addEventListener("scroll", handleScroll);
-
-        // Run on resize to handle viewport changes
-        window.addEventListener("resize", handleScroll);
-
-        // Initialize on page load
-        handleScroll();
-      });
-    </script>
-
-    <!-- navbar color-->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const navbar = document.querySelector(".navbar");
-        const navbarToggler = document.querySelector(".navbar-toggler");
-        const navbarCollapse = document.querySelector(".navbar-collapse");
-
-        navbarToggler.addEventListener("click", () => {
-          const isExpanded = navbarCollapse.classList.contains("show");
-
-          if (!isExpanded) {
-            navbar.classList.add("bg-white");
-          } else {
-            navbar.classList.remove("bg-white");
-          }
+          });
         });
 
-        navbarCollapse.addEventListener("hidden.bs.collapse", () => {
-          navbar.classList.remove("bg-white");
-        });
+        // Update navbar style on scroll
+        window.addEventListener("scroll", updateNavbar);
+
+        function updateNavbar() {
+          if (window.scrollY > 50 || navContainer.classList.contains("show")) {
+            // Add a class to change background to white and apply other styles
+            navbar.classList.add("navbar-scrolled");
+
+            // Change toggle button color to black
+            navbarToggler.style.color = "black";
+
+            // Set the nav links' color to white (if not handled by CSS)
+            navLinks.forEach((link) => {
+              link.style.color = "white";
+            });
+          } else {
+            // Remove the class when at the top of the page
+            navbar.classList.remove("navbar-scrolled");
+
+            // Revert toggle button color back to white
+            navbarToggler.style.color = "white";
+
+            // Revert nav links color (or remove inline styling so CSS can take over)
+            navLinks.forEach((link) => {
+              link.style.color = "";
+            });
+          }
+        }
+
+        function toggleNavbar() {
+          // Toggle the menu visibility
+          navContainer.classList.toggle("show");
+          navbarToggler.classList.toggle("active");
+
+          // Change the icon based on the state
+          navbarToggler.innerHTML = navContainer.classList.contains("show")
+            ? "<span>&#10006;</span>" // "X" icon
+            : "<span>&#9776;</span>"; // "☰" icon
+
+          // Update navbar styling immediately after toggling
+          updateNavbar();
+        }
       });
     </script>
     <!-- video animation -->

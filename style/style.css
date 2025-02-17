@@ -558,6 +558,14 @@ body {
 .item {
   padding: 15px;
   border-radius: 8px;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+
+.item.animate {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .item i {
@@ -1260,22 +1268,17 @@ body {
   width: 80px;
 }
 
-.navbar.scrolled {
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* For films navbar when scrolled */
+.navbar-films.navbar-scrolled {
+  background-color: white !important;
 }
 
-.navbar.scrolled .nav-link {
-  color: black !important;
-  transition: color 0.4s ease;
+.navbar-films.navbar-scrolled .nav-container a {
+  color: rgb(0, 0, 0) !important;
 }
+
 .navbar.scrolled .nav-link:hover {
   color: #007bff !important;
-}
-
-.navbar.scrolled .navbar-brand {
-  color: black !important;
-  transition: color 0.4s ease;
 }
 
 /* Go to Top Button Styling */

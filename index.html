@@ -465,14 +465,13 @@
 
           <div class="container my-5">
             <div class="row text-white">
-              <!-- Reusable item -->
               <div class="col-md-4 p-3">
                 <div class="item d-flex">
                   <i class="fa-solid fa-circle-check me-3 text-success"></i>
                   <h5 class="mb-0">Studio Portraits</h5>
                 </div>
               </div>
-              <!-- Repeated item -->
+
               <div class="col-md-4 p-3">
                 <div class="item d-flex">
                   <i class="fa-solid fa-circle-check me-3 text-success"></i>
@@ -553,7 +552,7 @@
                   />
                 </div>
                 <div class="reviewer-name">Deepak Choudhary</div>
-                <div class="review-date">30-Oct-2024</div>
+                <div class="review-date">30-Nov-2024</div>
                 <div class="star-rating">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -601,7 +600,7 @@
                   />
                 </div>
                 <div class="reviewer-name">Amit Gupta</div>
-                <div class="review-date">23-Aug-2024</div>
+                <div class="review-date">23-Dec-2024</div>
                 <div class="star-rating">
                   <!-- 4 out of 5 stars -->
                   <i class="fas fa-star"></i>
@@ -650,7 +649,7 @@
                   />
                 </div>
                 <div class="reviewer-name">Priya Malhotra</div>
-                <div class="review-date">18-Mar-2025</div>
+                <div class="review-date">18-Feb-2025</div>
                 <div class="star-rating">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -1130,6 +1129,32 @@
         if (heroSection) {
           heroSection.classList.add("animate");
         }
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        const items = document.querySelectorAll(".item");
+
+        const observerOptions = {
+          threshold: 0.3, // Adjust threshold as needed
+        };
+
+        const observerCallback = (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate");
+              // Optionally unobserve after animation is triggered
+              observer.unobserve(entry.target);
+            }
+          });
+        };
+
+        const observer = new IntersectionObserver(
+          observerCallback,
+          observerOptions
+        );
+
+        items.forEach((item) => {
+          observer.observe(item);
+        });
       });
     </script>
     <!-- Get the category -->
