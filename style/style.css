@@ -135,7 +135,6 @@ body {
   transform: scale(1.05);
 }
 /* Keyframe for fadeInUp animation */
-/* Keyframe for enhanced fadeInUp animation */
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -1306,6 +1305,16 @@ body {
   color: black;
   transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.animate-film-text {
+  opacity: 0;
+  transform: translatey(50px);
+  transition: all 1s ease-in-out;
+}
+
+.animate-film-text.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Go to Top Button Styling */

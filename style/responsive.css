@@ -301,5 +301,7 @@
   }
   .social-icons {
     flex-direction: row !important;
+    justify-content: space-evenly !important;
+    margin-top: 15px !important;
   }
 }

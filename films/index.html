@@ -193,10 +193,11 @@
         </div>
       </div>
     </section>
+    <!-- photo div -->
     <div
       class="container-fluid film-banner d-flex justify-content-center align-items-center"
     >
-      <div class="row text-center">
+      <div class="row text-center animate-film-text">
         <p class="text-white fs-3">
           READY TO CREATE YOUR MEMORY OF A LIFETIME?
         </p>
@@ -310,6 +311,25 @@
         </p>
       </div>
     </footer>
+    <!-- photo animation -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const textBlock = document.querySelector(".animate-film-text");
+
+        function handleScroll() {
+          const scrollPosition = window.scrollY + window.innerHeight;
+          const elementPosition = textBlock.offsetTop;
+
+          if (scrollPosition > elementPosition) {
+            textBlock.classList.add("visible");
+          }
+        }
+
+        window.addEventListener("scroll", handleScroll);
+        handleScroll(); // Run on page load
+      });
+    </script>
+    <!-- navbar -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const navbar = document.querySelector(".navbar-custom");
@@ -320,7 +340,7 @@
         // Toggle menu when the toggle button is clicked
         navbarToggler.addEventListener("click", toggleNavbar);
 
-        // Close menu when a link is clicked (for responsive/mobile behavior)
+        // (for responsive/mobile behavior)
         navLinks.forEach((link) => {
           link.addEventListener("click", function () {
             if (navContainer.classList.contains("show")) {
