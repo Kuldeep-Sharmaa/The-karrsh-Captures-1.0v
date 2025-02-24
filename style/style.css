@@ -171,25 +171,21 @@ body {
   font-size: 3.5rem;
   letter-spacing: 1px;
   text-align: center;
-  position: relative;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1s ease-out forwards;
 }
 
+/* SVG Underline */
 .underline {
-  margin-top: -35px;
-  margin-bottom: 1rem;
+  display: block;
+  margin: -10px auto 1rem;
   stroke-dasharray: 200;
   stroke-dashoffset: 200;
-  animation: drawLine 1s ease-out forwards 0.8s;
+  opacity: 0;
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* When Visible */
+.underline.active {
+  opacity: 1;
+  animation: drawLine 1s ease-out forwards;
 }
 
 @keyframes drawLine {

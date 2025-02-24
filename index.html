@@ -1198,7 +1198,27 @@
           observer.observe(item);
         });
       });
+      // svg
+      document.addEventListener("DOMContentLoaded", () => {
+        const heading = document.querySelector(".about_heading");
+        const svgLine = document.querySelector(".underline");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                svgLine.classList.add("active");
+                observer.disconnect(); // Stop observing after animation
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        observer.observe(heading);
+      });
     </script>
+
     <!-- Get the category -->
     <script>
       // Get the category from the URL
