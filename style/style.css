@@ -557,11 +557,14 @@ body {
 .item {
   padding: 15px;
   border-radius: 8px;
+  align-items: center;
   opacity: 0;
   transform: translateX(-50px);
   transition: opacity 0.9s ease-out, transform 0.9s ease-out;
 }
-
+.item img {
+  width: 10%;
+}
 .item.animate {
   opacity: 1;
   transform: translateX(0);
@@ -573,6 +576,7 @@ body {
 
 .item h5 {
   font-weight: bold;
+  margin-left: 10px;
 }
 
 /* cards */
