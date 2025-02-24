@@ -177,8 +177,8 @@ body {
 .underline {
   display: block;
   margin-top: -35px;
-  stroke-dasharray: 400; /* Length of the stroke */
-  stroke-dashoffset: 400; /* Start from invisible */
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
   opacity: 0;
   transition: opacity 0.5s ease-in-out, stroke-dashoffset 1.5s ease-out;
 }
