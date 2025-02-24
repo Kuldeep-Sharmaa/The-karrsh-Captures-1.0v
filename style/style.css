@@ -176,7 +176,7 @@ body {
 /* SVG Underline */
 .underline {
   display: block;
-  margin-top: -35px;
+  margin-top: -30px;
   stroke-dasharray: 400;
   stroke-dashoffset: 400;
   opacity: 0;
