@@ -1198,7 +1198,9 @@
           observer.observe(item);
         });
       });
-      // svg
+
+      //Heading svg
+
       document.addEventListener("DOMContentLoaded", () => {
         const heading = document.querySelector(".about_heading");
         const svgLine = document.querySelector(".underline");
@@ -1206,13 +1208,14 @@
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
+              if (entry.intersectionRatio >= 0.8) {
+                // 60% of heading visible
                 svgLine.classList.add("active");
                 observer.disconnect(); // Stop observing after animation
               }
             });
           },
-          { threshold: 0.5 }
+          { threshold: 0.8 } // Set to 60% visibility
         );
 
         observer.observe(heading);

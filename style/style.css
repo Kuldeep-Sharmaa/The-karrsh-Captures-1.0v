@@ -185,7 +185,7 @@ body {
 /* When Visible */
 .underline.active {
   opacity: 1;
-  animation: drawLine 1s ease-out forwards;
+  animation: drawLine 1.5s ease-out forwards;
 }
 
 @keyframes drawLine {
