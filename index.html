@@ -140,17 +140,43 @@
             <svg
               class="underline"
               width="400"
-              height="50"
-              viewBox="0 0 220 50"
+              height="60"
+              viewBox="0 0 400 60"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
+              <!-- Main sketchy line -->
               <path
-                d="M10 30 L200 30 M12 32 L198 32"
+                d="M10 30 Q50 35, 90 30 T170 32 T250 28 T330 33 T390 30"
                 stroke="gold"
-                stroke-width="6"
+                stroke-width="3"
                 stroke-linecap="round"
+                stroke-linejoin="round"
+                filter="url(#roughEffect)"
               />
+
+              <!-- Additional overlapping line for sketch effect -->
+              <path
+                d="M12 32 Q52 34, 92 29 T172 31 T252 27 T332 30 T392 31"
+                stroke="gold"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                opacity="0.6"
+                filter="url(#roughEffect)"
+              />
+
+              <!-- SVG Filter for Rough, Sketchy Look -->
+              <defs>
+                <filter id="roughEffect">
+                  <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.03"
+                    numOctaves="3"
+                  />
+                  <feDisplacementMap in="SourceGraphic" scale="2" />
+                </filter>
+              </defs>
             </svg>
 
             <!-- About Content -->

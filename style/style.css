@@ -176,22 +176,17 @@ body {
 /* SVG Underline */
 .underline {
   display: block;
-  margin: -10px auto 1rem;
-  stroke-dasharray: 200;
-  stroke-dashoffset: 200;
+  margin-top: -35px;
+  stroke-dasharray: 400; /* Length of the stroke */
+  stroke-dashoffset: 400; /* Start from invisible */
   opacity: 0;
+  transition: opacity 0.5s ease-in-out, stroke-dashoffset 1.5s ease-out;
 }
 
-/* When Visible */
+/* Animate when it becomes visible */
 .underline.active {
   opacity: 1;
-  animation: drawLine 1.5s ease-out forwards;
-}
-
-@keyframes drawLine {
-  to {
-    stroke-dashoffset: 0;
-  }
+  stroke-dashoffset: 0;
 }
 
 #about {
