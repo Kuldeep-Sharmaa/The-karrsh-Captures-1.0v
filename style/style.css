@@ -175,18 +175,24 @@ body {
 
 /* SVG Underline */
 .underline {
-  display: block;
-  margin-top: -30px;
+  margin-top: -25px;
   stroke-dasharray: 400;
   stroke-dashoffset: 400;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out, stroke-dashoffset 1.5s ease-out;
+  opacity: 1;
+  transition: stroke-dashoffset 0s;
 }
 
-/* Animate when it becomes visible */
-.underline.active {
-  opacity: 1;
-  stroke-dashoffset: 0;
+.underline.animate {
+  animation: drawLine 1.5s ease-out forwards;
+}
+
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 #about {
