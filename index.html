@@ -1276,15 +1276,19 @@
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                svgLine.style.strokeDashoffset = "120"; // Reset
-                void svgLine.offsetWidth;
-                svgLine.style.animation =
-                  "highlightAnimation 1s ease-out forwards";
-                word.style.fontWeight = " bold";
+                svgLine.style.strokeDashoffset = "120"; // Reset line
+                void svgLine.offsetWidth; // Force reflow
+
+                // Add animation delay before starting
+                setTimeout(() => {
+                  svgLine.style.animation =
+                    "highlightAnimation 1s ease-out forwards";
+                  word.style.fontWeight = "bold";
+                }, 500); // 500ms delay before animation starts
               }
             });
           },
-          { threshold: 0.9 }
+          { threshold: 0.8 }
         );
 
         observer.observe(animatedText);
