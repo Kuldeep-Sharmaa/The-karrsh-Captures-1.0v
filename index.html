@@ -177,7 +177,7 @@
                 filter="url(#roughEffect)"
               />
 
-              <!-- SVG Filter for Rough, Sketchy Look -->
+              <!-- SVG Filter for Rough -->
               <defs>
                 <filter id="roughEffect">
                   <feTurbulence
@@ -607,10 +607,18 @@
         <div class="container cards_container my-5">
           <div class="d-flex flex-column align-items-center text-center">
             <h2 class="mb-4 heading fw-bold">What they say about us</h2>
-            <h3 class="mb-4">
+            <h3 class="mb-4" id="animatedBlushText">
               The words that make us
-
-              <span class="word text-danger">blush</span>
+              <span class="word text-danger"
+                >blush
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 100 20"
+                  class="animated-svg"
+                >
+                  <path d="M10,15 Q50,25 90,15" />
+                </svg>
+              </span>
             </h3>
           </div>
 
@@ -1258,6 +1266,26 @@
         );
 
         observer.observe(heading);
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedText = document.getElementById("animatedBlushText");
+        const svgLine = document.querySelector(".animated-svg");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                svgLine.style.strokeDashoffset = "120"; // Reset
+                void svgLine.offsetWidth;
+                svgLine.style.animation =
+                  "highlightAnimation 1s ease-out forwards";
+              }
+            });
+          },
+          { threshold: 0.9 }
+        );
+
+        observer.observe(animatedText);
       });
     </script>
 

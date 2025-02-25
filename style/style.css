@@ -601,6 +601,41 @@ body {
   font-weight: bold;
   margin-left: 10px;
 }
+/* review section*/
+#review h3 {
+  font-size: 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.word {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+}
+.word svg {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  width: 140%;
+  height: 20px;
+  stroke: #dc3545;
+  stroke-width: 2.5;
+  fill: none;
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  overflow: visible;
+}
+@keyframes highlightAnimation {
+  from {
+    stroke-dashoffset: 120;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 
 /* cards */
 .cards_container {
