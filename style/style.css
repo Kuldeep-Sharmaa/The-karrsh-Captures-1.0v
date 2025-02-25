@@ -175,7 +175,7 @@ body {
 
 /* SVG Underline */
 .underline {
-  margin-top: -25px;
+  margin-top: -15px;
   stroke-dasharray: 400;
   stroke-dashoffset: 400;
   opacity: 1;
@@ -613,6 +613,7 @@ body {
   position: relative;
   display: inline-block;
   margin: 5px;
+  color: var(--btn-hover);
 }
 .word svg {
   position: absolute;
@@ -621,7 +622,7 @@ body {
   transform: translateX(-50%);
   width: 140%;
   height: 20px;
-  stroke: #dc3545;
+  stroke: var(--btn-hover);
   stroke-width: 2.5;
   fill: none;
   stroke-dasharray: 120;

@@ -149,7 +149,7 @@
               <path
                 d="M10 30 Q60 40, 120 28 T200 34 T280 26 T350 33 T390 30"
                 stroke="#0056b3"
-                stroke-width="6"
+                stroke-width="7"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 filter="url(#roughEffect)"
@@ -159,7 +159,7 @@
               <path
                 d="M12 32 Q62 38, 122 27 T202 33 T282 25 T352 32 T392 31"
                 stroke="#007bff"
-                stroke-width="5"
+                stroke-width="6"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 opacity="0.7"
@@ -170,7 +170,7 @@
               <path
                 d="M8 29 Q58 42, 118 29 T198 35 T278 27 T348 32 T388 29"
                 stroke="rgba(0, 86, 179, 0.5)"
-                stroke-width="3"
+                stroke-width="4"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 opacity="0.5"
@@ -183,7 +183,7 @@
                   <feTurbulence
                     type="fractalNoise"
                     baseFrequency="0.02"
-                    numOctaves="5"
+                    numOctaves="6"
                   />
                   <feDisplacementMap in="SourceGraphic" scale="3" />
                 </filter>
@@ -191,7 +191,7 @@
             </svg>
 
             <!-- About Content -->
-            <div class="col-md-4 text-white">
+            <div class="col-md-4 text-white mt-3">
               <h2 class="fw-bold">A Premier Photography Agency</h2>
               <p class="mt-3 lh-base">
                 Founded in 2017 by
@@ -609,7 +609,7 @@
             <h2 class="mb-4 heading fw-bold">What they say about us</h2>
             <h3 class="mb-4" id="animatedBlushText">
               The words that make us
-              <span class="word text-danger"
+              <span class="word"
                 >blush
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1250,7 +1250,7 @@
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                svgLine.classList.remove("animate");
+                svgLine.classList.remove("animate"); // Remove class to reset animation
 
                 setTimeout(() => {
                   requestAnimationFrame(() => {
@@ -1258,15 +1258,17 @@
                       svgLine.classList.add("animate");
                     });
                   });
-                }, 100);
+                }, 500); // 500ms animation delay before playing
               }
             });
           },
-          { threshold: 0.8 } //80% of heading is visible
-        );
+          { threshold: 0.8 }
+        ); // Trigger when 80% of heading is visible
 
         observer.observe(heading);
       });
+
+      // Blush svg
       document.addEventListener("DOMContentLoaded", () => {
         const animatedText = document.getElementById("animatedBlushText");
         const svgLine = document.querySelector(".animated-svg");
@@ -1276,19 +1278,17 @@
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                svgLine.style.strokeDashoffset = "120"; // Reset line
-                void svgLine.offsetWidth; // Force reflow
-
-                // Add animation delay before starting
+                svgLine.style.strokeDashoffset = "120";
+                void svgLine.offsetWidth;
                 setTimeout(() => {
                   svgLine.style.animation =
                     "highlightAnimation 1s ease-out forwards";
                   word.style.fontWeight = "bold";
-                }, 500); // 500ms delay before animation starts
+                }, 500);
               }
             });
           },
-          { threshold: 0.8 }
+          { threshold: 0.9 }
         );
 
         observer.observe(animatedText);
