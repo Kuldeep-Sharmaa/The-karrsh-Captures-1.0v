@@ -11,6 +11,7 @@
   --btn-color: #007bff;
   --btn-hover: #0056b3;
   --heading-font: "Bruno Ace", serif;
+  --background-color: #111111;
 }
 body {
   overflow-x: hidden;
@@ -176,19 +177,20 @@ body {
 /* SVG Underline */
 .underline {
   margin-top: -15px;
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  opacity: 1;
-  transition: stroke-dashoffset 0s;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 480;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
 }
 
 .underline.animate {
   animation: drawLine 1s ease-out forwards;
+  opacity: 1;
 }
 
 @keyframes drawLine {
   from {
-    stroke-dashoffset: 400;
+    stroke-dashoffset: 480;
   }
   to {
     stroke-dashoffset: 0;
@@ -196,13 +198,13 @@ body {
 }
 
 #about {
-  background-color: #111111;
+  background-color: var(--background-color);
   padding: 6rem 0rem 4rem 0rem;
 }
 
 .about-us-section {
   padding: 40px 20px;
-  background-color: #111;
+  background-color: var(--background-color);
   border-radius: 10px;
 }
 
@@ -268,7 +270,7 @@ body {
 
 /* Skills section */
 #skills {
-  background-color: #111111;
+  background-color: var(--background-color);
   padding: 5rem 0rem 5rem 0rem;
 }
 .Skills_text {
@@ -346,7 +348,7 @@ body {
   color: black;
 }
 #portfolio {
-  background-color: #111111;
+  background-color: var(--background-color);
   padding: 2rem 0rem 5rem 0rem;
 }
 .portfolio-section {
@@ -495,12 +497,12 @@ body {
 
 /* contact-section */
 #contact {
-  background-color: #111111;
+  background-color: var(--background-color);
   padding: 5rem 0rem 5rem 0rem;
 }
 
 #contact_box {
-  background-color: #111111;
+  background-color: var(--background-color);
   color: white;
   padding: 50px;
   border-radius: 10px;
@@ -564,7 +566,7 @@ body {
 
 /* services */
 #services {
-  background-color: #111111;
+  background-color: var(--background-color);
   padding: 5rem 0rem 5rem 0rem;
   position: relative;
   overflow: hidden;

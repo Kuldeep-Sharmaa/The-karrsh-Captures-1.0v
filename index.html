@@ -1243,29 +1243,30 @@
 
       //Heading svg
       document.addEventListener("DOMContentLoaded", () => {
-        const heading = document.querySelector(".about_heading");
         const svgLine = document.querySelector(".underline");
 
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                svgLine.classList.remove("animate"); // Remove class to reset animation
+                svgLine.style.opacity = "1";
+                svgLine.classList.remove("animate");
 
                 setTimeout(() => {
                   requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                      svgLine.classList.add("animate");
-                    });
+                    svgLine.classList.add("animate");
                   });
-                }, 500); // 500ms animation delay before playing
+                }, 200);
+              } else {
+                svgLine.style.opacity = "0";
+                svgLine.classList.remove("animate");
               }
             });
           },
           { threshold: 0.8 }
-        ); // Trigger when 80% of heading is visible
+        );
 
-        observer.observe(heading);
+        observer.observe(document.querySelector(".about_heading"));
       });
 
       // Blush svg
