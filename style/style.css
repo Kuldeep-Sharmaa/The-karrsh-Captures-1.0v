@@ -183,7 +183,7 @@ body {
 }
 
 .underline.animate {
-  animation: drawLine 1.5s ease-out forwards;
+  animation: drawLine 1s ease-out forwards;
 }
 
 @keyframes drawLine {

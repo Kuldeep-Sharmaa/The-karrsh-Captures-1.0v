@@ -1270,6 +1270,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         const animatedText = document.getElementById("animatedBlushText");
         const svgLine = document.querySelector(".animated-svg");
+        const word = document.querySelector(".word");
 
         const observer = new IntersectionObserver(
           (entries) => {
@@ -1279,6 +1280,7 @@
                 void svgLine.offsetWidth;
                 svgLine.style.animation =
                   "highlightAnimation 1s ease-out forwards";
+                word.style.fontWeight = " bold";
               }
             });
           },
