@@ -148,7 +148,7 @@
               <!-- Main sketchy line -->
               <path
                 d="M10 30 Q60 40, 120 28 T200 34 T280 26 T350 33 T390 30"
-                stroke="#0056b3"
+                stroke="white"
                 stroke-width="7"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -158,7 +158,7 @@
               <!-- Additional overlapping line for roughness -->
               <path
                 d="M12 32 Q62 38, 122 27 T202 33 T282 25 T352 32 T392 31"
-                stroke="#007bff"
+                stroke="white"
                 stroke-width="6"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -185,7 +185,7 @@
                     baseFrequency="0.02"
                     numOctaves="6"
                   />
-                  <feDisplacementMap in="SourceGraphic" scale="3" />
+                  <feDisplacementMap in="SourceGraphic" scale="4" />
                 </filter>
               </defs>
             </svg>
@@ -1206,7 +1206,7 @@
         }
       });
     </script>
-    <!-- Setup and start animation! -->
+    <!-- Setup and start animation for SVG-->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const heroSection = document.querySelector(".animated");
