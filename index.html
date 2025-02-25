@@ -140,7 +140,7 @@
             <svg
               class="underline"
               width="400"
-              height="60"
+              height="50"
               viewBox="0 0 400 60"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +149,7 @@
               <path
                 d="M10 30 Q60 40, 120 28 T200 34 T280 26 T350 33 T390 30"
                 stroke="#0056b3"
-                stroke-width="5"
+                stroke-width="6"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 filter="url(#roughEffect)"
@@ -159,7 +159,7 @@
               <path
                 d="M12 32 Q62 38, 122 27 T202 33 T282 25 T352 32 T392 31"
                 stroke="#007bff"
-                stroke-width="4"
+                stroke-width="5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 opacity="0.7"
@@ -170,7 +170,7 @@
               <path
                 d="M8 29 Q58 42, 118 29 T198 35 T278 27 T348 32 T388 29"
                 stroke="rgba(0, 86, 179, 0.5)"
-                stroke-width="2"
+                stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 opacity="0.5"
@@ -185,7 +185,7 @@
                     baseFrequency="0.02"
                     numOctaves="5"
                   />
-                  <feDisplacementMap in="SourceGraphic" scale="2" />
+                  <feDisplacementMap in="SourceGraphic" scale="3" />
                 </filter>
               </defs>
             </svg>
@@ -1234,7 +1234,6 @@
       });
 
       //Heading svg
-      // Heading svg
       document.addEventListener("DOMContentLoaded", () => {
         const heading = document.querySelector(".about_heading");
         const svgLine = document.querySelector(".underline");
@@ -1245,7 +1244,6 @@
               if (entry.isIntersecting) {
                 svgLine.classList.remove("animate");
 
-                // Force browser to recognize the class removal before adding it back
                 setTimeout(() => {
                   requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
@@ -1256,7 +1254,7 @@
               }
             });
           },
-          { threshold: 0.8 } // Trigger when 90% of heading is visible
+          { threshold: 0.8 } //80% of heading is visible
         );
 
         observer.observe(heading);
