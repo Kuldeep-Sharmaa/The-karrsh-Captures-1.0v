@@ -169,7 +169,7 @@ body {
 
 .about_heading {
   color: #bcba8d;
-  font-size: 3.5rem;
+  font-size: 4rem;
   letter-spacing: 1px;
   text-align: center;
 }
@@ -338,12 +338,12 @@ body {
 
 /* portfolio section */
 .head {
-  font-size: 3.5rem;
+  font-size: 4rem;
   letter-spacing: 1px;
   color: #bcba8d;
 }
 .heading {
-  font-size: 3.5rem;
+  font-size: 4rem;
   letter-spacing: 1px;
   color: black;
 }
