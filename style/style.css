@@ -754,6 +754,18 @@ body {
 #FAQ {
   padding: 5rem 0rem 5rem 0rem;
 }
+.accordion-button::after {
+  display: none; /* Hide default Bootstrap icon */
+}
+.camera-icon {
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+.accordion-button[aria-expanded="true"] .camera-icon {
+  transform: rotate(180deg);
+}
 .additional_text {
   font-size: 1.5rem;
 }
