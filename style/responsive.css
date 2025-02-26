@@ -243,13 +243,35 @@
     padding: 2rem 0rem !important;
   }
   .about_heading {
-    font-size: 3rem !important;
+    font-size: 3.5rem !important;
     font-weight: bold;
   }
   .head {
-    font-size: 3rem !important;
+    font-size: 3.5rem !important;
     font-weight: bold;
   }
+  .heading {
+    font-size: 3.5rem;
+    letter-spacing: 1px;
+    color: black;
+  }
+  #services_text h3 {
+    font-size: 3.5rem !important;
+    color: #bcba8d;
+  }
+  #services_text p {
+    font-size: 2rem;
+  }
+
+  #contact_box h3 {
+    font-size: 3.5rem !important;
+    color: #bcba8d;
+  }
+
+  #contact_box p {
+    font-size: 2rem;
+  }
+
   #skills {
     text-align: center;
   }
