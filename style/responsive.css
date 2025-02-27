@@ -9,6 +9,12 @@
   --main-font: "Roboto", serif;
   --heading-font: "Bruno Ace", serif !important;
 }
+@media (max-width: 1400px) {
+  .animation-container {
+    bottom: -120px !important;
+    left: 50% !important;
+  }
+}
 
 @media (max-width: 768px) {
   .hero-section h1 {
@@ -233,6 +239,10 @@
   .photoshoot_animaton {
     width: 500px !important;
     margin: -30px !important;
+  }
+  .animation-container {
+    bottom: -120px !important;
+    left: 50% !important;
   }
 }
 
