@@ -622,7 +622,7 @@ body {
   transform: translateY(-5px);
 }
 
-.icon {
+.process-icon {
   font-size: 2rem;
   background: rgba(255, 255, 255, 0.15);
   padding: 10px;
@@ -630,8 +630,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
 }
 
 .fade-in {
