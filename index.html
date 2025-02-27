@@ -473,17 +473,6 @@
           <div class="row text-white" id="services_text">
             <h3>What we serve you?</h3>
             <p>we have vaste range of photography services to serve</p>
-            <div class="d-flex justify-content-center">
-              <lottie-player
-                src="./images/banners/photoshoot.json  "
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-                class="photoshoot_animaton"
-              >
-              </lottie-player>
-            </div>
           </div>
         </div>
         <div class="container">
@@ -568,6 +557,48 @@
                   alt=""
                 />
                 <h5 class="mb-0">Event Photography</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="process-section">
+        <div class="container">
+          <div class="row">
+            <h2 class="scroll-effect heading">Our Photography Workflow</h2>
+            <p class="scroll-effect additional_text">
+              Experience a seamless journey from capturing to final delivery.
+            </p>
+            <div class="animation-container2 scroll-effect">
+              <lottie-player
+                src="./images/banners/photoshoot.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+              ></lottie-player>
+            </div>
+            <div class="steps-container scroll-effect">
+              <div class="step">
+                <div class="icon">📸</div>
+                <div class="step-content">
+                  <h3>Capture</h3>
+                  <p>The perfect shot with precision and creativity.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="icon">🎨</div>
+                <div class="step-content">
+                  <h3>Edit</h3>
+                  <p>Enhance every detail with professional touch-ups.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="icon">💾</div>
+                <div class="step-content">
+                  <h3>Deliver</h3>
+                  <p>Save and share high-quality memories effortlessly.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1203,34 +1234,6 @@
         });
       });
 
-      //Heading svg
-      document.addEventListener("DOMContentLoaded", () => {
-        const svgLine = document.querySelector(".underline");
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                svgLine.style.opacity = "1";
-                svgLine.classList.remove("animate");
-
-                setTimeout(() => {
-                  requestAnimationFrame(() => {
-                    svgLine.classList.add("animate");
-                  });
-                }, 200);
-              } else {
-                svgLine.style.opacity = "0";
-                svgLine.classList.remove("animate");
-              }
-            });
-          },
-          { threshold: 0.9 }
-        );
-
-        observer.observe(document.querySelector(".about_heading"));
-      });
-
       // Blush svg
       document.addEventListener("DOMContentLoaded", () => {
         const animatedText = document.getElementById("animatedBlushText");
@@ -1257,6 +1260,7 @@
         observer.observe(animatedText);
       });
     </script>
+
     <!-- Get the category -->
     <script>
       // Get the category from the URL
@@ -1296,6 +1300,21 @@
         } else {
           console.error("Lottie animation elements not found.");
         }
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const elements = document.querySelectorAll(".scroll-effect");
+
+        function handleScroll() {
+          elements.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 50) {
+              el.classList.add("visible");
+            }
+          });
+        }
+
+        window.addEventListener("scroll", handleScroll);
+        handleScroll();
       });
     </script>
     <!-- Auto tying -->
