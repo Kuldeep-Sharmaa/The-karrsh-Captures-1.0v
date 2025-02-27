@@ -66,6 +66,7 @@
       src="https://kit.fontawesome.com/d8f48d71cd.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
       {
@@ -137,58 +138,17 @@
             <!-- About Heading -->
 
             <h3 class="about_heading">About The Karrsh Captures</h3>
-            <svg
-              class="underline"
-              width="400"
-              height="50"
-              viewBox="0 0 400 60"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <!-- Main sketchy line -->
-              <path
-                d="M10 30 Q60 40, 120 28 T200 34 T280 26 T350 33 T390 30"
-                stroke="white"
-                stroke-width="7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                filter="url(#roughEffect)"
-              />
-
-              <!-- Additional overlapping line for roughness -->
-              <path
-                d="M12 32 Q62 38, 122 27 T202 33 T282 25 T352 32 T392 31"
-                stroke="white"
-                stroke-width="6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                opacity="0.7"
-                filter="url(#roughEffect)"
-              />
-
-              <!-- Extra jagged line for sketchy texture -->
-              <path
-                d="M8 29 Q58 42, 118 29 T198 35 T278 27 T348 32 T388 29"
-                stroke="rgba(0, 86, 179, 0.5)"
-                stroke-width="4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                opacity="0.5"
-                filter="url(#roughEffect)"
-              />
-
-              <!-- SVG Filter for Rough -->
-              <defs>
-                <filter id="roughEffect">
-                  <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="0.02"
-                    numOctaves="6"
-                  />
-                  <feDisplacementMap in="SourceGraphic" scale="6" />
-                </filter>
-              </defs>
-            </svg>
+            <div class="animation-container">
+              <lottie-player
+                src="./images/banners/Animation - 1740582858057.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                class="camera_animation"
+              >
+              </lottie-player>
+            </div>
 
             <!-- About Content -->
             <div class="col-md-4 text-white mt-3">
@@ -512,90 +472,101 @@
           <div class="row text-white" id="services_text">
             <h3>What we serve you?</h3>
             <p>we have vaste range of photography services to serve</p>
+            <div class="d-flex justify-content-center">
+              <lottie-player
+                src="./images/banners/photoshoot.json  "
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+                class="photoshoot_animaton"
+              >
+              </lottie-player>
+            </div>
           </div>
-          <div class="container">
-            <div class="row text-white">
-              <div class="col-md-4 p-3">
-                <div class="item d-flex">
-                  <img
-                    src="images/banners/correct-success-tick-svgrepo-com.svg"
-                    alt=""
-                  />
-                  <h5 class="mb-0">Studio Portraits</h5>
-                </div>
+        </div>
+        <div class="container">
+          <div class="row text-white">
+            <div class="col-md-4 p-3">
+              <div class="item d-flex">
+                <img
+                  src="images/banners/correct-success-tick-svgrepo-com.svg"
+                  alt=""
+                />
+                <h5 class="mb-0">Studio Portraits</h5>
               </div>
+            </div>
 
-              <div class="col-md-4 p-3">
-                <div class="item d-flex">
-                  <img
-                    src="images/banners/correct-success-tick-svgrepo-com.svg"
-                    alt=""
-                  />
-                  <h5 class="mb-0">Landscapes</h5>
-                </div>
+            <div class="col-md-4 p-3">
+              <div class="item d-flex">
+                <img
+                  src="images/banners/correct-success-tick-svgrepo-com.svg"
+                  alt=""
+                />
+                <h5 class="mb-0">Landscapes</h5>
               </div>
-              <div class="col-md-4 p-3">
-                <div class="item d-flex">
-                  <img
-                    src="images/banners/correct-success-tick-svgrepo-com.svg"
-                    alt=""
-                  />
-                  <h5 class="mb-0">Food & Drinks</h5>
-                </div>
+            </div>
+            <div class="col-md-4 p-3">
+              <div class="item d-flex">
+                <img
+                  src="images/banners/correct-success-tick-svgrepo-com.svg"
+                  alt=""
+                />
+                <h5 class="mb-0">Food & Drinks</h5>
               </div>
-              <div class="col-md-4 p-3">
-                <div class="item d-flex">
-                  <img
-                    src="images/banners/correct-success-tick-svgrepo-com.svg"
-                    alt=""
-                  />
-                  <h5 class="mb-0">Product Photography</h5>
-                </div>
+            </div>
+            <div class="col-md-4 p-3">
+              <div class="item d-flex">
+                <img
+                  src="images/banners/correct-success-tick-svgrepo-com.svg"
+                  alt=""
+                />
+                <h5 class="mb-0">Product Photography</h5>
               </div>
-              <div class="col-md-4 p-3">
-                <div class="item d-flex">
-                  <img
-                    src="images/banners/correct-success-tick-svgrepo-com.svg"
-                    alt=""
-                  />
-                  <h5 class="mb-0">Social Media Content Shoots</h5>
-                </div>
+            </div>
+            <div class="col-md-4 p-3">
+              <div class="item d-flex">
+                <img
+                  src="images/banners/correct-success-tick-svgrepo-com.svg"
+                  alt=""
+                />
+                <h5 class="mb-0">Social Media Content Shoots</h5>
               </div>
-              <div class="col-md-4 p-3">
-                <div class="item d-flex">
-                  <img
-                    src="images/banners/correct-success-tick-svgrepo-com.svg"
-                    alt=""
-                  />
-                  <h5 class="mb-0">Real Estate Photography</h5>
-                </div>
+            </div>
+            <div class="col-md-4 p-3">
+              <div class="item d-flex">
+                <img
+                  src="images/banners/correct-success-tick-svgrepo-com.svg"
+                  alt=""
+                />
+                <h5 class="mb-0">Real Estate Photography</h5>
               </div>
-              <div class="col-md-4 p-3">
-                <div class="item d-flex">
-                  <img
-                    src="images/banners/correct-success-tick-svgrepo-com.svg"
-                    alt=""
-                  />
-                  <h5 class="mb-0">Pre-Weddings</h5>
-                </div>
+            </div>
+            <div class="col-md-4 p-3">
+              <div class="item d-flex">
+                <img
+                  src="images/banners/correct-success-tick-svgrepo-com.svg"
+                  alt=""
+                />
+                <h5 class="mb-0">Pre-Weddings</h5>
               </div>
-              <div class="col-md-4 p-3">
-                <div class="item d-flex">
-                  <img
-                    src="images/banners/correct-success-tick-svgrepo-com.svg"
-                    alt=""
-                  />
-                  <h5 class="mb-0">Fashion</h5>
-                </div>
+            </div>
+            <div class="col-md-4 p-3">
+              <div class="item d-flex">
+                <img
+                  src="images/banners/correct-success-tick-svgrepo-com.svg"
+                  alt=""
+                />
+                <h5 class="mb-0">Fashion</h5>
               </div>
-              <div class="col-md-4 p-3">
-                <div class="item d-flex">
-                  <img
-                    src="images/banners/correct-success-tick-svgrepo-com.svg"
-                    alt=""
-                  />
-                  <h5 class="mb-0">Event Photography</h5>
-                </div>
+            </div>
+            <div class="col-md-4 p-3">
+              <div class="item d-flex">
+                <img
+                  src="images/banners/correct-success-tick-svgrepo-com.svg"
+                  alt=""
+                />
+                <h5 class="mb-0">Event Photography</h5>
               </div>
             </div>
           </div>
@@ -1124,6 +1095,7 @@
       <i class="fa-solid fa-up-long"></i> <span class="d-none">Button</span>
     </button>
     <!-- Scripts -->
+    <!-- Script to trigger animation on scroll -->
 
     <!-- Function to show/hide the button based on scroll position -->
     <script>
@@ -1297,6 +1269,31 @@
       } else {
         console.log("Category parameter is not found in the URL");
       }
+    </script>
+    <!-- For animtion load -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const animationElement = document.querySelector(".photoshoot_animaton");
+        if (animationElement) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  animationElement.play();
+                } else {
+                  animationElement.stop();
+                }
+              });
+            },
+            {
+              threshold: 0.8, // Adjust the threshold as needed
+            }
+          );
+          observer.observe(animationElement);
+        } else {
+          console.error("Lottie animation element not found.");
+        }
+      });
     </script>
     <!-- Auto tying -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
