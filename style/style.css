@@ -647,11 +647,11 @@ body {
   overflow: hidden;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
 }
-#services_text h3 {
+.services_text h3 {
   font-size: 5rem;
   color: #bcba8d;
 }
-#services_text p {
+.services_text p {
   font-size: 2rem;
 }
 .photoshoot_animaton {
