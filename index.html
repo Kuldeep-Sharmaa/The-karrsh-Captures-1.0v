@@ -144,7 +144,6 @@
                     src="./images/banners/camera.json"
                     background="transparent"
                     speed="1"
-                    loop
                     autoplay
                     class="camera_animation mb-2"
                   ></lottie-player>
@@ -1274,15 +1273,18 @@
     <!-- For animtion load -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const animationElement = document.querySelector(".photoshoot_animaton");
-        if (animationElement) {
+        const animations = document.querySelectorAll(
+          ".photoshoot_animaton, .camera_animation"
+        );
+        if (animations.length) {
           const observer = new IntersectionObserver(
             (entries) => {
               entries.forEach((entry) => {
+                const animation = entry.target;
                 if (entry.isIntersecting) {
-                  animationElement.play();
+                  animation.play();
                 } else {
-                  animationElement.stop();
+                  animation.stop();
                 }
               });
             },
@@ -1290,9 +1292,9 @@
               threshold: 0.6, // Adjust the threshold as needed
             }
           );
-          observer.observe(animationElement);
+          animations.forEach((anim) => observer.observe(anim));
         } else {
-          console.error("Lottie animation element not found.");
+          console.error("Lottie animation elements not found.");
         }
       });
     </script>
