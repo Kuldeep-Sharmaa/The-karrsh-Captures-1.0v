@@ -1,28 +1,43 @@
-// Select all elements with the class "numb"
 const counters = document.querySelectorAll(".numb");
+const observerOptions = {
+  root: null, // Observes in relation to the viewport
+  threshold: 0.5, // Trigger when 50% of the element is visible
+};
 
 // Function to animate the count
 function animateCount(element, target) {
-  let current = 0; // Initial value
-  const duration = 3000; // Total duration in milliseconds
-  const startTime = performance.now(); // Start time of animation
+  let current = 0;
+  const duration = 2000;
+  const startTime = performance.now();
 
   function updateCount(timestamp) {
-    const elapsed = timestamp - startTime; // Time elapsed since animation start
-    current = Math.min(
-      target,
-      Math.ceil((elapsed / duration) * target) // Calculate current value
-    );
-
-    element.textContent = current + "+"; // Update the element text
+    const elapsed = timestamp - startTime;
+    current = Math.min(target, Math.ceil((elapsed / duration) * target));
+    element.textContent = current + "+";
 
     if (current < target) {
-      requestAnimationFrame(updateCount); // Continue animation
+      requestAnimationFrame(updateCount);
     }
   }
 
-  requestAnimationFrame(updateCount); // Start the animation
+  requestAnimationFrame(updateCount);
 }
+
+// Intersection Observer to detect when elements come into view
+const observers = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const target = parseInt(entry.target.dataset.target, 10);
+      entry.target.textContent = entry.target.dataset.initial + "+";
+      animateCount(entry.target, target);
+    }
+  });
+}, observerOptions);
+
+// Attach observer to each counter element
+counters.forEach((counter) => {
+  observers.observe(counter);
+});
 
 // Intersection observer to detect when the section is in view
 const observer = new IntersectionObserver(
@@ -58,22 +73,24 @@ if (numbersSection) {
 document.addEventListener("DOMContentLoaded", () => {
   const skillBars = document.querySelectorAll(".skill-bar-fill");
   const skillsSection = document.querySelector(".skills-container");
-  let animationStarted = false;
 
   const animateSkillBars = () => {
     skillBars.forEach((bar) => {
-      const skillValue = bar.getAttribute("data-skill");
-      bar.style.width = skillValue;
+      bar.style.transition = "none";
+      bar.style.width = "0%";
+      setTimeout(() => {
+        bar.style.transition = "width 2s ease-in-out";
+        const skillValue = bar.getAttribute("data-skill");
+        bar.style.width = skillValue;
+      }, 100);
     });
   };
 
   const observer = new IntersectionObserver(
-    (entries, observer) => {
+    (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !animationStarted) {
-          animationStarted = true;
+        if (entry.isIntersecting) {
           animateSkillBars();
-          observer.unobserve(skillsSection);
         }
       });
     },
