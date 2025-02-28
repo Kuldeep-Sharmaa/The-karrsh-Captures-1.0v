@@ -348,4 +348,7 @@
     justify-content: space-evenly !important;
     margin-top: 15px !important;
   }
+  .footer {
+    padding: 20px 20px !important;
+  }
 }
