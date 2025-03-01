@@ -11,7 +11,7 @@
   --btn-color: #007bff;
   --btn-hover: #0056b3;
   --heading-font: "Bruno Ace", serif;
-  --background-color: #111111;
+  --background-color: #0e0e0e;
 }
 body {
   overflow-x: hidden;
@@ -208,8 +208,26 @@ body {
 }
 
 #about {
-  background-color: var(--background-color);
-  padding: 6rem 0rem 4rem 0rem;
+  background: var(--background-color);
+  position: relative;
+  padding: 80px 0;
+}
+
+/* Add a subtle overlay for depth */
+#about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0)
+  ); /* Light gradient */
+  opacity: 0.1;
+  z-index: 1;
 }
 
 .about-us-section {
@@ -280,9 +298,27 @@ body {
 
 /* Skills section */
 #skills {
-  background-color: var(--background-color);
-  padding: 5rem 0rem 5rem 0rem;
+  background: var(--background-color);
+  position: relative;
+  padding: 80px 0;
 }
+
+#skills::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0.1;
+  z-index: 1;
+}
+
 .Skills_text {
   line-height: 1.6;
 }
@@ -697,6 +733,7 @@ body {
   transform: translateX(0);
   visibility: visible;
 }
+
 /* review section*/
 #review h3 {
   font-size: 2rem;
@@ -732,6 +769,21 @@ body {
   to {
     stroke-dashoffset: 0;
   }
+}
+
+/* Ensure the backdrop is above everything */
+.modal-backdrop {
+  z-index: 1055 !important; /* Higher than navbar */
+}
+
+/* Ensure modal itself is above backdrop */
+.modal {
+  z-index: 1060 !important;
+}
+
+/* Lower navbar z-index so it stays behind modal */
+.navbar-custom {
+  z-index: 1000 !important;
 }
 
 /* cards */
