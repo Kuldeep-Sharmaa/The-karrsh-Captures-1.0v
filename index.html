@@ -1458,81 +1458,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- JavaScript -->
     <script src="script.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const serviceDetails = {
-          studio: {
-            title: "Studio Portraits",
-            image: "images/services/studio.svg",
-            description:
-              "Capture professional studio portraits with perfect lighting and high-end equipment.",
-          },
-          landscapes: {
-            title: "Landscapes",
-            image: "images/services/landscapes.svg",
-            description:
-              "Breathtaking landscape photography capturing nature's beauty in high resolution.",
-          },
-          food: {
-            title: "Food & Drinks",
-            image: "images/services/food.svg",
-            description:
-              "High-quality food photography to make your dishes look mouth-watering.",
-          },
-          product: {
-            title: "Product Photography",
-            image: "images/services/product.svg",
-            description:
-              "Showcase your products with high-definition, creative photography.",
-          },
-          media: {
-            title: "Social Media Content Shoots",
-            image: "images/services/media.svg",
-            description:
-              "Tailored content shoots for Instagram, Facebook, and other platforms.",
-          },
-          realestate: {
-            title: "Real Estate Photography",
-            image: "images/services/realestate.svg",
-            description:
-              "Professional shots to showcase properties in their best light.",
-          },
-          preweddings: {
-            title: "Pre-Weddings",
-            image: "images/services/pre_wedding.svg",
-            description: "Beautifully captured moments before the big day.",
-          },
-          fashion: {
-            title: "Fashion",
-            image: "images/services/fashion.svg",
-            description: "Editorial and commercial fashion photography.",
-          },
-          event: {
-            title: "Event Photography",
-            image: "images/services/event.svg",
-            description:
-              "Capture every moment of your special event with perfection.",
-          },
-        };
 
-        document.querySelectorAll(".service-box").forEach((service) => {
-          service.addEventListener("click", function () {
-            const serviceKey = this.getAttribute("data-service");
-            if (serviceDetails[serviceKey]) {
-              document.getElementById("serviceModalLabel").textContent =
-                serviceDetails[serviceKey].title;
-              document.getElementById("serviceImage").src =
-                serviceDetails[serviceKey].image;
-              document.getElementById("serviceDescription").textContent =
-                serviceDetails[serviceKey].description;
-            }
-          });
-        });
-      });
-    </script>
-
-    <!-- Modal -->
-    <!-- Modal -->
     <div
       class="modal fade"
       id="serviceModal"
@@ -1540,16 +1466,24 @@
       aria-labelledby="serviceModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content rounded-4 border-0">
-          <!-- Modal Header -->
-          <div class="modal-header border-0 pb-0">
-            <h4
-              class="modal-title mx-auto fw-bold text-dark"
+      <div
+        class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable"
+      >
+        <div class="modal-content rounded-4 border-0 p-4">
+          <div class="modal-header border-0 text-center">
+            <h3
+              class="modal-title fw-bold text-dark mx-auto"
               id="serviceModalLabel"
             >
               Service Title
-            </h4>
+              <span
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Detailed insights about this service"
+              >
+                <i class="bi bi-info-circle text-primary"></i>
+              </span>
+            </h3>
             <button
               type="button"
               class="btn-close"
@@ -1557,25 +1491,21 @@
               aria-label="Close"
             ></button>
           </div>
-
-          <!-- Modal Body -->
-          <div class="modal-body text-center px-4">
+          <div class="modal-body text-center">
             <img
               id="serviceImage"
               src=""
-              class="img-fluid rounded-3"
+              class="img-fluid svg-img mb-3"
               alt="Service Image"
             />
-            <p id="serviceDescription" class="mt-3 text-muted px-2">
-              Service description goes here.
-            </p>
+            <div>
+              <p id="serviceDescription"></p>
+            </div>
           </div>
-
-          <!-- Modal Footer -->
           <div class="modal-footer border-0 justify-content-center">
             <button
               type="button"
-              class="btn btn-outline-secondary rounded-pill px-4"
+              class="btn btn-outline-dark rounded-pill px-4"
               data-bs-dismiss="modal"
             >
               Close

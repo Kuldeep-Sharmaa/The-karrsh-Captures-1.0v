@@ -209,7 +209,6 @@ body {
 
 #about {
   background: var(--background-color);
-  position: relative;
   padding: 80px 0;
 }
 
@@ -771,20 +770,14 @@ body {
   }
 }
 
-/* Ensure the backdrop is above everything */
 .modal-backdrop {
-  z-index: 1055 !important; /* Higher than navbar */
+  z-index: 1055 !important;
 }
 
-/* Ensure modal itself is above backdrop */
 .modal {
   z-index: 1060 !important;
 }
 
-/* Lower navbar z-index so it stays behind modal */
-.navbar-custom {
-  z-index: 1000 !important;
-}
 .modal-content {
   border-radius: 12px;
   transition: all 0.3s ease-in-out;
@@ -808,6 +801,133 @@ body {
 }
 .modal-header .btn-close {
   margin: 0;
+}
+.modal-header-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.service-modal-list {
+  text-align: start;
+}
+.modal-icon {
+  width: 30px;
+  height: auto;
+  color: var(--btn-color);
+  font-size: 1.9rem;
+  margin-right: 5px;
+}
+.question-animation {
+  width: 60px;
+  height: auto;
+}
+.service-description {
+  color: #222;
+  line-height: 1.8;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+.svg-img {
+  width: 60%;
+  height: auto;
+}
+
+.service-description p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.service-included,
+.service-why-choose {
+  font-size: 1.6rem !important;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--btn-color);
+  align-items: center;
+  gap: 10px;
+}
+
+/* list style */
+.service-modal-list {
+  text-align: start;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.service-modal-list li {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #555;
+  position: relative;
+  padding-left: 25px;
+  list-style: none;
+}
+
+/* Custom Bullet Points */
+.service-modal-list li::before {
+  content: "✔"; /* Checkmark icon */
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+  color: var(--btn-color);
+  font-weight: bold;
+}
+/* trust section  */
+.trust-section {
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.icon {
+  font-size: 18px;
+  color: var(--btn-hover);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  border: none;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0056b3, #003f80);
+  transform: scale(1.05);
+}
+
+/* Close Button */
+.btn-secondary {
+  background: #f8f9fa;
+  color: #222;
+  border: none;
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background: #e2e6ea;
+  color: #000;
 }
 
 /* cards */

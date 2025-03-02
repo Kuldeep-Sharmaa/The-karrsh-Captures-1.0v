@@ -244,6 +244,21 @@
     bottom: -120px !important;
     left: 50% !important;
   }
+  .service-description p {
+    font-size: 1rem;
+  }
+
+  .service-description h4 {
+    font-size: 1.1rem;
+  }
+
+  .service-description ul li {
+    font-size: 0.95rem;
+  }
+  .svg-img {
+    width: 100% !important;
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 576px) {
