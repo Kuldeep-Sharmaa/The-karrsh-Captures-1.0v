@@ -402,7 +402,7 @@ document.addEventListener("DOMContentLoaded", function () {
     `,
     },
     food: {
-      title: "Food & Beverage Photography",
+      title: "Food & Drinks Photography",
       image: "images/services/food.svg",
       description: `
     <div class="service-description">
