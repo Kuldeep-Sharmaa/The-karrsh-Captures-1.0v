@@ -338,6 +338,9 @@ document.addEventListener("DOMContentLoaded", function () {
   </p>
 
 <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Studio Session</a>
+
+
+
 </div>
 `,
     },

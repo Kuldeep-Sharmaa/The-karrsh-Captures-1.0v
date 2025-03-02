@@ -298,7 +298,6 @@ body {
 /* Skills section */
 #skills {
   background: var(--background-color);
-  position: relative;
   padding: 80px 0;
 }
 
@@ -864,6 +863,12 @@ body {
   position: relative;
   padding-left: 25px;
   list-style: none;
+}
+/* tolltip */
+.price-tolltip {
+  align-items: flex-end;
+  display: flow-root;
+  color: var(--btn-hover);
 }
 
 /* Custom Bullet Points */
@@ -1704,3 +1709,4 @@ body {
 .go-top-btn:hover {
   background-color: #555;
 }
+/* whatsapp for main */
