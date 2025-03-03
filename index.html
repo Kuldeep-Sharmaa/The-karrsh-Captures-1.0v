@@ -1626,8 +1626,13 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/ShaderPass.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/shaders/LuminosityHighPassShader.js"></script>
     <script>
-      // Show Preloader Initially
-      document.getElementById("main-content").style.display = "none";
+      // Show Preloader Only on First Visit, Not on Internal Page Navigation
+      if (!sessionStorage.getItem("preloaderShown")) {
+        document.getElementById("main-content").style.display = "none";
+      } else {
+        document.getElementById("preloader").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      }
 
       // Create Scene & Renderer
       const scene = new THREE.Scene();
@@ -1674,7 +1679,6 @@
       // **Load 3D Camera Model**
       const loader = new THREE.GLTFLoader();
       let cameraModel;
-
       loader.load(
         "camera.glb",
         (gltf) => {
@@ -1689,9 +1693,12 @@
           // ✅ Hide Preloader & Show Website After Model Loads
           document.getElementById("preloader").style.display = "none";
           document.getElementById("main-content").style.display = "block";
+
+          // ✅ Save in sessionStorage so it only shows on first visit
+          sessionStorage.setItem("preloaderShown", "true");
         },
         (xhr) => {
-          // Optional: Show loading progress in the console
+          // Optional: Show loading progress in console
           let progress = (xhr.loaded / xhr.total) * 100;
           console.log(`Loading: ${progress}%`);
         },
