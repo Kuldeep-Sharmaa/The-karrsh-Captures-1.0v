@@ -185,10 +185,10 @@ canvas {
 
 .hero-section {
   position: relative;
-  background-image: url(../images/banners/hero_background.jpg) !important;
+  /* background-image: url(../images/banners/hero_background.jpg) !important; */
   background-size: cover;
   background-repeat: no-repeat;
-  height: 101vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

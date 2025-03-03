@@ -1523,7 +1523,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- JavaScript -->
     <script src="script.js"></script>
-    <!-- modal -->
+    <!-- service- modal -->
     <div
       class="modal fade"
       id="serviceModal"
@@ -1617,6 +1617,8 @@
         </div>
       </div>
     </div>
+
+    <!-- 3D modal Logic and Preloder Logic -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/EffectComposer.js"></script>
@@ -1626,123 +1628,151 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/ShaderPass.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/shaders/LuminosityHighPassShader.js"></script>
     <script>
-      // Show Preloader Only on First Visit, Not on Internal Page Navigation
-      if (!sessionStorage.getItem("preloaderShown")) {
-        document.getElementById("main-content").style.display = "none";
-      } else {
-        document.getElementById("preloader").style.display = "none";
-        document.getElementById("main-content").style.display = "block";
-      }
-
-      // Create Scene & Renderer
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-      );
-      const renderer = new THREE.WebGLRenderer({
-        alpha: true,
-        antialias: true,
-      });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.shadowMap.enabled = true;
-      document.body.appendChild(renderer.domElement);
-
-      // **Background Particles**
-      const particleGeometry = new THREE.BufferGeometry();
-      const particlesCount = 500;
-      const positions = new Float32Array(particlesCount * 3);
-      for (let i = 0; i < particlesCount * 3; i++) {
-        positions[i] = (Math.random() - 0.5) * 10;
-      }
-      particleGeometry.setAttribute(
-        "position",
-        new THREE.BufferAttribute(positions, 3)
-      );
-      const particleMaterial = new THREE.PointsMaterial({
-        color: 0x888888,
-        size: 0.05,
-      });
-      const particles = new THREE.Points(particleGeometry, particleMaterial);
-      scene.add(particles);
-
-      // **Lighting**
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
-      scene.add(ambientLight);
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
-      directionalLight.position.set(5, 10, 5);
-      directionalLight.castShadow = true;
-      scene.add(directionalLight);
-
-      // **Load 3D Camera Model**
-      const loader = new THREE.GLTFLoader();
-      let cameraModel;
-      loader.load(
-        "camera.glb",
-        (gltf) => {
-          cameraModel = gltf.scene;
-          cameraModel.scale.set(0.4, 0.4, 0.4);
-          scene.add(cameraModel);
-
-          // Adjust Camera Placement
-          camera.position.set(0, 0.5, 4);
-          camera.lookAt(0, 0.1, 0);
-
-          // ✅ Hide Preloader & Show Website After Model Loads
+      //Preloader Logic
+      function handlePreloader() {
+        if (!sessionStorage.getItem("preloaderShown")) {
+          document.getElementById("main-content").style.display = "none";
+        } else {
           document.getElementById("preloader").style.display = "none";
           document.getElementById("main-content").style.display = "block";
-
-          // ✅ Save in sessionStorage so it only shows on first visit
-          sessionStorage.setItem("preloaderShown", "true");
-        },
-        (xhr) => {
-          // Optional: Show loading progress in console
-          let progress = (xhr.loaded / xhr.total) * 100;
-          console.log(`Loading: ${progress}%`);
-        },
-        (error) => console.error("Error loading 3D model:", error)
-      );
-
-      const spotLight = new THREE.SpotLight(0xffffff, 1.5);
-      spotLight.position.set(0, 3, 5);
-      spotLight.castShadow = true;
-      scene.add(spotLight);
-
-      // **Floating Animation**
-      let clock = new THREE.Clock();
-      function animate() {
-        requestAnimationFrame(animate);
-        if (cameraModel) {
-          cameraModel.rotation.y += 0.005;
-          cameraModel.position.y = 1 + Math.sin(clock.getElapsedTime()) * 0.1;
         }
-        particles.rotation.y += 0.0005;
-        composer.render();
       }
 
-      // **Post-Processing (Bloom Effect)**
-      const composer = new THREE.EffectComposer(renderer);
-      const renderPass = new THREE.RenderPass(scene, camera);
-      composer.addPass(renderPass);
-      const bloomPass = new THREE.UnrealBloomPass(
-        new THREE.Vector2(window.innerWidth, window.innerHeight),
-        0.5,
-        0.4,
-        0.85
-      );
-      composer.addPass(bloomPass);
+      // 3D Scene & Model Logic
 
-      // **Animation Loop**
-      animate();
-
-      // **Resize Handler**
-      window.addEventListener("resize", () => {
+      function initialize3DScene() {
+        // Create Scene & Renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+        const renderer = new THREE.WebGLRenderer({
+          alpha: true,
+          antialias: true,
+        });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-      });
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        // **Background Particles**
+        const particleGeometry = new THREE.BufferGeometry();
+        const particlesCount = 500;
+        const positions = new Float32Array(particlesCount * 3);
+        for (let i = 0; i < particlesCount * 3; i++) {
+          positions[i] = (Math.random() - 0.5) * 10;
+        }
+        particleGeometry.setAttribute(
+          "position",
+          new THREE.BufferAttribute(positions, 3)
+        );
+        const particleMaterial = new THREE.PointsMaterial({
+          color: 0x888888,
+          size: 0.05,
+        });
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
+
+        // **Lighting**
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        directionalLight.position.set(5, 10, 5);
+        directionalLight.castShadow = true;
+        scene.add(directionalLight);
+
+        // Load 3D Camera Model
+        const loader = new THREE.GLTFLoader();
+        let cameraModel;
+        loader.load(
+          "camera.glb",
+          (gltf) => {
+            cameraModel = gltf.scene;
+            cameraModel.scale.set(0.4, 0.4, 0.4);
+            scene.add(cameraModel);
+
+            // Adjust Camera Placement
+            camera.position.set(0, 0.5, 5);
+            camera.lookAt(0, 0.1, 0);
+
+            // Hide Preloader & Show Website After Model Loads
+            document.getElementById("preloader").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+
+            // Save in sessionStorage so it only shows on first visit
+            sessionStorage.setItem("preloaderShown", "true");
+          },
+          (xhr) => {
+            let progress = (xhr.loaded / xhr.total) * 100;
+            console.log(`Loading: ${progress}%`);
+          },
+          (error) => console.error("Error loading 3D model:", error)
+        );
+
+        const spotLight = new THREE.SpotLight(0xffffff, 1.5);
+        spotLight.position.set(0, 3, 5);
+        spotLight.castShadow = true;
+        scene.add(spotLight);
+        // **Floating Camera Animation**
+        let cloc = new THREE.Clock();
+        function animate() {
+          requestAnimationFrame(animate);
+
+          // Floating effect for the camera
+          let elapsedTime = cloc.getElapsedTime();
+          camera.position.y = 0.5 + Math.sin(elapsedTime) * 0.2; // Floating up & down
+          camera.position.x = Math.sin(elapsedTime * 0.5) * 0.3; // Slight side movement
+
+          if (cameraModel) {
+            cameraModel.rotation.y += 0.005;
+            cameraModel.position.y = 1 + Math.sin(elapsedTime) * 0.1;
+          }
+
+          particles.rotation.y += 0.0005;
+          composer.render();
+        }
+
+        // **Floating Animation**
+        let clock = new THREE.Clock();
+        function animate() {
+          requestAnimationFrame(animate);
+          if (cameraModel) {
+            cameraModel.rotation.y += 0.005;
+            cameraModel.position.y = 1 + Math.sin(clock.getElapsedTime()) * 0.1;
+          }
+          particles.rotation.y += 0.0005;
+          composer.render();
+        }
+
+        // Post-Processing (Bloom Effect)
+        const composer = new THREE.EffectComposer(renderer);
+        const renderPass = new THREE.RenderPass(scene, camera);
+        composer.addPass(renderPass);
+        const bloomPass = new THREE.UnrealBloomPass(
+          new THREE.Vector2(window.innerWidth, window.innerHeight),
+          0.5,
+          0.4,
+          0.85
+        );
+        composer.addPass(bloomPass);
+
+        // Animation Loop
+        animate();
+
+        // Resize Handler
+        window.addEventListener("resize", () => {
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+        });
+      }
+
+      //Execute Functions
+
+      handlePreloader();
+      initialize3DScene();
     </script>
   </body>
 </html>
