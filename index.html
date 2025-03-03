@@ -1398,6 +1398,13 @@
           observer.observe(item);
         });
       });
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          document.querySelector(".animated h1").style.visibility = "visible";
+          document.querySelector(".animated p").style.visibility = "visible";
+          document.querySelector(".animated a").style.visibility = "visible";
+        }, 200);
+      });
 
       document.addEventListener("DOMContentLoaded", () => {
         const animatedText = document.getElementById("animatedBlushText");
@@ -1731,20 +1738,48 @@
 
         // **Floating Camera Animation**
         let clock = new THREE.Clock();
+
         function animate() {
           requestAnimationFrame(animate);
           let elapsedTime = clock.getElapsedTime();
 
-          // Floating effect for the camera
-          camera.position.y = 0.5 + Math.sin(elapsedTime) * 0.2; // Floating up & down
-          camera.position.x = Math.sin(elapsedTime * 0.5) * 0.3; // Slight side movement
+          // **Camera Movement**
+          camera.position.x = Math.sin(elapsedTime * 0.3) * 1.5; // Side-to-side drift
+          camera.position.y = 0.5 + Math.sin(elapsedTime * 0.3) * 0.2; // Up/down floating
+          camera.position.z = 4 + Math.sin(elapsedTime * 0.2) * 0.5; // Zoom in/out drift
 
+          camera.lookAt(0, 0.2, 1); // Keep focus on center
+
+          // **Camera Model Rotation & Movement**
           if (cameraModel) {
             cameraModel.rotation.y += 0.005;
             cameraModel.position.y = 1 + Math.sin(elapsedTime) * 0.1;
           }
 
-          particles.rotation.y += 0.0005;
+          composer.render();
+        }
+        const camer = new THREE.PerspectiveCamera(
+          100, // 👈 This is the FOV value (default 75)
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+
+        // **Animate Particles for Space-Like Motion**
+        function animateParticles() {
+          requestAnimationFrame(animateParticles);
+          let time = clock.getElapsedTime();
+
+          for (let i = 0; i < particlesCount; i++) {
+            const i3 = i * 3;
+            particleGeometry.attributes.position.array[i3] +=
+              (Math.random() - 0.5) * 0.002; // X drift
+            particleGeometry.attributes.position.array[i3 + 1] +=
+              (Math.random() - 0.5) * 0.002; // Y drift
+            particleGeometry.attributes.position.array[i3 + 2] +=
+              (Math.random() - 0.5) * 0.002; // Z drift
+          }
+          particleGeometry.attributes.position.needsUpdate = true;
           composer.render();
         }
 
@@ -1760,8 +1795,9 @@
         );
         composer.addPass(bloomPass);
 
-        // Animation Loop
+        // Animation Loops
         animate();
+        animateParticles();
 
         // Resize Handler
         window.addEventListener("resize", () => {

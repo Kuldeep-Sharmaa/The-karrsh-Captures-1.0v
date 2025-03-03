@@ -251,6 +251,27 @@ canvas {
     transform: translateY(0);
   }
 }
+/* Hide elements initially */
+.animated h1,
+.animated p,
+.animated a {
+  opacity: 0;
+  transform: translateY(50px);
+  visibility: hidden;
+}
+
+/* Staggered fade-in effect */
+.animated h1 {
+  animation: fadeInUp 1s ease-out forwards 0.5s;
+}
+
+.animated p {
+  animation: fadeInUp 1s ease-out forwards 1s;
+}
+
+.animated a {
+  animation: fadeInUp 1s ease-out forwards 1.5s;
+}
 
 .animated {
   opacity: 0;
