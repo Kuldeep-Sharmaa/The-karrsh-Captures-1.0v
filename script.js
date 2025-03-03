@@ -543,7 +543,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <ul class="service-modal-list">
     <li><strong>Brand-Aligned Content:</strong> Tailored visuals that fit your brand identity.</li>
     <li><strong>Reels & Story Captures:</strong> Short-form content designed for maximum engagement.</li>
-    <li><strong>On-Trend Aesthetics:</strong> Styled shots curated for Instagram, TikTok, and beyond.</li>
+    <li><strong>On-Trend Aesthetics:</strong> Styled shots curated for Instagram, Facebook, and beyond.</li>
     <li><strong>Optimized for Digital Platforms:</strong> High-quality images resized for various social channels.</li>
   </ul>
 
@@ -921,7 +921,7 @@ function addTrustAnimation() {
         trustSection.classList.remove("show");
       }
     },
-    { threshold: 0.8 }
+    { threshold: 0.9 }
   );
 
   observer.observe(trustSection);
