@@ -1628,7 +1628,7 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/ShaderPass.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/shaders/LuminosityHighPassShader.js"></script>
     <script>
-      //Preloader Logic
+      // Preloader Logic
       function handlePreloader() {
         if (!sessionStorage.getItem("preloaderShown")) {
           document.getElementById("main-content").style.display = "none";
@@ -1639,7 +1639,6 @@
       }
 
       // 3D Scene & Model Logic
-
       function initialize3DScene() {
         // Create Scene & Renderer
         const scene = new THREE.Scene();
@@ -1683,7 +1682,11 @@
         directionalLight.castShadow = true;
         scene.add(directionalLight);
 
-        // Load 3D Camera Model
+        // ✅ Show Website Immediately After Particles Load
+        document.getElementById("preloader").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+
+        // ✅ Load 3D Camera Model in Background
         const loader = new THREE.GLTFLoader();
         let cameraModel;
         loader.load(
@@ -1697,17 +1700,27 @@
             camera.position.set(0, 0.5, 5);
             camera.lookAt(0, 0.1, 0);
 
-            // Hide Preloader & Show Website After Model Loads
-            document.getElementById("preloader").style.display = "none";
-            document.getElementById("main-content").style.display = "block";
+            // ✅ Smoothly Fade in the Model
+            cameraModel.traverse((child) => {
+              if (child.isMesh) {
+                child.material.transparent = true;
+                child.material.opacity = 0;
+                let fadeInterval = setInterval(() => {
+                  child.material.opacity += 0.05;
+                  if (child.material.opacity >= 1) clearInterval(fadeInterval);
+                }, 50);
+              }
+            });
 
-            // Save in sessionStorage so it only shows on first visit
+            // ✅ Save in sessionStorage so it only shows on first visit
             sessionStorage.setItem("preloaderShown", "true");
           },
-          (xhr) => {
-            let progress = (xhr.loaded / xhr.total) * 100;
-            console.log(`Loading: ${progress}%`);
-          },
+          (xhr) =>
+            console.log(
+              `Loading 3D Model: ${((xhr.loaded / xhr.total) * 100).toFixed(
+                2
+              )}%`
+            ),
           (error) => console.error("Error loading 3D model:", error)
         );
 
@@ -1715,13 +1728,14 @@
         spotLight.position.set(0, 3, 5);
         spotLight.castShadow = true;
         scene.add(spotLight);
+
         // **Floating Camera Animation**
-        let cloc = new THREE.Clock();
+        let clock = new THREE.Clock();
         function animate() {
           requestAnimationFrame(animate);
+          let elapsedTime = clock.getElapsedTime();
 
           // Floating effect for the camera
-          let elapsedTime = cloc.getElapsedTime();
           camera.position.y = 0.5 + Math.sin(elapsedTime) * 0.2; // Floating up & down
           camera.position.x = Math.sin(elapsedTime * 0.5) * 0.3; // Slight side movement
 
@@ -1730,18 +1744,6 @@
             cameraModel.position.y = 1 + Math.sin(elapsedTime) * 0.1;
           }
 
-          particles.rotation.y += 0.0005;
-          composer.render();
-        }
-
-        // **Floating Animation**
-        let clock = new THREE.Clock();
-        function animate() {
-          requestAnimationFrame(animate);
-          if (cameraModel) {
-            cameraModel.rotation.y += 0.005;
-            cameraModel.position.y = 1 + Math.sin(clock.getElapsedTime()) * 0.1;
-          }
           particles.rotation.y += 0.0005;
           composer.render();
         }
@@ -1769,8 +1771,7 @@
         });
       }
 
-      //Execute Functions
-
+      // Execute Functions
       handlePreloader();
       initialize3DScene();
     </script>
