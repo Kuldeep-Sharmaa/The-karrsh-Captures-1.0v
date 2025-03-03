@@ -609,6 +609,23 @@
                 class="service-box p-4 d-flex align-items-center"
                 data-bs-toggle="modal"
                 data-bs-target="#serviceModal"
+                data-service="weddings"
+              >
+                <div class="icon-box me-3">
+                  <img
+                    src="images/banners/correct-success-tick-svgrepo-com.svg"
+                    alt="Weddings"
+                    class="icon"
+                  />
+                </div>
+                <h5 class="mb-0">Weddings</h5>
+              </div>
+            </div>
+            <div class="col-md-4 fade-in">
+              <div
+                class="service-box p-4 d-flex align-items-center"
+                data-bs-toggle="modal"
+                data-bs-target="#serviceModal"
                 data-service="fashion"
               >
                 <div class="icon-box me-3">
@@ -1529,6 +1546,23 @@
                 tooltipTriggerEl
               ) {
                 return new bootstrap.Tooltip(tooltipTriggerEl);
+              });
+            </script>
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                const trustSection = document.getElementById("trustSection");
+
+                const observer = new IntersectionObserver(
+                  ([entry]) => {
+                    if (entry.isIntersecting) {
+                      trustSection.classList.add("show");
+                      observer.unobserve(trustSection);
+                    }
+                  },
+                  { threshold: 0.3 }
+                );
+
+                observer.observe(trustSection);
               });
             </script>
           </div>

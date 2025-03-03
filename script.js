@@ -314,25 +314,25 @@ document.addEventListener("DOMContentLoaded", function () {
     <li>Ultra-high-resolution images perfect for print and digital use</li>
     <li>Instant previews and real-time adjustments</li>
   </ul> 
-<!-- Trust & Quality Assurance -->
-<div class="trust-section mt-3">
-  <h3 class="service-included"><i class="fas fa-shield-alt"></i> Trust & Quality Assurance</h3>
-  <div class="trust-icons">
-    <div class="trust-item">
-      <i class="fas fa-check-circle icon"></i>
-      <span class="text">100% Satisfaction Guarantee</span>
+ <div class="trust-section mt-4" id="trustSection">
+      <h3 class="service-included">
+        <i class="fas fa-shield-alt"></i> Trust & Quality Assurance
+      </h3>
+      <div class="trust-icons">
+        <div class="trust-item">
+          <i class="fas fa-check-circle icon"></i>
+          <span class="text">100% Satisfaction Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span class="text">Flexible Scheduling</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-star icon"></i>
+          <span class="text">Rated 5 Stars by Clients</span>
+        </div>
+      </div>
     </div>
-    <div class="trust-item">
-      <i class="far fa-calendar-alt icon"></i>
-      <span class="text">Flexible Scheduling</span>
-    </div>
-    <div class="trust-item">
-      <i class="fas fa-star icon"></i>
-      <span class="text">Rated 5 Stars by Clients</span>
-    </div>
-  </div>
-</div>
-
  <p class="contact-text mt-3">
     Ready to capture your best self? Let’s create something extraordinary together
   </p>
@@ -377,24 +377,25 @@ document.addEventListener("DOMContentLoaded", function () {
     <li>Customizable packages for editorial, commercial, and fine art use</li>
   </ul>
 
-  <div class="trust-section mt-3">
-    <h3 class="service-included"><i class="fas fa-shield-alt"></i> Trust & Quality Assurance</h3>
-    <div class="trust-icons">
-      <div class="trust-item">
-        <i class="fas fa-check-circle icon"></i>
-        <span class="text">100% Satisfaction Guarantee</span>
-      </div>
-      <div class="trust-item">
-        <i class="far fa-calendar-alt icon"></i>
-        <span class="text">Flexible Scheduling</span>
-      </div>
-      <div class="trust-item">
-        <i class="fas fa-star icon"></i>
-        <span class="text">Rated 5 Stars by Clients</span>
+  <div class="trust-section mt-4" id="trustSection">
+      <h3 class="service-included">
+        <i class="fas fa-shield-alt"></i> Trust & Quality Assurance
+      </h3>
+      <div class="trust-icons">
+        <div class="trust-item">
+          <i class="fas fa-check-circle icon"></i>
+          <span class="text">100% Satisfaction Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span class="text">Flexible Scheduling</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-star icon"></i>
+          <span class="text">Rated 5 Stars by Clients</span>
+        </div>
       </div>
     </div>
-  </div>
-
   <p class="contact-text mt-3">
     Capture the world through a new lens. Let’s create something extraordinary.
   </p>
@@ -436,24 +437,25 @@ document.addEventListener("DOMContentLoaded", function () {
     <li>Ultra-HD resolution for digital and print use</li>
   </ul>
 
-  <div class="trust-section mt-3">
-    <h3 class="service-included"><i class="fas fa-shield-alt"></i> Trust & Quality Assurance</h3>
-    <div class="trust-icons">
-      <div class="trust-item">
-        <i class="fas fa-check-circle icon"></i>
-        <span class="text">100% Satisfaction Guarantee</span>
-      </div>
-      <div class="trust-item">
-        <i class="far fa-calendar-alt icon"></i>
-        <span class="text">Flexible Scheduling</span>
-      </div>
-      <div class="trust-item">
-        <i class="fas fa-star icon"></i>
-        <span class="text">Rated 5 Stars by Clients</span>
+  <div class="trust-section mt-4" id="trustSection">
+      <h3 class="service-included">
+        <i class="fas fa-shield-alt"></i> Trust & Quality Assurance
+      </h3>
+      <div class="trust-icons">
+        <div class="trust-item">
+          <i class="fas fa-check-circle icon"></i>
+          <span class="text">100% Satisfaction Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span class="text">Flexible Scheduling</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-star icon"></i>
+          <span class="text">Rated 5 Stars by Clients</span>
+        </div>
       </div>
     </div>
-  </div>
-
   <p class="contact-text mt-3">
     Let's turn your dishes into visual masterpieces. Book your session today.
   </p>
@@ -496,24 +498,25 @@ document.addEventListener("DOMContentLoaded", function () {
     <li>Optimized images for print and digital use</li>
   </ul>
 
-  <div class="trust-section mt-3">
-    <h3 class="service-included"><i class="fas fa-shield-alt"></i> Trust & Quality Assurance</h3>
-    <div class="trust-icons">
-      <div class="trust-item">
-        <i class="fas fa-check-circle icon"></i>
-        <span class="text">100% Satisfaction Guarantee</span>
-      </div>
-      <div class="trust-item">
-        <i class="far fa-calendar-alt icon"></i>
-        <span class="text">Flexible Scheduling</span>
-      </div>
-      <div class="trust-item">
-        <i class="fas fa-star icon"></i>
-        <span class="text">Rated 5 Stars by Clients</span>
+  <div class="trust-section mt-4" id="trustSection">
+      <h3 class="service-included">
+        <i class="fas fa-shield-alt"></i> Trust & Quality Assurance
+      </h3>
+      <div class="trust-icons">
+        <div class="trust-item">
+          <i class="fas fa-check-circle icon"></i>
+          <span class="text">100% Satisfaction Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span class="text">Flexible Scheduling</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-star icon"></i>
+          <span class="text">Rated 5 Stars by Clients</span>
+        </div>
       </div>
     </div>
-  </div>
-
   <p class="contact-text mt-3">
     Let’s bring your products to life with world-class imagery.
   </p>
@@ -555,24 +558,25 @@ document.addEventListener("DOMContentLoaded", function () {
     <li>Content strategy consultation available</li>
   </ul>
 
-  <div class="trust-section mt-3">
-    <h3 class="service-included"><i class="fas fa-shield-alt"></i> Trust & Quality Assurance</h3>
-    <div class="trust-icons">
-      <div class="trust-item">
-        <i class="fas fa-check-circle icon"></i>
-        <span class="text">100% Satisfaction Guarantee</span>
-      </div>
-      <div class="trust-item">
-        <i class="far fa-calendar-alt icon"></i>
-        <span class="text">Flexible Scheduling</span>
-      </div>
-      <div class="trust-item">
-        <i class="fas fa-star icon"></i>
-        <span class="text">Rated 5 Stars by Clients</span>
+  <div class="trust-section mt-4" id="trustSection">
+      <h3 class="service-included">
+        <i class="fas fa-shield-alt"></i> Trust & Quality Assurance
+      </h3>
+      <div class="trust-icons">
+        <div class="trust-item">
+          <i class="fas fa-check-circle icon"></i>
+          <span class="text">100% Satisfaction Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span class="text">Flexible Scheduling</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-star icon"></i>
+          <span class="text">Rated 5 Stars by Clients</span>
+        </div>
       </div>
     </div>
-  </div>
-
   <p class="contact-text mt-3">
     Let’s create viral-worthy content for your brand. Book your session today!
   </p>
@@ -614,24 +618,25 @@ document.addEventListener("DOMContentLoaded", function () {
     <li>Tailored shoots for agents, developers, and homeowners</li>
   </ul>
 
-  <div class="trust-section mt-3">
-    <h3 class="service-included"><i class="fas fa-shield-alt"></i> Trust & Quality Assurance</h3>
-    <div class="trust-icons">
-      <div class="trust-item">
-        <i class="fas fa-check-circle icon"></i>
-        <span class="text">100% Satisfaction Guarantee</span>
-      </div>
-      <div class="trust-item">
-        <i class="far fa-calendar-alt icon"></i>
-        <span class="text">Flexible Scheduling</span>
-      </div>
-      <div class="trust-item">
-        <i class="fas fa-star icon"></i>
-        <span class="text">Rated 5 Stars by Clients</span>
+  <div class="trust-section mt-4" id="trustSection">
+      <h3 class="service-included">
+        <i class="fas fa-shield-alt"></i> Trust & Quality Assurance
+      </h3>
+      <div class="trust-icons">
+        <div class="trust-item">
+          <i class="fas fa-check-circle icon"></i>
+          <span class="text">100% Satisfaction Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span class="text">Flexible Scheduling</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-star icon"></i>
+          <span class="text">Rated 5 Stars by Clients</span>
+        </div>
       </div>
     </div>
-  </div>
-
   <p class="contact-text mt-3">
     Let’s turn listings into sold properties with premium photography.
   </p>
@@ -673,24 +678,25 @@ document.addEventListener("DOMContentLoaded", function () {
     <li>High-resolution imagery for prints and albums</li>
   </ul>
 
-  <div class="trust-section mt-3">
-    <h3 class="service-included"><i class="fas fa-shield-alt"></i> Trust & Quality Assurance</h3>
-    <div class="trust-icons">
-      <div class="trust-item">
-        <i class="fas fa-check-circle icon"></i>
-        <span class="text">100% Satisfaction Guarantee</span>
-      </div>
-      <div class="trust-item">
-        <i class="far fa-calendar-alt icon"></i>
-        <span class="text">Flexible Scheduling</span>
-      </div>
-      <div class="trust-item">
-        <i class="fas fa-star icon"></i>
-        <span class="text">Rated 5 Stars by Clients</span>
+  <div class="trust-section mt-4" id="trustSection">
+      <h3 class="service-included">
+        <i class="fas fa-shield-alt"></i> Trust & Quality Assurance
+      </h3>
+      <div class="trust-icons">
+        <div class="trust-item">
+          <i class="fas fa-check-circle icon"></i>
+          <span class="text">100% Satisfaction Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span class="text">Flexible Scheduling</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-star icon"></i>
+          <span class="text">Rated 5 Stars by Clients</span>
+        </div>
       </div>
     </div>
-  </div>
-
   <p class="contact-text mt-3">
     Let’s create a love story that lasts forever. Book your pre-wedding shoot today!
   </p>
@@ -699,6 +705,66 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 
     `,
+    },
+    weddings: {
+      title: "Studio Portraits",
+      image: "images/services/wedding.svg",
+      description: `<div class="service-description">
+  <p>
+    Celebrate love with <strong>timeless wedding photography</strong> that captures every emotion, detail, and moment of your special day. 
+    From intimate ceremonies to grand celebrations, we create breathtaking imagery that tells your unique love story with elegance and authenticity.
+  </p>
+
+  <div class="modal-header-wrapper">
+    <i class="fa-solid fa-check-to-slot modal-icon"></i>
+    <h4 class="service-included">What’s Included?</h4>
+  </div>
+  <ul class="service-modal-list">
+    <li><strong>Pre-Wedding Consultation:</strong> Personalized planning to understand your vision and preferences.</li>
+    <li><strong>Full-Day Coverage:</strong> From bridal preparations to the final dance, we document it all.</li>
+    <li><strong>Cinematic Couple & Candid Shots:</strong> Artistic portraits and natural moments that reflect genuine emotions.</li>
+    <li><strong>High-End Editing & Retouching:</strong> Magazine-quality enhancements while maintaining a natural look.</li>
+  </ul>
+
+  <div class="modal-header-wrapper">
+    <i class="fa-solid fa-award modal-icon"></i>
+    <h4 class="service-why-choose">Why Choose Us?</h4>
+  </div>
+  <ul class="service-modal-list">
+    <li>Specialists in luxury and destination wedding photography</li>
+    <li>Storytelling approach to create a cinematic wedding album</li>
+    <li>Cutting-edge gear for high-resolution, vibrant imagery</li>
+    <li>Tailored packages for every couple’s unique journey</li>
+  </ul>
+
+   <div class="trust-section mt-4" id="trustSection">
+      <h3 class="service-included">
+        <i class="fas fa-shield-alt"></i> Trust & Quality Assurance
+      </h3>
+      <div class="trust-icons">
+        <div class="trust-item">
+          <i class="fas fa-check-circle icon"></i>
+          <span class="text">100% Satisfaction Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span class="text">Flexible Scheduling</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-star icon"></i>
+          <span class="text">Rated 5 Stars by Clients</span>
+        </div>
+      </div>
+    </div>
+
+  <p class="contact-text mt-3">
+    Your wedding is a once-in-a-lifetime event. Let’s capture every cherished moment beautifully.
+  </p>
+
+  <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Wedding Photography</a>
+</div>
+
+`,
     },
     fashion: {
       title: "Fashion Photography",
@@ -732,23 +798,25 @@ document.addEventListener("DOMContentLoaded", function () {
     <li>Seamless execution with an elite creative team</li>
   </ul>
 
-  <div class="trust-section mt-3">
-    <h3 class="service-included"><i class="fas fa-shield-alt"></i> Trust & Quality Assurance</h3>
-    <div class="trust-icons">
-      <div class="trust-item">
-        <i class="fas fa-check-circle icon"></i>
-        <span class="text">100% Satisfaction Guarantee</span>
-      </div>
-      <div class="trust-item">
-        <i class="far fa-calendar-alt icon"></i>
-        <span class="text">Flexible Scheduling</span>
-      </div>
-      <div class="trust-item">
-        <i class="fas fa-star icon"></i>
-        <span class="text">Rated 5 Stars by Clients</span>
+  <div class="trust-section mt-4" id="trustSection">
+      <h3 class="service-included">
+        <i class="fas fa-shield-alt"></i> Trust & Quality Assurance
+      </h3>
+      <div class="trust-icons">
+        <div class="trust-item">
+          <i class="fas fa-check-circle icon"></i>
+          <span class="text">100% Satisfaction Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span class="text">Flexible Scheduling</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-star icon"></i>
+          <span class="text">Rated 5 Stars by Clients</span>
+        </div>
       </div>
     </div>
-  </div>
 
   <p class="contact-text mt-3">
     Ready to make a statement? Let’s create bold and iconic imagery together.
@@ -791,23 +859,26 @@ document.addEventListener("DOMContentLoaded", function () {
     <li>Custom packages for weddings, corporate events, and private celebrations</li>
   </ul>
 
-  <div class="trust-section mt-3">
-    <h3 class="service-included"><i class="fas fa-shield-alt"></i> Trust & Quality Assurance</h3>
-    <div class="trust-icons">
-      <div class="trust-item">
-        <i class="fas fa-check-circle icon"></i>
-        <span class="text">100% Satisfaction Guarantee</span>
-      </div>
-      <div class="trust-item">
-        <i class="far fa-calendar-alt icon"></i>
-        <span class="text">Flexible Scheduling</span>
-      </div>
-      <div class="trust-item">
-        <i class="fas fa-star icon"></i>
-        <span class="text">Rated 5 Stars by Clients</span>
+  <div class="trust-section mt-4" id="trustSection">
+      <h3 class="service-included">
+        <i class="fas fa-shield-alt"></i> Trust & Quality Assurance
+      </h3>
+      <div class="trust-icons">
+        <div class="trust-item">
+          <i class="fas fa-check-circle icon"></i>
+          <span class="text">100% Satisfaction Guarantee</span>
+        </div>
+        <div class="trust-item">
+          <i class="far fa-calendar-alt icon"></i>
+          <span class="text">Flexible Scheduling</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-star icon"></i>
+          <span class="text">Rated 5 Stars by Clients</span>
+        </div>
       </div>
     </div>
-  </div>
+
 
   <p class="contact-text mt-3">
     Your moments deserve to be remembered forever. Let’s capture them with perfection.
@@ -831,7 +902,30 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("serviceDescription").innerHTML =
           serviceDetails[serviceKey].description;
         document.getElementById("contactLink").href = "./contact-TKC/";
+
+        // Calling the function to activate the animation
+        addTrustAnimation();
       }
     });
   });
 });
+function addTrustAnimation() {
+  const trustSection = document.getElementById("trustSection");
+  if (!trustSection) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        trustSection.classList.add("show");
+      } else {
+        trustSection.classList.remove("show");
+      }
+    },
+    { threshold: 0.8 }
+  );
+
+  observer.observe(trustSection);
+}
+
+// Calling function to activate observer
+addTrustAnimation();
