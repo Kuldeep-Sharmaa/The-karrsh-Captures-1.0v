@@ -1635,18 +1635,36 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/ShaderPass.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/shaders/LuminosityHighPassShader.js"></script>
     <script>
-      // **Preloader Logic**
-      function handlePreloader() {
-        if (!sessionStorage.getItem("preloaderShown")) {
-          document.getElementById("main-content").style.display = "none";
-        } else {
-          document.getElementById("preloader").style.display = "none";
-          document.getElementById("main-content").style.display = "block";
-        }
-      }
+      // **Advanced Preloader & Initialization Logic**
+      document.addEventListener("DOMContentLoaded", () => {
+        // Check if required DOM elements exist
+        const preloaderEl = document.getElementById("preloader");
+        const mainContentEl = document.getElementById("main-content");
 
-      // **3D Scene & Model Logic**
+        if (!preloaderEl || !mainContentEl) {
+          console.error("Required DOM elements are missing.");
+          return;
+        }
+
+        // Preloader Logic
+        if (!sessionStorage.getItem("preloaderShown")) {
+          mainContentEl.style.display = "none";
+        } else {
+          preloaderEl.style.display = "none";
+          mainContentEl.style.display = "block";
+        }
+
+        // Initialize 3D Scene
+        initialize3DScene();
+      });
+
       function initialize3DScene() {
+        // Ensure Three.js is available
+        if (typeof THREE === "undefined" || !THREE.WebGLRenderer) {
+          console.error("Three.js library is missing.");
+          return;
+        }
+
         // **Create Scene & Renderer**
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(
@@ -1663,11 +1681,11 @@
         renderer.shadowMap.enabled = true;
         document.body.appendChild(renderer.domElement);
 
-        // **Optimized Background Particles**
+        // **Background Particles**
         const particleGeometry = new THREE.BufferGeometry();
-        const particlesCount = window.innerWidth < 768 ? 300 : 500; // Optimize for mobile
+        const particlesCount = window.innerWidth < 768 ? 300 : 500;
         const positions = new Float32Array(particlesCount * 3);
-        const opacityArray = new Float32Array(particlesCount); // For fade effect
+        const opacityArray = new Float32Array(particlesCount);
 
         for (let i = 0; i < particlesCount; i++) {
           positions[i * 3] = (Math.random() - 0.5) * 10;
@@ -1675,7 +1693,6 @@
           positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
           opacityArray[i] = Math.random();
         }
-
         particleGeometry.setAttribute(
           "position",
           new THREE.BufferAttribute(positions, 3)
@@ -1687,19 +1704,17 @@
 
         const particleMaterial = new THREE.PointsMaterial({
           color: 0xffffff,
-          size: 0.02, // **Smaller particles**
+          size: 0.02,
           transparent: true,
           opacity: 0.8,
           depthWrite: false,
-          blending: THREE.AdditiveBlending, // Glow effect
+          blending: THREE.AdditiveBlending,
         });
-
         const particles = new THREE.Points(particleGeometry, particleMaterial);
         scene.add(particles);
 
         // **Lighting Setup**
-        // **Lighting Setup - Enhanced**
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); // Slightly increased intensity
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         scene.add(ambientLight);
 
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
@@ -1707,88 +1722,109 @@
         directionalLight.castShadow = true;
         scene.add(directionalLight);
 
-        // **Rim Light - Adds Edge Glow to Camera**
+        // Additional Lights for Enhanced Visuals
         const rimLight = new THREE.PointLight(0xffffff, 1.8, 10);
         rimLight.position.set(-3, 2, 3);
         scene.add(rimLight);
 
-        // **Soft Spotlight - Highlights Camera Model**
         const softSpotlight = new THREE.SpotLight(0xffffff, 2);
         softSpotlight.position.set(0, 5, 5);
         softSpotlight.angle = Math.PI / 6;
-        softSpotlight.penumbra = 0.3; // Soft edges
+        softSpotlight.penumbra = 0.3;
         softSpotlight.castShadow = true;
         scene.add(softSpotlight);
 
-        // **Small Point Light for Extra Depth**
         const smallPointLight = new THREE.PointLight(0xffa95c, 1.5, 5);
         smallPointLight.position.set(2, 1, -3);
         scene.add(smallPointLight);
 
-        // **Show Website Immediately After Particles Load**
-        document.getElementById("preloader").style.display = "none";
-        document.getElementById("main-content").style.display = "block";
-
-        // **Load 3D Camera Model**
-        const loader = new THREE.GLTFLoader();
+        // **Lazy Loading 3D Model with IntersectionObserver**
         let cameraModel;
+        let isModelLoaded = false;
+        const loader = new THREE.GLTFLoader();
 
-        loader.load(
-          "camera.glb",
-          (gltf) => {
-            cameraModel = gltf.scene;
-            let isMobile = window.innerWidth < 768;
+        function loadModel() {
+          if (isModelLoaded) return;
+          isModelLoaded = true;
+          loader.load(
+            "camera.glb",
+            (gltf) => {
+              cameraModel = gltf.scene;
+              const isMobile = window.innerWidth < 768;
+              cameraModel.scale.set(
+                isMobile ? 0.5 : 0.7,
+                isMobile ? 0.5 : 0.7,
+                isMobile ? 0.5 : 0.7
+              );
+              camera.position.set(0, isMobile ? 8 : 5, isMobile ? 6 : 0);
+              scene.add(cameraModel);
+              camera.lookAt(0, 0, 0);
 
-            // Adjust Camera Model Size & Position for Mobile/Desktop
-            if (isMobile) {
-              // **Optimize scale for mobile**
-              cameraModel.scale.set(0.5, 0.5, 0.5);
+              // Smooth Fade-in Effect
+              cameraModel.traverse((child) => {
+                if (child.isMesh) {
+                  child.material.transparent = true;
+                  child.material.opacity = 0;
+                  let fadeInterval = setInterval(() => {
+                    child.material.opacity += 0.05;
+                    if (child.material.opacity >= 1)
+                      clearInterval(fadeInterval);
+                  }, 50);
+                }
+              });
+              sessionStorage.setItem("preloaderShown", "true");
 
-              // **Move the camera up and slightly forward**
-              camera.position.set(0, 8, 6); // Higher Y and adjusted Z to maintain visibility
-            } else {
-              // **Optimized for desktop**
-              cameraModel.scale.set(0.7, 0.7, 0.7);
-              camera.position.set(0, 5, 0);
-            }
-
-            scene.add(cameraModel);
-            camera.lookAt(0, 0, 0);
-
-            // **Smooth Fade-in Effect for Model**
-            cameraModel.traverse((child) => {
-              if (child.isMesh) {
-                child.material.transparent = true;
-                child.material.opacity = 0;
-                let fadeInterval = setInterval(() => {
-                  child.material.opacity += 0.05;
-                  if (child.material.opacity >= 1) clearInterval(fadeInterval);
-                }, 50);
+              // Once the model is loaded, hide the preloader and show main content
+              const preloaderEl = document.getElementById("preloader");
+              const mainContentEl = document.getElementById("main-content");
+              if (preloaderEl && mainContentEl) {
+                preloaderEl.style.display = "none";
+                mainContentEl.style.display = "block";
               }
-            });
+            },
+            (xhr) =>
+              console.log(
+                `Loading 3D Model: ${((xhr.loaded / xhr.total) * 100).toFixed(
+                  2
+                )}%`
+              ),
+            (error) =>
+              console.error("Error loading 3D model: Check your network", error)
+          );
+        }
 
-            sessionStorage.setItem("preloaderShown", "true");
-          },
-          (xhr) =>
-            console.log(
-              `Loading 3D Model: ${((xhr.loaded / xhr.total) * 100).toFixed(
-                2
-              )}%`
-            ),
-          (error) =>
-            console.error("Error loading 3D model: Check your Network", error)
-        );
+        // If preloaderShown exists, load model immediately;
+        // Otherwise, use the IntersectionObserver to lazy-load.
+        if (sessionStorage.getItem("preloaderShown")) {
+          loadModel();
+        } else {
+          // Use a placeholder element for lazy loading trigger.
+          const lazyTrigger =
+            document.getElementById("lazy-trigger") || document.body;
+          const observer = new IntersectionObserver(
+            (entries, obs) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  loadModel();
+                  obs.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.2 }
+          );
+          observer.observe(lazyTrigger);
+        }
 
         // **Animation & Effects**
         let clock = new THREE.Clock();
-        let mouseX = 0;
-        let mouseY = 0;
+        let mouseX = 0,
+          mouseY = 0;
 
         function animate() {
           requestAnimationFrame(animate);
           let elapsedTime = clock.getElapsedTime();
 
-          // **Camera Floating Animation**
+          // Camera Floating Animation
           camera.position.x =
             Math.sin(elapsedTime * 0.3) * 1.5 + mouseX * 0.002;
           camera.position.y =
@@ -1796,19 +1832,11 @@
           camera.position.z = 4 + Math.sin(elapsedTime * 0.2) * 0.5;
           camera.lookAt(0, 0.2, 1);
 
-          // **Camera Model Rotation & Movement**
-          if (cameraModel) {
-            cameraModel.rotation.y += 0.003;
-          }
+          // Model Rotation
+          if (cameraModel) cameraModel.rotation.y += 0.003;
 
-          composer.render();
-        }
-
-        // **Enhanced Particle Animation**
-        function animateParticles() {
-          requestAnimationFrame(animateParticles);
+          // **Enhanced Particle Animation**
           let time = clock.getElapsedTime();
-
           for (let i = 0; i < particlesCount; i++) {
             const i3 = i * 3;
             particleGeometry.attributes.position.array[i3] +=
@@ -1817,36 +1845,20 @@
               Math.cos(time * 0.5 + i * 0.1) * 0.002;
             particleGeometry.attributes.position.array[i3 + 2] +=
               Math.sin(time * 0.3 + i * 0.2) * 0.002;
-
-            // **Smooth Fade Effect**
             particleGeometry.attributes.alpha.array[i] =
               0.6 + Math.sin(time + i * 0.2) * 0.4;
           }
-
           particleGeometry.attributes.position.needsUpdate = true;
           particleGeometry.attributes.alpha.needsUpdate = true;
+
+          renderer.render(scene, camera);
         }
 
-        // **Parallax Effect**
+        // **Mouse Parallax Effect**
         document.addEventListener("mousemove", (event) => {
           mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
           mouseY = (event.clientY - window.innerHeight / 2) * 0.05;
         });
-
-        // **Post-Processing**
-        const composer = new THREE.EffectComposer(renderer);
-        composer.addPass(new THREE.RenderPass(scene, camera));
-        composer.addPass(
-          new THREE.UnrealBloomPass(
-            new THREE.Vector2(window.innerWidth, window.innerHeight),
-            0.7,
-            0.6,
-            0.9
-          )
-        );
-
-        animate();
-        animateParticles();
 
         // **Resize Handler**
         window.addEventListener("resize", () => {
@@ -1854,10 +1866,9 @@
           camera.aspect = window.innerWidth / window.innerHeight;
           camera.updateProjectionMatrix();
         });
-      }
 
-      handlePreloader();
-      initialize3DScene();
+        animate();
+      }
     </script>
   </body>
 </html>
