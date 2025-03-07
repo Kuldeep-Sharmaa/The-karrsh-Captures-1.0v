@@ -1635,7 +1635,7 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/ShaderPass.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/shaders/LuminosityHighPassShader.js"></script>
     <script>
-      // Preloader Logic
+      // **Preloader Logic**
       function handlePreloader() {
         if (!sessionStorage.getItem("preloaderShown")) {
           document.getElementById("main-content").style.display = "none";
@@ -1645,9 +1645,9 @@
         }
       }
 
-      // 3D Scene & Model Logic
+      // **3D Scene & Model Logic**
       function initialize3DScene() {
-        // Create Scene & Renderer
+        // **Create Scene & Renderer**
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(
           75,
@@ -1673,7 +1673,7 @@
           positions[i * 3] = (Math.random() - 0.5) * 10;
           positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
           positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
-          opacityArray[i] = Math.random(); // Randomize opacity for variation
+          opacityArray[i] = Math.random();
         }
 
         particleGeometry.setAttribute(
@@ -1686,41 +1686,62 @@
         );
 
         const particleMaterial = new THREE.PointsMaterial({
-          color: 0xaaaaaa,
-          size: 0.05,
+          color: 0xffffff,
+          size: 0.02, // **Smaller particles**
           transparent: true,
+          opacity: 0.8,
           depthWrite: false,
-          opacity: 0.8, // Base opacity
+          blending: THREE.AdditiveBlending, // Glow effect
         });
 
         const particles = new THREE.Points(particleGeometry, particleMaterial);
         scene.add(particles);
 
-        // **Lighting**
+        // **Lighting Setup**
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
         scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(5, 10, 5);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        directionalLight.position.set(2, 3, 5);
         directionalLight.castShadow = true;
         scene.add(directionalLight);
 
-        // ✅ Show Website Immediately After Particles Load
+        const highlight = new THREE.PointLight(0xffffff, 2, 10);
+        highlight.position.set(2, 3, 3);
+        scene.add(highlight);
+
+        const spotLight = new THREE.SpotLight(0xffffff, 1.5);
+        spotLight.position.set(0, 3, 5);
+        spotLight.castShadow = true;
+        scene.add(spotLight);
+
+        // **Show Website Immediately After Particles Load**
         document.getElementById("preloader").style.display = "none";
         document.getElementById("main-content").style.display = "block";
 
-        // ✅ Load 3D Camera Model
+        // **Load 3D Camera Model**
         const loader = new THREE.GLTFLoader();
         let cameraModel;
+
         loader.load(
           "camera.glb",
           (gltf) => {
             cameraModel = gltf.scene;
-            cameraModel.scale.set(0.5, 0.55, 0.5);
-            scene.add(cameraModel);
-            camera.position.set(0, 0.5, 5);
-            camera.lookAt(0, 0.1, 0);
+            let isMobile = window.innerWidth < 768;
 
-            // ✅ Smooth Fade-in Effect for Model
+            // Adjust Camera Model Size & Position for Mobile/Desktop
+            if (isMobile) {
+              cameraModel.scale.set(0.8, 0.8, 0.8);
+              camera.position.set(0, 2, 0);
+            } else {
+              cameraModel.scale.set(0.7, 0.7, 0.7);
+              camera.position.set(0, 5, 0);
+            }
+
+            scene.add(cameraModel);
+            camera.lookAt(0, 0, 0);
+
+            // **Smooth Fade-in Effect for Model**
             cameraModel.traverse((child) => {
               if (child.isMesh) {
                 child.material.transparent = true;
@@ -1743,11 +1764,6 @@
           (error) => console.error("Error loading 3D model:", error)
         );
 
-        const spotLight = new THREE.SpotLight(0xffffff, 1.5);
-        spotLight.position.set(0, 3, 5);
-        spotLight.castShadow = true;
-        scene.add(spotLight);
-
         // **Animation & Effects**
         let clock = new THREE.Clock();
         let mouseX = 0;
@@ -1759,23 +1775,22 @@
 
           // **Camera Floating Animation**
           camera.position.x =
-            Math.sin(elapsedTime * 0.3) * 1.5 + mouseX * 0.002; // Side-to-side drift
+            Math.sin(elapsedTime * 0.3) * 1.5 + mouseX * 0.002;
           camera.position.y =
-            0.5 + Math.sin(elapsedTime * 0.3) * 0.2 + mouseY * 0.002; // Up/down floating
+            0.5 + Math.sin(elapsedTime * 0.3) * 0.2 + mouseY * 0.002;
           camera.position.z = 4 + Math.sin(elapsedTime * 0.2) * 0.5;
-
           camera.lookAt(0, 0.2, 1);
 
           // **Camera Model Rotation & Movement**
           if (cameraModel) {
-            cameraModel.rotation.y += 0.005;
-            cameraModel.position.y = 1 + Math.sin(elapsedTime) * 0.1;
+            cameraModel.rotation.y += 0.003;
+            cameraModel.position.y = -0.5 + Math.sin(elapsedTime * 0.3) * 0.05;
           }
 
           composer.render();
         }
 
-        // **Enhanced Particle Animation (Smooth Movement)**
+        // **Enhanced Particle Animation**
         function animateParticles() {
           requestAnimationFrame(animateParticles);
           let time = clock.getElapsedTime();
@@ -1783,45 +1798,43 @@
           for (let i = 0; i < particlesCount; i++) {
             const i3 = i * 3;
             particleGeometry.attributes.position.array[i3] +=
-              (Math.random() - 0.5) * 0.002;
+              Math.sin(time * 0.5 + i * 0.1) * 0.002;
             particleGeometry.attributes.position.array[i3 + 1] +=
-              (Math.random() - 0.5) * 0.002;
+              Math.cos(time * 0.5 + i * 0.1) * 0.002;
             particleGeometry.attributes.position.array[i3 + 2] +=
-              (Math.random() - 0.5) * 0.002;
+              Math.sin(time * 0.3 + i * 0.2) * 0.002;
 
-            // **Smooth Fade Effect on Particles**
+            // **Smooth Fade Effect**
             particleGeometry.attributes.alpha.array[i] =
-              0.5 + Math.sin(time + i * 0.1) * 0.5;
+              0.6 + Math.sin(time + i * 0.2) * 0.4;
           }
 
           particleGeometry.attributes.position.needsUpdate = true;
           particleGeometry.attributes.alpha.needsUpdate = true;
-          composer.render();
         }
 
-        // **Parallax Effect on Mouse Move**
+        // **Parallax Effect**
         document.addEventListener("mousemove", (event) => {
           mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
           mouseY = (event.clientY - window.innerHeight / 2) * 0.05;
         });
 
-        // **Post-Processing (Better Bloom)**
+        // **Post-Processing**
         const composer = new THREE.EffectComposer(renderer);
-        const renderPass = new THREE.RenderPass(scene, camera);
-        composer.addPass(renderPass);
-        const bloomPass = new THREE.UnrealBloomPass(
-          new THREE.Vector2(window.innerWidth, window.innerHeight),
-          0.7, // Increased for a softer glow
-          0.6,
-          0.9
+        composer.addPass(new THREE.RenderPass(scene, camera));
+        composer.addPass(
+          new THREE.UnrealBloomPass(
+            new THREE.Vector2(window.innerWidth, window.innerHeight),
+            0.7,
+            0.6,
+            0.9
+          )
         );
-        composer.addPass(bloomPass);
 
-        // Animation Loops
         animate();
         animateParticles();
 
-        // Resize Handler
+        // **Resize Handler**
         window.addEventListener("resize", () => {
           renderer.setSize(window.innerWidth, window.innerHeight);
           camera.aspect = window.innerWidth / window.innerHeight;
@@ -1829,7 +1842,6 @@
         });
       }
 
-      // Execute Functions
       handlePreloader();
       initialize3DScene();
     </script>

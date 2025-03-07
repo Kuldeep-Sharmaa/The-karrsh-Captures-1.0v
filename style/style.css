@@ -211,6 +211,7 @@ canvas {
 .hero-section .container-fluid {
   position: relative;
   z-index: 2;
+  margin-top: 5rem;
 }
 
 .hero-section h1 {
