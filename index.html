@@ -1698,22 +1698,32 @@
         scene.add(particles);
 
         // **Lighting Setup**
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        // **Lighting Setup - Enhanced**
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6); // Slightly increased intensity
         scene.add(ambientLight);
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
         directionalLight.position.set(2, 3, 5);
         directionalLight.castShadow = true;
         scene.add(directionalLight);
 
-        const highlight = new THREE.PointLight(0xffffff, 2, 10);
-        highlight.position.set(2, 3, 3);
-        scene.add(highlight);
+        // **Rim Light - Adds Edge Glow to Camera**
+        const rimLight = new THREE.PointLight(0xffffff, 1.8, 10);
+        rimLight.position.set(-3, 2, 3);
+        scene.add(rimLight);
 
-        const spotLight = new THREE.SpotLight(0xffffff, 1.5);
-        spotLight.position.set(0, 3, 5);
-        spotLight.castShadow = true;
-        scene.add(spotLight);
+        // **Soft Spotlight - Highlights Camera Model**
+        const softSpotlight = new THREE.SpotLight(0xffffff, 2);
+        softSpotlight.position.set(0, 5, 5);
+        softSpotlight.angle = Math.PI / 6;
+        softSpotlight.penumbra = 0.3; // Soft edges
+        softSpotlight.castShadow = true;
+        scene.add(softSpotlight);
+
+        // **Small Point Light for Extra Depth**
+        const smallPointLight = new THREE.PointLight(0xffa95c, 1.5, 5);
+        smallPointLight.position.set(2, 1, -3);
+        scene.add(smallPointLight);
 
         // **Show Website Immediately After Particles Load**
         document.getElementById("preloader").style.display = "none";
@@ -1731,9 +1741,16 @@
 
             // Adjust Camera Model Size & Position for Mobile/Desktop
             if (isMobile) {
-              cameraModel.scale.set(0.8, 0.8, 0.8);
-              camera.position.set(0, 2, 0);
+              // **Optimize scale for mobile**
+              cameraModel.scale.set(0.5, 0.5, 0.5);
+
+              // **Move the camera up and slightly forward**
+              camera.position.set(0, 8, 6); // Higher Y and adjusted Z to maintain visibility
+
+              // **Lift the Camera Model Higher**
+              cameraModel.position.y = 5; // Move model further up to match the marked position
             } else {
+              // **Optimized for desktop**
               cameraModel.scale.set(0.7, 0.7, 0.7);
               camera.position.set(0, 5, 0);
             }
@@ -1761,7 +1778,8 @@
                 2
               )}%`
             ),
-          (error) => console.error("Error loading 3D model:", error)
+          (error) =>
+            console.error("Error loading 3D model: Check your Network", error)
         );
 
         // **Animation & Effects**
