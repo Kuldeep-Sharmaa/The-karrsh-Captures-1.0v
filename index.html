@@ -1746,9 +1746,6 @@
 
               // **Move the camera up and slightly forward**
               camera.position.set(0, 8, 6); // Higher Y and adjusted Z to maintain visibility
-
-              // **Lift the Camera Model Higher**
-              cameraModel.position.y = 5; // Move model further up to match the marked position
             } else {
               // **Optimized for desktop**
               cameraModel.scale.set(0.7, 0.7, 0.7);
@@ -1802,7 +1799,6 @@
           // **Camera Model Rotation & Movement**
           if (cameraModel) {
             cameraModel.rotation.y += 0.003;
-            cameraModel.position.y = -0.5 + Math.sin(elapsedTime * 0.3) * 0.05;
           }
 
           composer.render();
