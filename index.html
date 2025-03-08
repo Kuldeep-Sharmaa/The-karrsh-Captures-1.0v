@@ -66,7 +66,17 @@
       src="https://kit.fontawesome.com/d8f48d71cd.js"
       crossorigin="anonymous"
     ></script>
+    <!-- Lottie Animation Player -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- Three.js and GLTFLoader -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.136/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/shaders/LuminosityHighPassShader.js"></script>
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
       {
@@ -99,8 +109,8 @@
     />
   </head>
   <body>
-    <!-- ✅ Preloader -->
-    <!-- ✅ Preloader with Animated Text -->
+    <!-- Preloader -->
+
     <div id="preloader">
       <div class="preloader-text">
         <span>F</span>
@@ -1270,7 +1280,7 @@
             ESTD 2017
           </p>
           <p class="text-light-emphasis">
-            Made with ❤️ by
+            Developed with ❤️ by
             <a
               href="https://kuldeep-sharmaa.github.io/Developer-portfolio/"
               class="footer-link"
@@ -1625,15 +1635,7 @@
       </div>
     </div>
 
-    <!-- 3D modal Logic and Preloder Logic -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.136/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/EffectComposer.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/RenderPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/UnrealBloomPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/shaders/CopyShader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/postprocessing/ShaderPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <!-- 3D logic  and Preloder-->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const preloaderEl = document.getElementById("preloader");
@@ -1656,7 +1658,7 @@
           setTimeout(() => {
             preloaderEl.style.display = "none";
             mainContentEl.style.display = "block";
-          }, 2000);
+          }, 1000);
         } else {
           preloaderEl.style.display = "none";
           mainContentEl.style.display = "block";
@@ -1797,26 +1799,7 @@
           );
         }
 
-        // For testing, directly load the model.
-        // Comment this out if you want to use lazy-loading.
         loadModel();
-
-        // Uncomment below block to use lazy loading via IntersectionObserver.
-        /*
-        const lazyTrigger = document.getElementById("lazy-trigger") || document.body;
-        const observer = new IntersectionObserver(
-          (entries, obs) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                loadModel();
-                obs.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.2 }
-        );
-        observer.observe(lazyTrigger);
-        */
 
         // ------------------------------
         // Animation & Effects.

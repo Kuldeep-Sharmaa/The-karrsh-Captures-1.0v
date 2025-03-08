@@ -1360,7 +1360,7 @@ canvas {
 
 /* footer */
 .footer {
-  background-color: #1a1a1a;
+  background-color: var(--background-color);
   color: #fff;
   padding: 40px 20px;
 }
