@@ -1636,7 +1636,6 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.136/examples/js/shaders/LuminosityHighPassShader.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // Check for required DOM elements.
         const preloaderEl = document.getElementById("preloader");
         const mainContentEl = document.getElementById("main-content");
 
@@ -1645,18 +1644,33 @@
           return;
         }
 
-        // Initially, show preloader and hide main content.
+        // Determine if the navigation is external.
+        const isExternalNavigation =
+          !document.referrer ||
+          document.referrer.indexOf(window.location.hostname) === -1;
 
-        mainContentEl.style.display = "none";
+        // Show preloader only if the user came from an external source
+        // and if they haven't seen it before (sessionStorage flag).
+        if (isExternalNavigation && !sessionStorage.getItem("preloaderShown")) {
+          // Show preloader initially and hide main content.
+          preloaderEl.style.display = "block";
+          mainContentEl.style.display = "none";
 
-        // Initialize the 3D scene (particles, lights, background, etc.)
-        initialize3DScene();
-
-        // After a fixed delay (e.g., 2000ms), hide the preloader and show main content.
-        setTimeout(() => {
+          // Keep preloader visible for a fixed duration (e.g., 2 seconds),
+          // then hide it and show the main content.
+          setTimeout(() => {
+            preloaderEl.style.display = "none";
+            mainContentEl.style.display = "block";
+          }, 2000);
+        } else {
+          // For internal navigation or if preloaderShown flag exists,
+          // immediately show the main content and hide preloader.
           preloaderEl.style.display = "none";
           mainContentEl.style.display = "block";
-        }, 2000);
+        }
+
+        // Initialize the 3D scene.
+        initialize3DScene();
       });
 
       function initialize3DScene() {
@@ -1679,12 +1693,9 @@
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true;
-        // Append the renderer's canvas to the document (adjust as needed).
         document.body.appendChild(renderer.domElement);
 
-        // ------------------------------
-        // Immediate Background: Particles
-        // ------------------------------
+        // Background Particles.
         const particleGeometry = new THREE.BufferGeometry();
         const particlesCount = window.innerWidth < 768 ? 300 : 500;
         const positions = new Float32Array(particlesCount * 3);
@@ -1714,36 +1725,27 @@
         const particles = new THREE.Points(particleGeometry, particleMaterial);
         scene.add(particles);
 
-        // ------------------------------
-        // Lighting Setup
-        // ------------------------------
+        // Lighting Setup.
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         scene.add(ambientLight);
-
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
         directionalLight.position.set(2, 3, 5);
         directionalLight.castShadow = true;
         scene.add(directionalLight);
-
-        // Additional Lights.
         const rimLight = new THREE.PointLight(0xffffff, 1.8, 10);
         rimLight.position.set(-3, 2, 3);
         scene.add(rimLight);
-
         const softSpotlight = new THREE.SpotLight(0xffffff, 2);
         softSpotlight.position.set(0, 5, 5);
         softSpotlight.angle = Math.PI / 6;
         softSpotlight.penumbra = 0.3;
         softSpotlight.castShadow = true;
         scene.add(softSpotlight);
-
         const smallPointLight = new THREE.PointLight(0xffa95c, 1.5, 5);
         smallPointLight.position.set(2, 1, -3);
         scene.add(smallPointLight);
 
-        // ------------------------------
-        // Lazy Loading 3D Model
-        // ------------------------------
+        // Lazy Loading 3D Model.
         let cameraModel;
         let isModelLoaded = false;
         const loader = new THREE.GLTFLoader();
@@ -1761,12 +1763,11 @@
                 isMobile ? 0.5 : 0.7,
                 isMobile ? 0.5 : 0.7
               );
-              // Set the camera position appropriate for the model.
               camera.position.set(0, isMobile ? 8 : 5, isMobile ? 6 : 0);
               scene.add(cameraModel);
               camera.lookAt(0, 0, 0);
 
-              // Smooth Fade-in Effect for the model.
+              // Smooth Fade-in Effect.
               cameraModel.traverse((child) => {
                 if (child.isMesh) {
                   child.material.transparent = true;
@@ -1779,9 +1780,10 @@
                   }, 50);
                 }
               });
+              // Mark that the preloader has been shown once.
+              sessionStorage.setItem("preloaderShown", "true");
             },
             (xhr) => {
-              // Optionally log model progress.
               console.log(
                 `Loading 3D Model: ${((xhr.loaded / xhr.total) * 100).toFixed(
                   2
@@ -1793,8 +1795,7 @@
           );
         }
 
-        // Use IntersectionObserver for lazy loading the model.
-        // This will load the model when the main content (or a designated trigger) comes into view.
+        // Use IntersectionObserver to load the model lazily.
         const lazyTrigger =
           document.getElementById("lazy-trigger") || document.body;
         const observer = new IntersectionObserver(
@@ -1810,9 +1811,7 @@
         );
         observer.observe(lazyTrigger);
 
-        // ------------------------------
-        // Animation & Effects
-        // ------------------------------
+        // Animation & Effects.
         let clock = new THREE.Clock();
         let mouseX = 0,
           mouseY = 0;
@@ -1829,7 +1828,7 @@
           camera.position.z = 4 + Math.sin(elapsedTime * 0.2) * 0.5;
           camera.lookAt(0, 0.2, 1);
 
-          // Rotate the model if it's loaded.
+          // Model Rotation.
           if (cameraModel) cameraModel.rotation.y += 0.003;
 
           // Enhanced Particle Animation.
