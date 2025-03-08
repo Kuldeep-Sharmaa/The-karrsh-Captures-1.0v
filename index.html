@@ -1649,22 +1649,15 @@
           !document.referrer ||
           document.referrer.indexOf(window.location.hostname) === -1;
 
-        // Show preloader only if the user came from an external source
-        // and if they haven't seen it before (sessionStorage flag).
+        // Show preloader only if user came externally and hasn't seen it before.
         if (isExternalNavigation && !sessionStorage.getItem("preloaderShown")) {
-          // Show preloader initially and hide main content.
           preloaderEl.style.display = "flex";
           mainContentEl.style.display = "none";
-
-          // Keep preloader visible for a fixed duration (e.g., 2 seconds),
-          // then hide it and show the main content.
           setTimeout(() => {
             preloaderEl.style.display = "none";
             mainContentEl.style.display = "block";
           }, 2000);
         } else {
-          // For internal navigation or if preloaderShown flag exists,
-          // immediately show the main content and hide preloader.
           preloaderEl.style.display = "none";
           mainContentEl.style.display = "block";
         }
@@ -1687,6 +1680,10 @@
           0.1,
           1000
         );
+        // For debugging: temporarily set a camera position that is farther back.
+        camera.position.set(0, 5, 10);
+        camera.lookAt(0, 0, 0);
+
         const renderer = new THREE.WebGLRenderer({
           alpha: true,
           antialias: true,
@@ -1695,9 +1692,11 @@
         renderer.shadowMap.enabled = true;
         document.body.appendChild(renderer.domElement);
 
+        // ------------------------------
         // Background Particles.
-        const particleGeometry = new THREE.BufferGeometry();
+        // ------------------------------
         const particlesCount = window.innerWidth < 768 ? 300 : 500;
+        const particleGeometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particlesCount * 3);
         const opacityArray = new Float32Array(particlesCount);
         for (let i = 0; i < particlesCount; i++) {
@@ -1725,7 +1724,9 @@
         const particles = new THREE.Points(particleGeometry, particleMaterial);
         scene.add(particles);
 
+        // ------------------------------
         // Lighting Setup.
+        // ------------------------------
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         scene.add(ambientLight);
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
@@ -1745,7 +1746,9 @@
         smallPointLight.position.set(2, 1, -3);
         scene.add(smallPointLight);
 
+        // ------------------------------
         // Lazy Loading 3D Model.
+        // ------------------------------
         let cameraModel;
         let isModelLoaded = false;
         const loader = new THREE.GLTFLoader();
@@ -1763,24 +1766,23 @@
                 isMobile ? 0.5 : 0.7,
                 isMobile ? 0.5 : 0.7
               );
+              // For debugging, set camera closer to model.
               camera.position.set(0, isMobile ? 8 : 5, isMobile ? 6 : 0);
               scene.add(cameraModel);
               camera.lookAt(0, 0, 0);
 
-              // Smooth Fade-in Effect.
+              // Debug: log model info.
+              console.log("Model loaded:", gltf.scene);
+              const bbox = new THREE.Box3().setFromObject(gltf.scene);
+              console.log("Model bounding box:", bbox);
+
+              // Remove fade-in for debugging; set opacity to 1 immediately.
               cameraModel.traverse((child) => {
                 if (child.isMesh) {
                   child.material.transparent = true;
-                  child.material.opacity = 0;
-                  let fadeInterval = setInterval(() => {
-                    child.material.opacity += 0.05;
-                    if (child.material.opacity >= 1) {
-                      clearInterval(fadeInterval);
-                    }
-                  }, 50);
+                  child.material.opacity = 1;
                 }
               });
-              // Mark that the preloader has been shown once.
               sessionStorage.setItem("preloaderShown", "true");
             },
             (xhr) => {
@@ -1795,9 +1797,13 @@
           );
         }
 
-        // Use IntersectionObserver to load the model lazily.
-        const lazyTrigger =
-          document.getElementById("lazy-trigger") || document.body;
+        // For testing, directly load the model.
+        // Comment this out if you want to use lazy-loading.
+        loadModel();
+
+        // Uncomment below block to use lazy loading via IntersectionObserver.
+        /*
+        const lazyTrigger = document.getElementById("lazy-trigger") || document.body;
         const observer = new IntersectionObserver(
           (entries, obs) => {
             entries.forEach((entry) => {
@@ -1810,8 +1816,11 @@
           { threshold: 0.2 }
         );
         observer.observe(lazyTrigger);
+        */
 
+        // ------------------------------
         // Animation & Effects.
+        // ------------------------------
         let clock = new THREE.Clock();
         let mouseX = 0,
           mouseY = 0;
@@ -1828,8 +1837,10 @@
           camera.position.z = 4 + Math.sin(elapsedTime * 0.2) * 0.5;
           camera.lookAt(0, 0.2, 1);
 
-          // Model Rotation.
-          if (cameraModel) cameraModel.rotation.y += 0.003;
+          // Rotate model if loaded.
+          if (cameraModel) {
+            cameraModel.rotation.y += 0.003;
+          }
 
           // Enhanced Particle Animation.
           let time = clock.getElapsedTime();
@@ -1850,13 +1861,11 @@
           renderer.render(scene, camera);
         }
 
-        // Mouse Parallax Effect.
         document.addEventListener("mousemove", (event) => {
           mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
           mouseY = (event.clientY - window.innerHeight / 2) * 0.05;
         });
 
-        // Resize Handler.
         window.addEventListener("resize", () => {
           renderer.setSize(window.innerWidth, window.innerHeight);
           camera.aspect = window.innerWidth / window.innerHeight;
