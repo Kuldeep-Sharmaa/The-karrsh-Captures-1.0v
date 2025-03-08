@@ -1653,7 +1653,7 @@
         // and if they haven't seen it before (sessionStorage flag).
         if (isExternalNavigation && !sessionStorage.getItem("preloaderShown")) {
           // Show preloader initially and hide main content.
-          preloaderEl.style.display = "block";
+          preloaderEl.style.display = "flex";
           mainContentEl.style.display = "none";
 
           // Keep preloader visible for a fixed duration (e.g., 2 seconds),
