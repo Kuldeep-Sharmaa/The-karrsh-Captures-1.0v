@@ -13,10 +13,10 @@
   --heading-font: "Bruno Ace", serif;
   --background-color: black;
 }
+html,
 body {
   overflow-x: hidden;
 }
-/* ✅ Preloader Styling */
 /* Preloader Styling */
 #preloader {
   position: fixed;
