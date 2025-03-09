@@ -219,6 +219,7 @@
     </div>
 
     <!-- footer -->
+
     <footer class="footer">
       <div class="footer-container">
         <!-- Brand Section -->
@@ -311,8 +312,8 @@
           All Images and Videos Are Copyrighted © 2025 The Karrsh Captures -
           ESTD 2017
         </p>
-        <p>
-          Made with ❤️ by
+        <p class="text-light-emphasis">
+          Developed with ❤️ by
           <a
             href="https://kuldeep-sharmaa.github.io/Developer-portfolio/"
             class="footer-link"
@@ -456,18 +457,15 @@
               We are currently updating our content. Please check back soon.
             </p>`;
           } else {
-            // Show "No more content" note with FontAwesome icon when images have loaded successfully
+            // Show "No more content"
             const noMoreContent = document.createElement("p");
             noMoreContent.style.cssText =
               "font-size: 1.5rem; color: #888; align-items: center; display: flex; justify-content: center; margin-top: 5rem;";
 
             const textNode = document.createTextNode("No more content ");
-            const iconElement = document.createElement("i");
-            iconElement.className = "fa-solid fa-road-barrier";
-            iconElement.style.marginLeft = "5px";
 
             noMoreContent.appendChild(textNode);
-            noMoreContent.appendChild(iconElement);
+
             galleryElement.appendChild(noMoreContent);
           }
         }

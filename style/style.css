@@ -1189,7 +1189,7 @@ canvas {
 }
 /* Gallery Section */
 #gallery-section {
-  background-color: #111111;
+  background-color: var(--background-color);
   padding: 4rem 2rem;
   color: white;
 }
