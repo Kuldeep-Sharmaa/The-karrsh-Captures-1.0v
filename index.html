@@ -1732,33 +1732,25 @@
       document.addEventListener("DOMContentLoaded", () => {
         const preloaderEl = document.getElementById("preloader");
         const mainContentEl = document.getElementById("main-content");
+        const modelLoadingIndicator = document.getElementById(
+          "model-loading-indicator"
+        );
 
         if (!preloaderEl || !mainContentEl) {
           console.error("Required DOM elements are missing.");
           return;
         }
 
-        // Determine if navigation is external.
-        const isExternalNavigation =
-          !document.referrer ||
-          document.referrer.indexOf(window.location.hostname) === -1;
+        // Show content immediately, with model loading in background
+        preloaderEl.style.display = "none";
+        mainContentEl.style.display = "block";
 
-        if (isExternalNavigation && !sessionStorage.getItem("preloaderShown")) {
-          preloaderEl.style.display = "flex";
-          mainContentEl.style.display = "none";
-
-          // After the fixed duration, hide the preloader and show main content.
-          setTimeout(() => {
-            preloaderEl.style.display = "none";
-            mainContentEl.style.display = "block";
-            sessionStorage.setItem("preloaderShown", "true");
-            initialize3DScene();
-          }, preloaderDuration);
-        } else {
-          preloaderEl.style.display = "none";
-          mainContentEl.style.display = "block";
-          initialize3DScene();
+        // Display model loading indicator separately
+        if (modelLoadingIndicator) {
+          modelLoadingIndicator.style.display = "block";
         }
+
+        initialize3DScene();
       });
 
       function initialize3DScene() {
@@ -1767,7 +1759,6 @@
           return;
         }
 
-        // Create the scene, camera, and renderer.
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(
           75,
@@ -1784,23 +1775,21 @@
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true;
-        document
-          .getElementById("main-content")
-          .appendChild(renderer.domElement);
+        document.body.appendChild(renderer.domElement);
 
-        // ------------------------------
-        // Background Particles.
-        // ------------------------------
+        // Background Particles
         const particlesCount = window.innerWidth < 768 ? 300 : 500;
         const particleGeometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particlesCount * 3);
         const opacityArray = new Float32Array(particlesCount);
+
         for (let i = 0; i < particlesCount; i++) {
           positions[i * 3] = (Math.random() - 0.5) * 10;
           positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
           positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
           opacityArray[i] = Math.random();
         }
+
         particleGeometry.setAttribute(
           "position",
           new THREE.BufferAttribute(positions, 3)
@@ -1809,6 +1798,7 @@
           "alpha",
           new THREE.BufferAttribute(opacityArray, 1)
         );
+
         const particleMaterial = new THREE.PointsMaterial({
           color: 0xffffff,
           size: 0.02,
@@ -1817,38 +1807,27 @@
           depthWrite: false,
           blending: THREE.AdditiveBlending,
         });
+
         const particles = new THREE.Points(particleGeometry, particleMaterial);
         scene.add(particles);
 
-        // ------------------------------
-        // Lighting Setup.
-        // ------------------------------
+        // Lighting Setup
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         scene.add(ambientLight);
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
         directionalLight.position.set(2, 3, 5);
         directionalLight.castShadow = true;
         scene.add(directionalLight);
-        const rimLight = new THREE.PointLight(0xffffff, 1.8, 10);
-        rimLight.position.set(-3, 2, 3);
-        scene.add(rimLight);
-        const softSpotlight = new THREE.SpotLight(0xffffff, 2);
-        softSpotlight.position.set(0, 5, 5);
-        softSpotlight.angle = Math.PI / 6;
-        softSpotlight.penumbra = 0.3;
-        softSpotlight.castShadow = true;
-        scene.add(softSpotlight);
-        const smallPointLight = new THREE.PointLight(0xffa95c, 1.5, 5);
-        smallPointLight.position.set(2, 1, -3);
-        scene.add(smallPointLight);
 
-        // ------------------------------
-        // Asynchronous 3D Model Loading.
-        // ------------------------------
-        let cameraModel = null;
+        // Lazy Loading 3D Model with Progress Tracking
+        let cameraModel;
+        let isModelLoaded = false;
         const loader = new THREE.GLTFLoader();
 
         function loadModel() {
+          if (isModelLoaded) return;
+          isModelLoaded = true;
+
           loader.load(
             "camera.glb",
             (gltf) => {
@@ -1859,34 +1838,17 @@
                 isMobile ? 0.5 : 0.7,
                 isMobile ? 0.5 : 0.7
               );
-              // Position adjustments if needed.
               camera.position.set(0, isMobile ? 8 : 5, isMobile ? 6 : 0);
-
-              // Prepare the model for a fade-in transition.
-              cameraModel.traverse((child) => {
-                if (child.isMesh) {
-                  child.material.transparent = true;
-                  child.material.opacity = 0;
-                }
-              });
               scene.add(cameraModel);
+              camera.lookAt(0, 0, 0);
 
-              // Smooth fade-in of the model using TWEEN.
-              new TWEEN.Tween({ opacity: 0 })
-                .to({ opacity: 1 }, 1000)
-                .onUpdate(function (object) {
-                  cameraModel.traverse((child) => {
-                    if (child.isMesh) {
-                      child.material.opacity = object.opacity;
-                    }
-                  });
-                })
-                .start();
-
-              console.log("Model loaded:", gltf.scene);
-              // Optionally log bounding box info for debugging.
-              const bbox = new THREE.Box3().setFromObject(gltf.scene);
-              console.log("Model bounding box:", bbox);
+              // Hide the model loading indicator when finished
+              const modelLoadingIndicator = document.getElementById(
+                "model-loading-indicator"
+              );
+              if (modelLoadingIndicator) {
+                modelLoadingIndicator.style.display = "none";
+              }
             },
             (xhr) => {
               console.log(
@@ -1900,21 +1862,18 @@
           );
         }
 
-        // Start model loading without delaying the main scene.
-        loadModel();
+        setTimeout(loadModel, 500); // Delay slightly to prioritize other content
 
-        // ------------------------------
-        // Animation & Interaction.
-        // ------------------------------
-        let clock = new THREE.Clock();
+        // Animation & Effects
+        const clock = new THREE.Clock();
         let mouseX = 0,
           mouseY = 0;
 
         function animate() {
           requestAnimationFrame(animate);
-          const elapsedTime = clock.getElapsedTime();
+          let elapsedTime = clock.getElapsedTime();
 
-          // Floating camera animation.
+          // Camera Floating Animation
           camera.position.x =
             Math.sin(elapsedTime * 0.3) * 1.5 + mouseX * 0.002;
           camera.position.y =
@@ -1922,38 +1881,19 @@
           camera.position.z = 4 + Math.sin(elapsedTime * 0.2) * 0.5;
           camera.lookAt(0, 0.2, 1);
 
-          // Rotate the model if it's loaded.
+          // Rotate model if loaded
           if (cameraModel) {
             cameraModel.rotation.y += 0.003;
           }
 
-          // Animate particles.
-          let time = clock.getElapsedTime();
-          for (let i = 0; i < particlesCount; i++) {
-            const i3 = i * 3;
-            particleGeometry.attributes.position.array[i3] +=
-              Math.sin(time * 0.5 + i * 0.1) * 0.002;
-            particleGeometry.attributes.position.array[i3 + 1] +=
-              Math.cos(time * 0.5 + i * 0.1) * 0.002;
-            particleGeometry.attributes.position.array[i3 + 2] +=
-              Math.sin(time * 0.3 + i * 0.2) * 0.002;
-            particleGeometry.attributes.alpha.array[i] =
-              0.6 + Math.sin(time + i * 0.2) * 0.4;
-          }
-          particleGeometry.attributes.position.needsUpdate = true;
-          particleGeometry.attributes.alpha.needsUpdate = true;
-
           renderer.render(scene, camera);
-          TWEEN.update();
         }
 
-        // Mouse movement for interactive camera effect.
         document.addEventListener("mousemove", (event) => {
           mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
           mouseY = (event.clientY - window.innerHeight / 2) * 0.05;
         });
 
-        // Responsive canvas.
         window.addEventListener("resize", () => {
           renderer.setSize(window.innerWidth, window.innerHeight);
           camera.aspect = window.innerWidth / window.innerHeight;
