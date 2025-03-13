@@ -107,60 +107,97 @@
         </p>
       </div>
     </main>
-    <!-- Form -->
+    <!-- Contact Form Container -->
     <div class="contact-form">
       <form id="contactForm" novalidate>
-        <label for="name">Your Name (Required)</label>
-        <input type="text" id="name" name="name" placeholder="Full Name" />
-        <span class="error" id="nameError"></span>
+        <!-- Name Field -->
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            placeholder="Full Name"
+            required
+          />
+          <label for="name">Your Name</label>
+          <span class="error" id="nameError"></span>
+        </div>
 
-        <label for="email">Email (Required)</label>
-        <input type="email" id="email" name="email" placeholder="Your Email" />
-        <span class="error" id="emailError"></span>
+        <!-- Email Field -->
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Your Email"
+            required
+          />
+          <label for="email">Your Email</label>
+          <span class="error" id="emailError"></span>
+        </div>
 
-        <label for="phone">Phone Number (Required)</label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="e.g., +919876543210"
-          value="+91"
-        />
-        <span class="error" id="phoneError"></span>
+        <!-- Phone Number -->
+        <div class="form-floating mb-3">
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="form-control"
+            placeholder="+91XXXXXXXXXX"
+            required
+            value="+91"
+          />
+          <label for="phone">Phone Number</label>
+          <span class="error" id="phoneError"></span>
+        </div>
 
-        <label for="service">Service You're Interested In</label>
-        <select id="service" name="service">
-          <option value="" disabled selected>Select Service</option>
-          <option value="studio-portraits">Studio Portraits</option>
-          <option value="landscapes">Landscapes</option>
-          <option value="food-drinks">Food & Drinks</option>
-          <option value="product-photography">Product Photography</option>
-          <option value="social-media">Social Media Content Shoots</option>
-          <option value="real-estate">Real Estate Photography</option>
-          <option value="pre-weddings">Pre-Weddings</option>
-          <option value="fashion">Fashion</option>
-          <option value="event-photography">Event Photography</option>
-        </select>
-        <span class="error" id="serviceError"></span>
+        <!-- Service Selection -->
+        <div class="form-floating mb-3">
+          <select id="service" name="service" class="form-select" required>
+            <option value="" disabled selected>Select Service</option>
+            <option value="studio-portraits">Studio Portraits</option>
+            <option value="landscapes">Landscapes</option>
+            <option value="food-drinks">Food & Drinks</option>
+            <option value="product-photography">Product Photography</option>
+            <option value="social-media">Social Media Content Shoots</option>
+            <option value="real-estate">Real Estate Photography</option>
+            <option value="pre-wedding">Wedding</option>
+            <option value="pre-weddings">Pre-Wedding</option>
+            <option value="fashion">Fashion</option>
+            <option value="event-photography">Event Photography</option>
+          </select>
+          <label for="service">Service You're Interested In</label>
+          <span class="error" id="serviceError"></span>
+        </div>
 
-        <label for="type">What Are you looking for ?</label>
-        <select id="type" name="type">
-          <option value="" disabled selected>Select an Option</option>
-          <option value="photography">Photography</option>
-          <option value="films">Films</option>
-          <option value="both">Photography & Films</option>
-        </select>
-        <span class="error" id="typeError"></span>
+        <!-- Type Selection -->
+        <div class="form-floating mb-3">
+          <select id="type" name="type" class="form-select" required>
+            <option value="" disabled selected>Select an Option</option>
+            <option value="photography">Photography</option>
+            <option value="films">Films</option>
+            <option value="both">Photography & Films</option>
+          </select>
+          <label for="type">What Are You Looking For?</label>
+          <span class="error" id="typeError"></span>
+        </div>
 
-        <label for="message">Your Message</label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Tell us more about your project or event"
-        ></textarea>
-        <span class="error" id="messageError"></span>
+        <!-- Message -->
+        <div class="form-floating mb-3">
+          <textarea
+            id="message"
+            name="message"
+            class="form-control"
+            placeholder="Tell us about your project"
+          ></textarea>
+          <label for="message">Your Message</label>
+          <span class="error" id="messageError"></span>
+        </div>
 
-        <button type="submit" class="btn-submit">Let’s Connect</button>
+        <!-- Submit Button -->
+        <button type="submit" class="btn-submit" disabled>Let’s Connect</button>
       </form>
     </div>
 
@@ -332,174 +369,68 @@
         }
       });
     </script>
-    <!-- form validation -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("contactForm");
+        const inputs = form.querySelectorAll("input, select, textarea");
+        const submitButton = form.querySelector(".btn-submit");
 
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const phoneInput = document.getElementById("phone");
-        const serviceSelect = document.getElementById("service");
-        const typeSelect = document.getElementById("type");
-        const messageInput = document.getElementById("message");
-
-        const nameError = document.getElementById("nameError");
-        const emailError = document.getElementById("emailError");
-        const phoneError = document.getElementById("phoneError");
-        const serviceError = document.getElementById("serviceError");
-        const typeError = document.getElementById("typeError");
-        const messageError = document.getElementById("messageError");
-
-        // Helper function to show error messages
-        const showError = (element, message) => {
-          element.textContent = message;
-          element.style.color = "red";
-
-          // Automatically hide the error after 4 seconds
-          setTimeout(() => {
-            element.textContent = "";
-          }, 4000);
+        const errorMessages = {
+          name: "Name must be at least 3 characters long.",
+          email: "Enter a valid email address.",
+          phone: "Phone must start with +91 and have 10 digits.",
+          service: "Please select a service.",
+          type: "Please select an option.",
+          message: "Message must be at least 10 characters long.",
         };
 
-        // Helper function to clear error messages
-        const clearError = (element) => {
-          element.textContent = "";
+        const validators = {
+          name: (value) => value.length >= 3 && /^[a-zA-Z\s]+$/.test(value),
+          email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+          phone: (value) => /^\+91\d{10}$/.test(value),
+          service: (value) => value !== "",
+          type: (value) => value !== "",
+          message: (value) => value.length >= 10,
         };
-        const validateName = () => {
-          const name = nameInput.value.trim();
 
-          if (!name) {
-            showError(nameError, "Name is required.");
+        function validateField(input, showError = false) {
+          const errorElement = document.getElementById(`${input.id}Error`);
+          const isValid = validators[input.id](input.value.trim());
+
+          if (!isValid && showError) {
+            errorElement.textContent = errorMessages[input.id];
             return false;
           }
 
-          // Check total character length
-          if (name.length < 3) {
-            showError(nameError, "Name must be at least 3 characters long.");
-            return false;
-          }
-
-          if (!/^[a-zA-Z\s]+$/.test(name)) {
-            showError(nameError, "Name must contain only letters and spaces.");
-            return false;
-          }
-
-          clearError(nameError);
+          errorElement.textContent = "";
           return true;
-        };
+        }
 
-        const validateEmail = () => {
-          const email = emailInput.value.trim();
-          if (!email) {
-            showError(emailError, "Email is required.");
-            return false;
-          }
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            showError(emailError, "Enter a valid email address.");
-            return false;
-          }
-          clearError(emailError);
-          return true;
-        };
+        function validateForm() {
+          let isValid = true;
+          inputs.forEach((input) => {
+            if (!validateField(input, false)) isValid = false;
+          });
+          submitButton.disabled = !isValid;
+        }
 
-        const validatePhone = () => {
-          const phone = phoneInput.value.trim();
+        // Validate only when user interacts
+        inputs.forEach((input) => {
+          input.addEventListener("blur", () => validateField(input, true)); // Show error on blur
+          input.addEventListener("input", () => {
+            validateField(input, false); // Hide error on valid input
+            validateForm(); // Check if form is valid
+          });
+        });
 
-          // Error if the phone number is empty
-          if (!phone) {
-            showError(phoneError, "Phone number is required.");
-            return false;
-          }
-
-          // Ensure the phone number starts with "+91"
-          if (!phone.startsWith("+91")) {
-            showError(phoneError, "Phone number must start with +91.");
-            return false;
-          }
-
-          // if the phone number length is exactly 13 characters including "+91" (so, 10 digits after +91)
-          if (phone.length !== 13) {
-            showError(
-              phoneError,
-              "invalid phone number. Please enter a valid phone number."
-            );
-            return false;
-          }
-
-          // Prevent specific disallowed patterns
-          if (phone === "+911234567890" || phone === "+91123456789") {
-            showError(phoneError, "This phone number pattern is not allowed.");
-            return false;
-          }
-
-          // Ensure only digits (besides the +)
-          if (!/^\+91\d{10}$/.test(phone)) {
-            showError(phoneError, "Enter a valid phone number ");
-            return false;
-          }
-
-          clearError(phoneError);
-          return true;
-        };
-
-        const validateService = () => {
-          if (!serviceSelect.value) {
-            showError(serviceError, "Please select a service.");
-            return false;
-          }
-          clearError(serviceError);
-          return true;
-        };
-
-        const validateType = () => {
-          if (!typeSelect.value) {
-            showError(typeError, "Please select an option.");
-            return false;
-          }
-          clearError(typeError);
-          return true;
-        };
-
-        const validateMessage = () => {
-          const message = messageInput.value.trim();
-          if (!message) {
-            showError(messageError, "Message is required.");
-            return false;
-          }
-          if (message.length < 10) {
-            showError(
-              messageError,
-              "Message must be at least 10 characters long."
-            );
-            return false;
-          }
-          clearError(messageError);
-          return true;
-        };
-
-        // Real-time validation on blur
-        nameInput.addEventListener("blur", validateName);
-        emailInput.addEventListener("blur", validateEmail);
-        phoneInput.addEventListener("blur", validatePhone);
-        serviceSelect.addEventListener("blur", validateService);
-        typeSelect.addEventListener("blur", validateType);
-        messageInput.addEventListener("blur", validateMessage);
-
-        // Form submission validation
+        // Final form validation on submit
         form.addEventListener("submit", (e) => {
-          const isFormValid =
-            validateName() &&
-            validateEmail() &&
-            validatePhone() &&
-            validateService() &&
-            validateType() &&
-            validateMessage();
+          let isFormValid = true;
+          inputs.forEach((input) => {
+            if (!validateField(input, true)) isFormValid = false;
+          });
 
-          if (!isFormValid) {
-            e.preventDefault(); // Prevent form submission if validation fails
-          }
+          if (!isFormValid) e.preventDefault(); // Stop form submission if validation fails
         });
       });
     </script>

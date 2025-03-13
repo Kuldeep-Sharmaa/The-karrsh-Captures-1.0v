@@ -1545,75 +1545,56 @@ canvas {
   background-position: center;
   height: 65vh;
 }
-
+/* Form Container */
 .contact-form {
   width: 100%;
   max-width: 700px;
-  margin: 0 auto;
-  padding: 20px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  margin: 40px auto;
 }
 
-.banner-text {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.contact-form form {
-  display: flex;
-  flex-direction: column;
+/* Floating Label Effect */
+.form-floating input,
+.form-floating textarea {
+  background: #f8f9fa;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
 }
 
-.contact-form label {
-  font-weight: 600;
-  margin-top: 10px;
+.form-floating input:focus,
+.form-floating textarea:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
 
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.contact-form textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.btn-submit {
-  width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-  background: #000;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.btn-submit:hover {
-  background: #333;
-}
-
-/* error message */
+/* Error Messages */
 .error {
-  font-size: 0.875rem;
+  font-size: 14px;
   color: red;
-  margin-top: 0.25rem;
-  display: block;
+  margin-top: 5px;
 }
 
-.error + input,
-.error + select,
-.error + textarea {
-  margin-bottom: 1rem;
+/* Submit Button */
+.btn-submit {
+  background: black;
+  color: white;
+  font-size: 18px;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  width: 100%;
+  transition: background 0.3s;
 }
 
+.btn-submit:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: black;
+}
 /* Map Section */
 .map-container {
   margin-top: 50px;
