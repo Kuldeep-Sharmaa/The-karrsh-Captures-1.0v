@@ -402,24 +402,66 @@ canvas {
   padding: 80px 0;
 }
 
-#skills::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0)
-  );
-  opacity: 0.1;
-  z-index: 1;
+.masonry {
+  column-count: 3; /* Creates a staggered grid effect */
+  column-gap: 10px; /* Adds spacing between columns */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.Skills_text {
-  line-height: 1.6;
+.masonry-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px; /* Adds spacing between rows */
+  break-inside: avoid; /* Prevents images from breaking across columns */
+  overflow: hidden;
+  border-radius: 8px; /* Optional rounded corners */
+}
+
+/* Ensuring Images Fit Correctly */
+.masonry-item img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Initial State - Hidden and Positioned Offscreen */
+.masonry-item {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Different animation directions */
+.masonry-item:nth-child(4n + 1) {
+  transform: translateX(-100px); /* Left */
+}
+.masonry-item:nth-child(4n + 2) {
+  transform: translateX(100px); /* Right */
+}
+.masonry-item:nth-child(4n + 3) {
+  transform: translateY(-100px); /* Top */
+}
+.masonry-item:nth-child(4n + 4) {
+  transform: translateY(100px); /* Bottom */
+}
+
+/* When the item is in the viewport */
+.masonry-item.visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* Responsive: fewer columns on smaller screens */
+@media (max-width: 992px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+@media (max-width: 576px) {
+  .masonry {
+    column-count: 2;
+  }
 }
 .skills-container {
   color: #fff;
