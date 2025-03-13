@@ -398,7 +398,6 @@
             </div>
           </div>
         </section>
-
         <!-- Portfolio section-->
         <section id="portfolio">
           <hr class="text-white" />
@@ -1550,7 +1549,6 @@
         masonryItems.forEach((item) => observer.observe(item));
       });
     </script>
-
     <!-- service Animation -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -1730,7 +1728,6 @@
       </div>
     </div>
 
-    <!-- 3D logic  and Preloder-->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const preloaderEl = document.getElementById("preloader");
@@ -1741,26 +1738,27 @@
           return;
         }
 
-        // Determine if the navigation is external.
+        // Determine if navigation is external.
         const isExternalNavigation =
           !document.referrer ||
           document.referrer.indexOf(window.location.hostname) === -1;
 
-        // Show preloader only if user came externally and hasn't seen it before.
         if (isExternalNavigation && !sessionStorage.getItem("preloaderShown")) {
           preloaderEl.style.display = "flex";
           mainContentEl.style.display = "none";
+
+          // After the fixed duration, hide the preloader and show main content.
           setTimeout(() => {
             preloaderEl.style.display = "none";
             mainContentEl.style.display = "block";
-          }, 1000);
+            sessionStorage.setItem("preloaderShown", "true");
+            initialize3DScene();
+          }, preloaderDuration);
         } else {
           preloaderEl.style.display = "none";
           mainContentEl.style.display = "block";
+          initialize3DScene();
         }
-
-        // Initialize the 3D scene.
-        initialize3DScene();
       });
 
       function initialize3DScene() {
@@ -1769,7 +1767,7 @@
           return;
         }
 
-        // Create scene and camera.
+        // Create the scene, camera, and renderer.
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(
           75,
@@ -1777,7 +1775,6 @@
           0.1,
           1000
         );
-        // For debugging: temporarily set a camera position that is farther back.
         camera.position.set(0, 5, 10);
         camera.lookAt(0, 0, 0);
 
@@ -1787,7 +1784,9 @@
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true;
-        document.body.appendChild(renderer.domElement);
+        document
+          .getElementById("main-content")
+          .appendChild(renderer.domElement);
 
         // ------------------------------
         // Background Particles.
@@ -1844,15 +1843,12 @@
         scene.add(smallPointLight);
 
         // ------------------------------
-        // Lazy Loading 3D Model.
+        // Asynchronous 3D Model Loading.
         // ------------------------------
-        let cameraModel;
-        let isModelLoaded = false;
+        let cameraModel = null;
         const loader = new THREE.GLTFLoader();
 
         function loadModel() {
-          if (isModelLoaded) return;
-          isModelLoaded = true;
           loader.load(
             "camera.glb",
             (gltf) => {
@@ -1863,24 +1859,34 @@
                 isMobile ? 0.5 : 0.7,
                 isMobile ? 0.5 : 0.7
               );
-              // For debugging, set camera closer to model.
+              // Position adjustments if needed.
               camera.position.set(0, isMobile ? 8 : 5, isMobile ? 6 : 0);
-              scene.add(cameraModel);
-              camera.lookAt(0, 0, 0);
 
-              // Debug: log model info.
-              console.log("Model loaded:", gltf.scene);
-              const bbox = new THREE.Box3().setFromObject(gltf.scene);
-              console.log("Model bounding box:", bbox);
-
-              // Remove fade-in for debugging; set opacity to 1 immediately.
+              // Prepare the model for a fade-in transition.
               cameraModel.traverse((child) => {
                 if (child.isMesh) {
                   child.material.transparent = true;
-                  child.material.opacity = 1;
+                  child.material.opacity = 0;
                 }
               });
-              sessionStorage.setItem("preloaderShown", "true");
+              scene.add(cameraModel);
+
+              // Smooth fade-in of the model using TWEEN.
+              new TWEEN.Tween({ opacity: 0 })
+                .to({ opacity: 1 }, 1000)
+                .onUpdate(function (object) {
+                  cameraModel.traverse((child) => {
+                    if (child.isMesh) {
+                      child.material.opacity = object.opacity;
+                    }
+                  });
+                })
+                .start();
+
+              console.log("Model loaded:", gltf.scene);
+              // Optionally log bounding box info for debugging.
+              const bbox = new THREE.Box3().setFromObject(gltf.scene);
+              console.log("Model bounding box:", bbox);
             },
             (xhr) => {
               console.log(
@@ -1894,10 +1900,11 @@
           );
         }
 
+        // Start model loading without delaying the main scene.
         loadModel();
 
         // ------------------------------
-        // Animation & Effects.
+        // Animation & Interaction.
         // ------------------------------
         let clock = new THREE.Clock();
         let mouseX = 0,
@@ -1905,9 +1912,9 @@
 
         function animate() {
           requestAnimationFrame(animate);
-          let elapsedTime = clock.getElapsedTime();
+          const elapsedTime = clock.getElapsedTime();
 
-          // Camera Floating Animation.
+          // Floating camera animation.
           camera.position.x =
             Math.sin(elapsedTime * 0.3) * 1.5 + mouseX * 0.002;
           camera.position.y =
@@ -1915,12 +1922,12 @@
           camera.position.z = 4 + Math.sin(elapsedTime * 0.2) * 0.5;
           camera.lookAt(0, 0.2, 1);
 
-          // Rotate model if loaded.
+          // Rotate the model if it's loaded.
           if (cameraModel) {
             cameraModel.rotation.y += 0.003;
           }
 
-          // Enhanced Particle Animation.
+          // Animate particles.
           let time = clock.getElapsedTime();
           for (let i = 0; i < particlesCount; i++) {
             const i3 = i * 3;
@@ -1937,13 +1944,16 @@
           particleGeometry.attributes.alpha.needsUpdate = true;
 
           renderer.render(scene, camera);
+          TWEEN.update();
         }
 
+        // Mouse movement for interactive camera effect.
         document.addEventListener("mousemove", (event) => {
           mouseX = (event.clientX - window.innerWidth / 2) * 0.05;
           mouseY = (event.clientY - window.innerHeight / 2) * 0.05;
         });
 
+        // Responsive canvas.
         window.addEventListener("resize", () => {
           renderer.setSize(window.innerWidth, window.innerHeight);
           camera.aspect = window.innerWidth / window.innerHeight;
