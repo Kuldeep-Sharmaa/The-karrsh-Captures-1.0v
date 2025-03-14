@@ -230,12 +230,32 @@
               </div>
 
               <!-- Know More Button -->
-              <div class="col-12 text-center mt-4">
+              <div class="col-12 d-flex justify-content-center mt-4">
                 <a
                   href="./about-TKC/"
                   class="portfolio_button text-decoration-none"
                 >
-                  <i class="fas fa-info-circle"></i> Know More
+                  <!-- From Uiverse.io by boryanakrasteva -->
+                  <button type="button" class="btn_know">
+                    Know More
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      height="15px"
+                      width="15px"
+                      class="icon_know"
+                    >
+                      <path
+                        stroke-linejoin="round"
+                        stroke-linecap="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.5"
+                        stroke="#FFFFFF"
+                        d="M8.91016 19.9201L15.4302 13.4001C16.2002 12.6301 16.2002 11.3701 15.4302 10.6001L8.91016 4.08008"
+                      ></path>
+                    </svg>
+                  </button>
                 </a>
               </div>
             </div>
@@ -588,9 +608,21 @@
               <div
                 class="col-md-4 d-flex justify-content-center align-items-center"
               >
-                <a href="./contact-TKC/">
-                  <button type="button" class="contact_button">
-                    Contact Us <i class="fa-regular fa-envelope fa-bounce"></i>
+                <a href="./contact-TKC/" class="text-decoration-none">
+                  <!-- From Uiverse.io by mask_guy_0 -->
+                  <button type="button" class="animated-button">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="arr-2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                      ></path>
+                    </svg>
+                    <span class="text">Contact Us</span>
+                    <span class="circle"></span>
+                    <i class="fa-regular fa-envelope fa-bounce"></i>
                   </button>
                 </a>
               </div>
@@ -1364,35 +1396,44 @@
           </p>
         </div>
       </footer>
-      <!-- top Button -->
+
+      <!-- top-button -->
       <button
         type="button"
         id="goTopBtn"
         class="go-top-btn"
         onclick="scrollToTop()"
       >
-        <i class="fa-solid fa-up-long"></i> <span class="d-none">Button</span>
+        <svg class="svgIcon" viewBox="0 0 384 512">
+          <path
+            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+          >
+            <span class="d-none">top</span>
+          </path>
+        </svg>
       </button>
     </div>
 
     <!-- Scripts -->
-    <!-- Function to show/hide the button based on scroll position -->
+    <!-- top button scroll -->
     <script>
-      window.onscroll = function () {
+      document.addEventListener("DOMContentLoaded", function () {
         let goTopBtn = document.getElementById("goTopBtn");
-        let targetSection = document.getElementById("about");
 
-        if (targetSection) {
-          let sectionPosition = targetSection.offsetTop;
-          let scrollPosition = window.scrollY;
+        // Hide button initially
+        goTopBtn.style.display = "none";
 
-          if (scrollPosition > sectionPosition) {
-            goTopBtn.style.display = "block";
+        window.addEventListener("scroll", function () {
+          let scrollPosition =
+            window.scrollY || document.documentElement.scrollTop;
+
+          if (scrollPosition > 500) {
+            goTopBtn.style.display = "flex";
           } else {
             goTopBtn.style.display = "none";
           }
-        }
-      };
+        });
+      });
 
       // Function to scroll back to the top
       function scrollToTop() {
@@ -1727,7 +1768,6 @@
         </div>
       </div>
     </div>
-
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const preloaderEl = document.getElementById("preloader");
@@ -1812,12 +1852,31 @@
         scene.add(particles);
 
         // Lighting Setup
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1); // Increased intensity for overall brightness
         scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
         directionalLight.position.set(2, 3, 5);
         directionalLight.castShadow = true;
         scene.add(directionalLight);
+
+        // New Fill Light for Balanced Illumination
+        const fillLight = new THREE.PointLight(0xffffff, 1.5);
+        fillLight.position.set(-3, 2, 3);
+        scene.add(fillLight);
+
+        // New Back Light for Studio Highlight Effect
+        const backLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        backLight.position.set(0, 5, -5);
+        scene.add(backLight);
+
+        // Spotlight for Focused Brightness
+        const softSpotlight = new THREE.SpotLight(0xffffff, 2);
+        softSpotlight.position.set(0, 5, 5);
+        softSpotlight.angle = Math.PI / 6;
+        softSpotlight.penumbra = 0.3;
+        softSpotlight.castShadow = true;
+        scene.add(softSpotlight);
 
         // Lazy Loading 3D Model with Progress Tracking
         let cameraModel;
