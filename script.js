@@ -930,16 +930,45 @@ function addTrustAnimation() {
 // Calling function to activate observer
 addTrustAnimation();
 
-// protfolio section
+// portfolio
 document.addEventListener("DOMContentLoaded", function () {
   const images = document.querySelectorAll(".portfolio-image");
   const navItems = document.querySelectorAll(".sidebar li");
-  const sidebar = document.getElementById("sidebar");
-  const portfolioSection = document.getElementById("portfolio-section");
-  let activeCategory = "";
+  const sidebar = document.querySelector(".sidebar");
+  const imageContainer = document.querySelector(".image-container");
 
-  // Show/Hide Sidebar on Scroll
-  const sectionObserver = new IntersectionObserver(
+  // Function to highlight active sidebar item smoothly
+  function updateActiveCategory() {
+    let closestIndex = 0;
+    let minDistance = Infinity;
+
+    images.forEach((image, i) => {
+      const rect = image.getBoundingClientRect();
+      const distance = Math.abs(rect.top - window.innerHeight / 3);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = i;
+      }
+    });
+
+    navItems.forEach((item, i) => {
+      item.classList.toggle("active", i === closestIndex);
+    });
+  }
+
+  // Scroll Event for Scrollspy
+  imageContainer.addEventListener("scroll", updateActiveCategory);
+
+  // Click Event to Scroll to Image
+  navItems.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      images[index].scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  // Intersection Observer for Sidebar Visibility
+  const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -949,48 +978,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     },
-    { threshold: 0.2 } // 20% visibility required to show sidebar
+    { threshold: 0.1 } // Trigger when at least 10% of `.image-container` is visible
   );
 
-  sectionObserver.observe(portfolioSection);
+  observer.observe(imageContainer);
 
-  // Intersection Observer for ScrollSpy
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const category = entry.target.getAttribute("data-category");
-
-          if (category !== activeCategory) {
-            activeCategory = category;
-
-            // Remove 'active' from all sidebar items & add to the current one
-            navItems.forEach((item) => {
-              item.classList.toggle(
-                "active",
-                item.getAttribute("data-category") === category
-              );
-            });
-          }
-        }
-      });
-    },
-    { threshold: 0.6 }
-  );
-
-  images.forEach((image) => observer.observe(image));
-
-  // Click Event: Smooth Scroll to Image
-  navItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      const category = item.getAttribute("data-category");
-      const targetImage = document.querySelector(
-        `.portfolio-image[data-category="${category}"]`
-      );
-
-      if (targetImage) {
-        targetImage.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    });
-  });
+  // Initialize
+  updateActiveCategory();
 });

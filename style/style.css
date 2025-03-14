@@ -706,7 +706,6 @@ canvas {
   }
 
   .sidebar {
-    position: fixed;
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
@@ -737,7 +736,7 @@ canvas {
   }
 
   .image-container {
-    margin-left: 120px;
+    margin-left: 10px;
   }
 }
 /* contact-section */
