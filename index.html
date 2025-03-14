@@ -157,9 +157,8 @@
                 <div class="text-center animated">
                   <h1 class="display-3 fw-bold mb-3">The Karrsh Captures</h1>
                   <p class="lead mb-4"></p>
-                  <a href="#about" class="btn btn-primary btn-lg"
-                    >Get a Tour of the Website
-                    <i class="fa-solid fa-arrow-right fa-beat-fade"></i>
+                  <a href="#about" class="start-button">
+                    Step Into Our Vision
                   </a>
                 </div>
               </div>
@@ -430,171 +429,79 @@
                 story captured through our lens.
               </p>
             </div>
-            <!-- Filters -->
-            <div class="filters text-center mt-3">
-              <button type="button" class="filter-button" data-category="all">
-                All
-              </button>
-              <button
-                type="button"
-                class="filter-button active"
-                data-category="Portraits"
-              >
-                Portraits
-              </button>
-              <button
-                type="button"
-                class="filter-button"
-                data-category="wedding"
-              >
-                Weddings
-              </button>
-              <button
-                type="button"
-                class="filter-button"
-                data-category="Landscapes"
-              >
-                Landscapes
-              </button>
-              <button
-                type="button"
-                class="filter-button"
-                data-category="Fashion"
-              >
-                Fashion
-              </button>
-              <button
-                type="button"
-                class="filter-button"
-                data-category="Commercial"
-              >
-                Commercial
-              </button>
-              <button
-                type="button"
-                class="filter-button"
-                data-category="Architecture"
-              >
-                Architecture
-              </button>
-            </div>
-            <!-- Portfolio Grid -->
-            <div class="portfolio-grid mt-5">
-              <!-- landscape -->
-              <div class="portfolio-item" data-category="Landscapes">
-                <img
-                  src="images/banners/landscape.jpg"
-                  rel="preload"
-                  alt="Landscapes"
-                />
-                <div class="overlay desktop-overlay">
-                  <a
-                    href="category.html?category=landscapes"
-                    class="hover-link"
-                  >
-                    View Landscapes
-                  </a>
-                </div>
-                <div class="mobile-text">
-                  <a href="category.html?category=landscapes"
-                    >View Landscapes</a
-                  >
-                </div>
-              </div>
-              <!-- Weddings -->
-              <div class="portfolio-item" data-category="wedding">
-                <img
-                  src="images/banners/wedding.jpg"
-                  rel="preload"
-                  alt="Wedding"
-                />
-                <div class="overlay desktop-overlay">
-                  <a href="category.html?category=Wedding" class="hover-link"
-                    >View Weddings</a
-                  >
-                </div>
-                <div class="mobile-text">
-                  <a href="category.html?category=Wedding">View Weddings</a>
-                </div>
-              </div>
-              <!-- Portraits -->
-              <div class="portfolio-item" data-category="Portraits">
-                <img
-                  src="images/banners/portraits.jpg"
-                  rel="preload"
-                  alt="Portraits"
-                />
-                <div class="overlay desktop-overlay">
-                  <a href="category.html?category=Portraits" class="hover-link"
-                    >View Portraits</a
-                  >
-                  <!-- Mobile text  -->
-                </div>
-                <div class="mobile-text">
-                  <a href="category.html?category=Portraits">View Portraits</a>
-                </div>
-              </div>
-              <!-- Fashion -->
-              <div class="portfolio-item" data-category="Fashion">
-                <img
-                  src="images/banners/fashion.jpg"
-                  rel="preload"
-                  alt="Fashion"
-                />
-                <div class="overlay desktop-overlay">
-                  <a href="category.html?category=Fashion" class="hover-link"
-                    >View Fashion</a
-                  >
-                  <!-- Mobile text -->
-                </div>
-                <div class="mobile-text">
-                  <a href="category.html?category=Fashion">View Fashion</a>
-                </div>
-              </div>
-              <!-- Commercial -->
-              <div class="portfolio-item" data-category="Commercial">
-                <img
-                  src="images/banners/commercial.jpg"
-                  rel="preload"
-                  alt="Commercial"
-                />
-                <div class="overlay desktop-overlay">
-                  <a href="category.html?category=Commercial" class="hover-link"
-                    >View Commercial</a
-                  >
-                  <!-- Mobile text -->
-                </div>
-                <div class="mobile-text">
-                  <a href="category.html?category=Commercial"
-                    >View Commercial</a
-                  >
-                </div>
-              </div>
-              <!-- Architecture -->
-              <div class="portfolio-item" data-category="Architecture">
-                <img
-                  src="images/banners/architecture.jpg"
-                  rel="preload"
-                  alt="Architecture"
-                />
+            <div class="portfolio-section" id="portfolio-section">
+              <!-- Sidebar Navigation (Sticky & Refined) -->
+              <nav class="sidebar" id="sidebar">
+                <ul>
+                  <li class="active" data-category="portraits">Portraits</li>
+                  <li data-category="weddings">Weddings</li>
+                  <li data-category="landscapes">Landscapes</li>
+                  <li data-category="fashion">Fashion</li>
+                  <li data-category="commercial">Commercial</li>
+                  <li data-category="architecture">Architecture</li>
+                </ul>
+              </nav>
 
-                <div class="overlay desktop-overlay">
-                  <a
-                    href="category.html?category=Architecture"
-                    class="hover-link"
-                    >View Architecture</a
-                  >
-                  <!-- Mobile text -->
-                </div>
-                <div class="mobile-text">
-                  <a href="category.html?category=Architecture"
-                    >View Architecture</a
-                  >
-                </div>
+              <!-- Image Container -->
+              <div class="image-container" id="image-container">
+                <section id="portraits" class="image-section">
+                  <img
+                    src="images/landscapes/image-4.jpg"
+                    class="portfolio-image"
+                    data-category="portraits"
+                    title="Portrait Photography"
+                  />
+                </section>
+
+                <section id="weddings" class="image-section">
+                  <img
+                    src="images/weddings/image-2.jpg"
+                    class="portfolio-image"
+                    data-category="weddings"
+                    title="Wedding Photography"
+                  />
+                </section>
+
+                <section id="landscapes" class="image-section">
+                  <img
+                    src="images/landscapes/image-3.jpg"
+                    class="portfolio-image"
+                    data-category="landscapes"
+                    title="Landscape Photography"
+                  />
+                </section>
+
+                <section id="fashion" class="image-section">
+                  <img
+                    src="images/weddings/image-20.jpg"
+                    class="portfolio-image"
+                    data-category="fashion"
+                    title="Fashion Photography"
+                  />
+                </section>
+
+                <section id="commercial" class="image-section">
+                  <img
+                    src="images/weddings/image-3.jpg"
+                    class="portfolio-image"
+                    data-category="commercial"
+                    title="Commercial Photography"
+                  />
+                </section>
+
+                <section id="architecture" class="image-section">
+                  <img
+                    src="images/weddings/image-16.jpg"
+                    class="portfolio-image"
+                    data-category="architecture"
+                    title="Architectural Photography"
+                  />
+                </section>
               </div>
             </div>
           </div>
         </section>
+
         <!-- Contact us section-->
         <section id="contact">
           <div class="container">

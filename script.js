@@ -929,3 +929,68 @@ function addTrustAnimation() {
 
 // Calling function to activate observer
 addTrustAnimation();
+
+// protfolio section
+document.addEventListener("DOMContentLoaded", function () {
+  const images = document.querySelectorAll(".portfolio-image");
+  const navItems = document.querySelectorAll(".sidebar li");
+  const sidebar = document.getElementById("sidebar");
+  const portfolioSection = document.getElementById("portfolio-section");
+  let activeCategory = "";
+
+  // Show/Hide Sidebar on Scroll
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          sidebar.classList.add("visible"); // Show sidebar
+        } else {
+          sidebar.classList.remove("visible"); // Hide sidebar
+        }
+      });
+    },
+    { threshold: 0.2 } // 20% visibility required to show sidebar
+  );
+
+  sectionObserver.observe(portfolioSection);
+
+  // Intersection Observer for ScrollSpy
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const category = entry.target.getAttribute("data-category");
+
+          if (category !== activeCategory) {
+            activeCategory = category;
+
+            // Remove 'active' from all sidebar items & add to the current one
+            navItems.forEach((item) => {
+              item.classList.toggle(
+                "active",
+                item.getAttribute("data-category") === category
+              );
+            });
+          }
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  images.forEach((image) => observer.observe(image));
+
+  // Click Event: Smooth Scroll to Image
+  navItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const category = item.getAttribute("data-category");
+      const targetImage = document.querySelector(
+        `.portfolio-image[data-category="${category}"]`
+      );
+
+      if (targetImage) {
+        targetImage.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  });
+});
