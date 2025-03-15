@@ -930,7 +930,6 @@ function addTrustAnimation() {
 // Calling function to activate observer
 addTrustAnimation();
 
-// portfolio
 document.addEventListener("DOMContentLoaded", function () {
   const images = document.querySelectorAll(".portfolio-image");
   const navItems = document.querySelectorAll(".sidebar li");
@@ -1000,43 +999,41 @@ document.addEventListener("DOMContentLoaded", function () {
   // Listen for scroll events on the container
   imageContainer.addEventListener("scroll", updateActiveCategory);
 
-  // Only attach click events if viewport is desktop (width > 768px)
-  if (window.innerWidth > 768) {
-    navItems.forEach((item, index) => {
-      item.addEventListener("click", () => {
-        // Immediately set the clicked category as active
-        setActiveCategory(index);
-        // Lock scrollspy updates during the smooth scroll
-        isClickScrolling = true;
-        targetImage = images[index];
-        // Smoothly scroll to the target image, centering it in view
-        targetImage.scrollIntoView({ behavior: "smooth", block: "center" });
+  // Attach click events for sidebar items on both desktop and mobile
+  navItems.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      // Immediately set the clicked category as active
+      setActiveCategory(index);
+      // Lock scrollspy updates during the smooth scroll
+      isClickScrolling = true;
+      targetImage = images[index];
+      // Smoothly scroll to the target image, centering it in view
+      targetImage.scrollIntoView({ behavior: "smooth", block: "center" });
 
-        // Disconnect any previous observer on a target image
-        if (targetObserver) {
-          targetObserver.disconnect();
-        }
+      // Disconnect any previous observer on a target image
+      if (targetObserver) {
+        targetObserver.disconnect();
+      }
 
-        // Once it's at least 80% visible, release the lock
-        targetObserver = new IntersectionObserver(
-          (entries, obs) => {
-            entries.forEach((entry) => {
-              if (
-                entry.target === targetImage &&
-                entry.intersectionRatio >= 0.8
-              ) {
-                isClickScrolling = false;
-                updateActiveCategory();
-                obs.disconnect();
-              }
-            });
-          },
-          { threshold: 0.8 }
-        );
-        targetObserver.observe(targetImage);
-      });
+      // Once the target image is at least 80% visible, release the lock
+      targetObserver = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (
+              entry.target === targetImage &&
+              entry.intersectionRatio >= 0.8
+            ) {
+              isClickScrolling = false;
+              updateActiveCategory();
+              obs.disconnect();
+            }
+          });
+        },
+        { threshold: 0.8 }
+      );
+      targetObserver.observe(targetImage);
     });
-  }
+  });
 
   // Initialize active category on page load
   updateActiveCategory();
