@@ -645,7 +645,7 @@ canvas {
   margin-bottom: 80px;
   border-radius: 10px;
   display: block;
-  margin: 0 auto 80px auto;
+  margin-top: 20px;
 }
 
 /* ---------- MOBILE STYLES ---------- */
@@ -672,7 +672,7 @@ canvas {
   .sidebar ul {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
     align-items: center;
   }
 
