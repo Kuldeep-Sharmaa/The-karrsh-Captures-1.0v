@@ -937,12 +937,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const sidebar = document.querySelector(".sidebar");
   const imageContainer = document.querySelector(".image-container");
 
-  // Flag to lock scrollspy updates after a click
-  let manualLock = false;
+  let isClickScrolling = false;
   let targetImage = null;
   let targetObserver = null;
 
-  // Show/hide sidebar based on imageContainer visibility
+  // Show/hide sidebar based on container visibility
   const containerObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -953,20 +952,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     },
-    { threshold: 0.1 }
+    { threshold: 0.4 }
   );
   containerObserver.observe(imageContainer);
 
-  // Helper: set the active sidebar category based on index
+  // Helper: set the active sidebar category
   function setActiveCategory(index) {
     navItems.forEach((item, i) => {
       item.classList.toggle("active", i === index);
     });
   }
 
-  // Core ScrollSpy Logic using the container’s midpoint (with top/bottom checks)
+  // Core ScrollSpy Logic using container's midpoint and top/bottom checks
   function updateActiveCategory() {
-    if (manualLock) return; // Skip updates while manual lock is active
+    if (isClickScrolling) return; // Ignore updates during a click-based scroll
 
     const containerScroll = imageContainer.scrollTop;
     const containerHeight = imageContainer.clientHeight;
@@ -983,8 +982,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setActiveCategory(images.length - 1);
       return;
     }
-
-    // Otherwise, determine which image is closest to the container’s midpoint
+    // Otherwise, find which image's midpoint is closest to the container's midpoint
     const containerMid = containerScroll + containerHeight / 2;
     let currentIndex = 0;
     let minDist = Infinity;
@@ -1002,44 +1000,44 @@ document.addEventListener("DOMContentLoaded", function () {
   // Listen for scroll events on the container
   imageContainer.addEventListener("scroll", updateActiveCategory);
 
-  // Click event: when a sidebar item is tapped on mobile
-  navItems.forEach((item, index) => {
-    item.addEventListener("click", () => {
-      // Immediately set the clicked category as active
-      setActiveCategory(index);
-      // Lock scrollspy updates
-      manualLock = true;
-      targetImage = images[index];
-      // Smoothly scroll the target image to the center
-      targetImage.scrollIntoView({ behavior: "smooth", block: "center" });
+  // Only attach click events if viewport is desktop (width > 768px)
+  if (window.innerWidth > 768) {
+    navItems.forEach((item, index) => {
+      item.addEventListener("click", () => {
+        // Immediately set the clicked category as active
+        setActiveCategory(index);
+        // Lock scrollspy updates during the smooth scroll
+        isClickScrolling = true;
+        targetImage = images[index];
+        // Smoothly scroll to the target image, centering it in view
+        targetImage.scrollIntoView({ behavior: "smooth", block: "center" });
 
-      // Disconnect any previous observer on a target image
-      if (targetObserver) {
-        targetObserver.disconnect();
-      }
+        // Disconnect any previous observer on a target image
+        if (targetObserver) {
+          targetObserver.disconnect();
+        }
 
-      // Use IntersectionObserver to watch the target image
-      // Once it's at least 80% visible, we release the lock
-      targetObserver = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach((entry) => {
-            if (
-              entry.target === targetImage &&
-              entry.intersectionRatio >= 0.8
-            ) {
-              manualLock = false;
-              updateActiveCategory();
-              obs.disconnect();
-            }
-          });
-        },
-        { threshold: 0.8 }
-      );
-
-      targetObserver.observe(targetImage);
+        // Once it's at least 80% visible, release the lock
+        targetObserver = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (
+                entry.target === targetImage &&
+                entry.intersectionRatio >= 0.8
+              ) {
+                isClickScrolling = false;
+                updateActiveCategory();
+                obs.disconnect();
+              }
+            });
+          },
+          { threshold: 0.8 }
+        );
+        targetObserver.observe(targetImage);
+      });
     });
-  });
+  }
 
-  // Initialize on page load
+  // Initialize active category on page load
   updateActiveCategory();
 });

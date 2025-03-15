@@ -627,10 +627,22 @@ canvas {
 }
 
 .image-container {
+}
+.image-container {
+  /* Existing styles... */
+  overflow-y: auto;
+  scroll-behavior: smooth;
   flex: 1;
-  overflow-y: auto; /* container-based scrolling */
   height: 100%;
   scroll-behavior: smooth;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.image-container::-webkit-scrollbar {
+  display: none;
 }
 
 .portfolio-image {
@@ -650,7 +662,6 @@ canvas {
   }
 
   .sidebar {
-    position: fixed; /* fixed on mobile */
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
