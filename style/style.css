@@ -591,7 +591,6 @@ canvas {
   align-items: flex-start;
   position: relative;
   height: 100vh;
-  padding: 20px;
   gap: 30px;
 }
 
@@ -677,7 +676,7 @@ canvas {
 }
 
 .portfolio-image {
-  width: 100%;
+  /* width: 100%; */
   max-height: 80vh;
   object-fit: cover;
   margin-bottom: 50px;
@@ -708,12 +707,11 @@ canvas {
   .sidebar {
     transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.7);
-    padding: 15px;
     border-radius: 10px;
     transition: opacity 0.3s ease-in-out, visibility 0.3s;
     opacity: 0;
     visibility: hidden;
-    width: 110px !important;
+    width: 50px !important;
   }
 
   .sidebar.visible {
@@ -724,7 +722,7 @@ canvas {
   .sidebar ul {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 40px;
   }
 
   .sidebar li {
