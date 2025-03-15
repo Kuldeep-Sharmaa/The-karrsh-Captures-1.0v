@@ -937,7 +937,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const sidebar = document.querySelector(".sidebar");
   const imageContainer = document.querySelector(".image-container");
 
-  // Show/Hide sidebar on mobile
+  // Flag to track manual clicking vs. normal scrolling
+  let isClickScrolling = false;
+  let scrollTimeout = null; // We'll store our timeout here
+
+  // 1) Show/Hide Sidebar on Mobile
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -952,33 +956,34 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   observer.observe(imageContainer);
 
-  // ScrollSpy Logic (with top & bottom checks)
+  // 2) Core ScrollSpy Logic (Using midpoint approach + top/bottom checks)
   function updateActiveCategory() {
+    if (isClickScrolling) return; // Ignore if we're in a click-based scroll
+
     const containerScroll = imageContainer.scrollTop;
     const containerHeight = imageContainer.clientHeight;
     const scrollHeight = imageContainer.scrollHeight;
 
-    // 1) Near Top?
+    // Near top?
     if (containerScroll < 50) {
       setActiveCategory(0);
       return;
     }
 
-    // 2) Near Bottom?
+    // Near bottom?
     const scrollFromBottom = scrollHeight - (containerScroll + containerHeight);
     if (scrollFromBottom < 50) {
       setActiveCategory(images.length - 1);
       return;
     }
 
-    // 3) Otherwise, find midpoint
+    // Otherwise, find the image closest to container midpoint
     const containerMid = containerScroll + containerHeight / 2;
     let currentIndex = 0;
     let minDist = Infinity;
 
     images.forEach((img, i) => {
-      const imgTop = img.offsetTop;
-      const imgMid = imgTop + img.offsetHeight / 2;
+      const imgMid = img.offsetTop + img.offsetHeight / 2;
       const dist = Math.abs(containerMid - imgMid);
 
       if (dist < minDist) {
@@ -997,16 +1002,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Click-to-Scroll
+  // 3) Temporarily remove scroll events during a click-based scroll
+  function handleCategoryClick(index) {
+    // Immediately highlight the clicked category
+    setActiveCategory(index);
+
+    // Disable scrollspy updates
+    isClickScrolling = true;
+    imageContainer.removeEventListener("scroll", updateActiveCategory);
+
+    // Smooth scroll to the chosen image
+    images[index].scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // After a small delay, re-enable scrollspy
+    if (scrollTimeout) clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      isClickScrolling = false;
+      imageContainer.addEventListener("scroll", updateActiveCategory);
+      updateActiveCategory(); // Ensure we’re synced after the scroll
+    }, 600); // Adjust delay if needed
+  }
+
+  // 4) Event Listeners
+  imageContainer.addEventListener("scroll", updateActiveCategory);
   navItems.forEach((item, index) => {
-    item.addEventListener("click", () => {
-      images[index].scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+    item.addEventListener("click", () => handleCategoryClick(index));
   });
 
-  // Listen for container scroll
-  imageContainer.addEventListener("scroll", updateActiveCategory);
-
-  // Initialize
+  // 5) Initialize
   updateActiveCategory();
 });
