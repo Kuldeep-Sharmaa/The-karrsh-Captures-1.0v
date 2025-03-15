@@ -656,7 +656,7 @@ canvas {
 
   .sidebar {
     left: 10px;
-    top: 50%;
+    top: 47%;
     transform: translateY(-50%);
     width: 44px;
     opacity: 0;
