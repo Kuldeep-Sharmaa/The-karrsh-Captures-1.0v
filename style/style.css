@@ -596,7 +596,7 @@ canvas {
 
 .sidebar {
   position: sticky; /* sticky on desktop */
-  top: 50%;
+  top: 47%;
   width: 180px;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
@@ -627,20 +627,14 @@ canvas {
 }
 
 .image-container {
-}
-.image-container {
-  /* Existing styles... */
   overflow-y: auto;
   scroll-behavior: smooth;
   flex: 1;
   height: 100%;
   scroll-behavior: smooth;
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
 }
 
-/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
 .image-container::-webkit-scrollbar {
   display: none;
 }
@@ -651,7 +645,7 @@ canvas {
   height: auto;
   margin-bottom: 80px;
   border-radius: 10px;
-  display: block; /* ensures images stack vertically */
+  display: block;
   margin: 0 auto 80px auto;
 }
 
@@ -662,6 +656,7 @@ canvas {
   }
 
   .sidebar {
+    position: fixed;
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
