@@ -937,7 +937,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const sidebar = document.querySelector(".sidebar");
   const imageContainer = document.querySelector(".image-container");
 
+  // Flag to lock scrollspy after a click, and store the target offset
   let isClickScrolling = false;
+  let targetOffset = null;
 
   // Show/hide sidebar based on container visibility
   const observer = new IntersectionObserver(
@@ -954,33 +956,45 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   observer.observe(imageContainer);
 
-  // Helper: Set the active category
+  // Helper: Set the active sidebar category
   function setActiveCategory(index) {
     navItems.forEach((item, i) => {
       item.classList.toggle("active", i === index);
     });
   }
 
-  // Core ScrollSpy Logic using container midpoint and top/bottom checks
+  // Core ScrollSpy Logic
   function updateActiveCategory() {
-    if (isClickScrolling) return; // Skip updates if a click-based scroll is active
+    // If a click-based scroll is active, check if we're still near the target offset.
+    if (isClickScrolling && targetOffset !== null) {
+      const currentScroll = imageContainer.scrollTop;
+      // If still within 30px of the target image's offset, do not update.
+      if (Math.abs(currentScroll - targetOffset) < 30) {
+        return;
+      } else {
+        // Otherwise, release the click lock.
+        isClickScrolling = false;
+      }
+    }
 
     const containerScroll = imageContainer.scrollTop;
     const containerHeight = imageContainer.clientHeight;
     const scrollHeight = imageContainer.scrollHeight;
 
-    // Near top: force first category
+    // Force first category if near the top.
     if (containerScroll < 50) {
       setActiveCategory(0);
       return;
     }
-    // Near bottom: force last category
+
+    // Force last category if near the bottom.
     const scrollFromBottom = scrollHeight - (containerScroll + containerHeight);
     if (scrollFromBottom < 50) {
       setActiveCategory(images.length - 1);
       return;
     }
-    // Otherwise, use the container's midpoint to determine the closest image
+
+    // Otherwise, determine which image is closest to the container's midpoint.
     const containerMid = containerScroll + containerHeight / 2;
     let currentIndex = 0;
     let minDist = Infinity;
@@ -995,26 +1009,22 @@ document.addEventListener("DOMContentLoaded", function () {
     setActiveCategory(currentIndex);
   }
 
-  // Listen for scroll events on the container
+  // Listen for scroll events on the container.
   imageContainer.addEventListener("scroll", updateActiveCategory);
 
-  // Click event: when a sidebar item is tapped
+  // Click event: when a sidebar item is tapped.
   navItems.forEach((item, index) => {
     item.addEventListener("click", () => {
-      // Immediately set clicked category as active
+      // Immediately set clicked category as active.
       setActiveCategory(index);
-      // Lock scroll updates during smooth scroll
+      // Lock the scrollspy updates and record target offset.
       isClickScrolling = true;
-      // Scroll smoothly to the target image and center it in the view
+      targetOffset = images[index].offsetTop;
+      // Smoothly scroll to the target image, centering it in the view.
       images[index].scrollIntoView({ behavior: "smooth", block: "center" });
-      // Re-enable scrollspy after a sufficient delay (adjust as needed)
-      setTimeout(() => {
-        isClickScrolling = false;
-        updateActiveCategory();
-      }, 1500);
     });
   });
 
-  // Initialize active category
+  // Initialize on page load.
   updateActiveCategory();
 });
