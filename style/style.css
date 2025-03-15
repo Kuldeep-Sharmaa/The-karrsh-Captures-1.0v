@@ -585,162 +585,109 @@ canvas {
   background-color: var(--background-color);
   padding: 2rem 0rem 5rem;
 }
-/* Portfolio Section - Layout */
 .portfolio-section {
   display: flex;
   align-items: flex-start;
   position: relative;
-  height: 100vh;
-  gap: 30px;
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 100vh; /* optional if you want full-height layout */
 }
 
-/* Sidebar - Sticky Navigation */
 .sidebar {
-  position: sticky;
-  top: 45%;
-  left: 0;
-  z-index: 10;
-  width: 200px;
+  position: sticky; /* sticky on desktop */
+  top: 50%;
+  width: 180px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  padding: 15px;
+  margin-right: 20px;
+  color: #fff;
 }
 
 .sidebar ul {
   list-style: none;
-  padding: 0;
-}
-
-.sidebar ul {
-  padding: 0;
   margin: 0;
-  list-style: none;
+  padding: 0;
 }
 
 .sidebar li {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #ccc;
   cursor: pointer;
-  font-size: 17px;
-  color: #888;
-  margin-bottom: 15px;
-  padding: 5px 0;
-  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
-  font-weight: 500;
-  position: relative;
-}
-
-.sidebar li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 2px;
-  background: #007bff;
-  transition: width 0.3s ease-in-out;
-}
-
-.sidebar li:hover {
-  color: #fff;
-  transform: translateX(5px);
-  transition: all 0.3s ease-in-out;
-}
-
-.sidebar li:hover::before {
-  width: 100%;
+  transition: color 0.3s;
 }
 
 .sidebar li.active {
   color: #fff;
   font-weight: bold;
+  border-left: 3px solid #4a90e2;
+  padding-left: 8px;
 }
 
-.sidebar li.active::before {
-  width: 100%;
-  background: linear-gradient(90deg, #007bff, #0046a1);
-}
-
-/* Hide Scrollbar for the Image Container */
 .image-container {
-  flex-grow: 1;
-  overflow-y: scroll; /* Keeps scrolling functional */
+  flex: 1;
+  overflow-y: auto; /* container-based scrolling */
+  height: 100%;
   scroll-behavior: smooth;
-  height: 80vh;
-  padding-right: 20px;
-}
-
-/* Hide scrollbar for all browsers */
-.image-container::-webkit-scrollbar {
-  display: none; /* Hides scrollbar for WebKit browsers */
-}
-
-.image-container {
-  -ms-overflow-style: none; /* Hides scrollbar for IE & Edge */
 }
 
 .portfolio-image {
-  /* width: 100%; */
-  max-height: 80vh;
-  object-fit: cover;
-  margin-bottom: 50px;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin-bottom: 80px;
   border-radius: 10px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: block; /* ensures images stack vertically */
+  margin: 0 auto 80px auto;
 }
 
-.portfolio-image:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-.portfolio-item {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: all 0.6s ease-in-out;
-}
-
-.portfolio-item.show {
-  opacity: 1;
-  transform: scale(1);
-}
-/* Responsive Design for Mobile */
+/* ---------- MOBILE STYLES ---------- */
 @media (max-width: 768px) {
   .portfolio-section {
     flex-direction: row;
   }
 
   .sidebar {
+    position: fixed; /* fixed on mobile */
+    left: 10px;
+    top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s;
+    width: 50px;
     opacity: 0;
     visibility: hidden;
-    width: 50px !important;
+    z-index: 999;
   }
 
   .sidebar.visible {
     opacity: 1;
     visibility: visible;
   }
-  .portfolio-image {
-    width: 100%;
-    max-height: 80vh;
-    object-fit: cover;
-    margin-bottom: 100px;
-    border-radius: 10px;
-    margin-top: 50px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
 
   .sidebar ul {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
+    align-items: center;
   }
 
   .sidebar li {
     font-size: 12px;
-    padding: 8px;
-    white-space: nowrap;
+    color: #ccc;
+    border-left: none;
+  }
+
+  .sidebar li.active {
+    color: #fff;
+    font-weight: bold;
   }
 
   .image-container {
     margin-left: 10px;
+    width: calc(100% - 20px);
+    height: 100vh;
+    overflow-y: auto;
   }
 }
 /* contact-section */

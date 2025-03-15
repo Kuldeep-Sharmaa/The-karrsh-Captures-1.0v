@@ -937,51 +937,75 @@ document.addEventListener("DOMContentLoaded", function () {
   const sidebar = document.querySelector(".sidebar");
   const imageContainer = document.querySelector(".image-container");
 
-  // Function to highlight active sidebar item smoothly
+  // Show/Hide sidebar on mobile
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          sidebar.classList.add("visible");
+        } else {
+          sidebar.classList.remove("visible");
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  observer.observe(imageContainer);
+
+  // ScrollSpy Logic (with top & bottom checks)
   function updateActiveCategory() {
-    let closestIndex = 0;
-    let minDistance = Infinity;
+    const containerScroll = imageContainer.scrollTop;
+    const containerHeight = imageContainer.clientHeight;
+    const scrollHeight = imageContainer.scrollHeight;
 
-    images.forEach((image, i) => {
-      const rect = image.getBoundingClientRect();
-      const distance = Math.abs(rect.top - window.innerHeight / 3);
+    // 1) Near Top?
+    if (containerScroll < 50) {
+      setActiveCategory(0);
+      return;
+    }
 
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = i;
+    // 2) Near Bottom?
+    const scrollFromBottom = scrollHeight - (containerScroll + containerHeight);
+    if (scrollFromBottom < 50) {
+      setActiveCategory(images.length - 1);
+      return;
+    }
+
+    // 3) Otherwise, find midpoint
+    const containerMid = containerScroll + containerHeight / 2;
+    let currentIndex = 0;
+    let minDist = Infinity;
+
+    images.forEach((img, i) => {
+      const imgTop = img.offsetTop;
+      const imgMid = imgTop + img.offsetHeight / 2;
+      const dist = Math.abs(containerMid - imgMid);
+
+      if (dist < minDist) {
+        minDist = dist;
+        currentIndex = i;
       }
     });
 
+    setActiveCategory(currentIndex);
+  }
+
+  // Helper to set the active category
+  function setActiveCategory(index) {
     navItems.forEach((item, i) => {
-      item.classList.toggle("active", i === closestIndex);
+      item.classList.toggle("active", i === index);
     });
   }
 
-  // Scroll Event for Scrollspy
-  imageContainer.addEventListener("scroll", updateActiveCategory);
-
-  // Click Event to Scroll to Image
+  // Click-to-Scroll
   navItems.forEach((item, index) => {
     item.addEventListener("click", () => {
       images[index].scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 
-  // Intersection Observer for Sidebar Visibility
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          sidebar.classList.add("visible"); // Show sidebar
-        } else {
-          sidebar.classList.remove("visible"); // Hide sidebar
-        }
-      });
-    },
-    { threshold: 0.1 } // Trigger when at least 10% of `.image-container` is visible
-  );
-
-  observer.observe(imageContainer);
+  // Listen for container scroll
+  imageContainer.addEventListener("scroll", updateActiveCategory);
 
   // Initialize
   updateActiveCategory();

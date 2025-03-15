@@ -429,74 +429,52 @@
                 story captured through our lens.
               </p>
             </div>
-            <div class="portfolio-section" id="portfolio-section">
-              <!-- Sidebar Navigation (Sticky & Refined) -->
-              <nav class="sidebar" id="sidebar">
+            <div class="portfolio-section">
+              <!-- Sidebar Navigation -->
+              <nav class="sidebar">
                 <ul>
-                  <li class="active" data-category="portraits">Portraits</li>
-                  <li data-category="weddings">Weddings</li>
-                  <li data-category="landscapes">Landscapes</li>
-                  <li data-category="fashion">Fashion</li>
-                  <li data-category="commercial">Commercial</li>
-                  <li data-category="architecture">Architecture</li>
+                  <li class="active">Portraits</li>
+                  <li>Weddings</li>
+                  <li>Landscapes</li>
+                  <li>Fashion</li>
+                  <li>Commercial</li>
+                  <li>Architecture</li>
                 </ul>
               </nav>
 
               <!-- Image Container -->
-              <div class="image-container" id="image-container">
-                <section id="portraits" class="image-section">
-                  <img
-                    src="images/landscapes/image-4.jpg"
-                    class="portfolio-image"
-                    data-category="portraits"
-                    title="Portrait Photography"
-                  />
-                </section>
-
-                <section id="weddings" class="image-section">
-                  <img
-                    src="images/weddings/image-2.jpg"
-                    class="portfolio-image"
-                    data-category="weddings"
-                    title="Wedding Photography"
-                  />
-                </section>
-
-                <section id="landscapes" class="image-section">
-                  <img
-                    src="images/landscapes/image-3.jpg"
-                    class="portfolio-image"
-                    data-category="landscapes"
-                    title="Landscape Photography"
-                  />
-                </section>
-
-                <section id="fashion" class="image-section">
-                  <img
-                    src="images/weddings/image-20.jpg"
-                    class="portfolio-image"
-                    data-category="fashion"
-                    title="Fashion Photography"
-                  />
-                </section>
-
-                <section id="commercial" class="image-section">
-                  <img
-                    src="images/weddings/image-3.jpg"
-                    class="portfolio-image"
-                    data-category="commercial"
-                    title="Commercial Photography"
-                  />
-                </section>
-
-                <section id="architecture" class="image-section">
-                  <img
-                    src="images/weddings/image-16.jpg"
-                    class="portfolio-image"
-                    data-category="architecture"
-                    title="Architectural Photography"
-                  />
-                </section>
+              <div class="image-container">
+                <!-- Example Images (Change src & alt as needed) -->
+                <img
+                  src="images/weddings/image-16.jpg"
+                  class="portfolio-image"
+                  alt="Portrait"
+                />
+                <img
+                  src="images/weddings/image-6.jpg"
+                  class="portfolio-image"
+                  alt="Wedding"
+                />
+                <img
+                  src="images/weddings/image-21.jpg"
+                  class="portfolio-image"
+                  alt="Landscape"
+                />
+                <img
+                  src="images/weddings/image-17.jpg"
+                  class="portfolio-image"
+                  alt="Fashion"
+                />
+                <img
+                  src="images/weddings/image-18.jpg"
+                  class="portfolio-image"
+                  alt="Commercial"
+                />
+                <img
+                  src="images/weddings/image-19.jpg"
+                  class="portfolio-image mb-5"
+                  alt="Architecture"
+                />
               </div>
             </div>
           </div>
@@ -737,7 +715,6 @@
                   background="transparent"
                   speed="1"
                   loop
-                  autoplay
                   class="Photoshoot_animation"
                 ></lottie-player>
               </div>
@@ -1522,31 +1499,43 @@
     <!-- For animtion load -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        // Select all Lottie animation containers
         const animations = document.querySelectorAll(
           ".photoshoot_animaton, .camera_animation"
         );
+
         if (animations.length) {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                const animation = entry.target;
-                if (entry.isIntersecting) {
-                  animation.play();
-                } else {
-                  animation.stop();
-                }
-              });
-            },
-            {
-              threshold: 0.6, // Adjust the threshold as needed
-            }
-          );
-          animations.forEach((anim) => observer.observe(anim));
+          // Ensure Lottie is loaded before using its API
+          animations.forEach((animationElement) => {
+            const animationInstance = lottie.loadAnimation({
+              container: animationElement, // Target element
+              renderer: "svg", // Type of rendering
+              loop: false, // Set to true if you want it to loop
+              autoplay: false, // Don't autoplay; we will control it
+              path: animationElement.getAttribute("data-animation-path"), // Get animation path from attribute
+            });
+
+            // Observe the animations for intersection
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    animationInstance.play(); // Play when visible
+                  } else {
+                    animationInstance.stop(); // Stop when out of view
+                  }
+                });
+              },
+              { threshold: 0.5 }
+            );
+
+            observer.observe(animationElement);
+          });
         } else {
           console.error("Lottie animation elements not found.");
         }
-      });
-      document.addEventListener("DOMContentLoaded", function () {
+
+        // Smooth Scroll Effect
         const elements = document.querySelectorAll(".scroll-effect");
 
         function handleScroll() {
