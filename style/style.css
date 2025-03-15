@@ -596,7 +596,7 @@ canvas {
 
 .sidebar {
   position: sticky;
-  top: 50%;
+  top: 47%;
   width: 180px;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
