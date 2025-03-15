@@ -641,12 +641,12 @@ canvas {
 
 .portfolio-image {
   width: 100%;
-  max-width: 800px;
-  height: auto;
-  margin-bottom: 80px;
+
+  height: 500px; /* Fixed height */
+  object-fit: cover; /* Ensures the image covers the area, cropping if necessary */
   border-radius: 10px;
   display: block;
-  margin-top: 30px;
+  margin: 30px auto 80px auto; /* Top margin of 30px, bottom margin of 80px, centered */
 }
 
 /* ---------- MOBILE STYLES ---------- */
