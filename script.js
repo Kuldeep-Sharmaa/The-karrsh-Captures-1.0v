@@ -1040,3 +1040,22 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize active category on page load.
   updateActiveCategory();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const images = document.querySelectorAll(".lazy");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("loaded"); // Add animation when visible
+        } else {
+          entry.target.classList.remove("loaded"); // Remove animation when out of view
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  images.forEach((img) => observer.observe(img));
+});
