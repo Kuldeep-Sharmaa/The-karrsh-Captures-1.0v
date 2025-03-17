@@ -879,12 +879,13 @@
               <p class="scroll-effect additional_text">
                 Experience a seamless journey from capturing to final delivery.
               </p>
-              <div class="animation-container2 scroll-effect">
+              <div class="animation-container2">
                 <lottie-player
                   src="./images/banners/photoshoot.json"
                   background="transparent"
                   speed="1"
                   loop
+                  autoplay
                   class="Photoshoot_animation"
                 ></lottie-player>
               </div>
@@ -1666,8 +1667,56 @@
         });
       });
     </script>
-    <!-- For animtion load -->
+    <!-- For Lottie Animation load -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const scrollElements = document.querySelectorAll(".scroll-effect");
+        const lottieAnimation = document.querySelector(".Photoshoot_animation");
 
+        const scrollObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.2,
+          }
+        );
+
+        scrollElements.forEach((el) => {
+          scrollObserver.observe(el);
+        });
+
+        // Observer for Lottie Animation
+        const lottieObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                lottieAnimation.play();
+                observer.unobserve(entry.target);
+              } else {
+                lottieAnimation.stop();
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.4,
+          }
+        );
+
+        if (lottieAnimation) {
+          lottieObserver.observe(lottieAnimation);
+        }
+      });
+    </script>
     <!-- Auto tying -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script>
