@@ -56,9 +56,9 @@
 
   .sidebar {
     margin-right: 30px;
-    top: 47%;
+    top: 47% !important;
     transform: translateY(-50%);
-    width: 44px;
+    width: 50px !important;
     opacity: 0;
     visibility: hidden;
   }
@@ -76,21 +76,21 @@
   }
 
   .sidebar li {
-    font-size: 12px;
+    font-size: 13px !important;
     color: #ccc;
     border-left: none;
   }
 
   .sidebar li.active {
-    padding-left: 2px;
+    padding-left: 3px !important;
     color: #fff;
     font-weight: bold;
   }
 
   .image-container {
-    margin-left: 10px;
+    margin-left: 10px !important;
     width: calc(100% - 20px);
-    height: 75vh;
+    height: 75vh !important;
     overflow-y: auto;
   }
 
@@ -98,9 +98,9 @@
     height: 400px !important;
   }
   .view-more-btn {
-    font-size: 14px;
-    padding: 10px 20px;
-    bottom: 15px;
+    font-size: 14px !important;
+    padding: 10px 20px !important;
+    bottom: 15px !important;
     max-width: 90%;
   }
   .carousel {
