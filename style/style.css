@@ -638,6 +638,11 @@ canvas {
 .image-container::-webkit-scrollbar {
   display: none;
 }
+.portfolio-item {
+  margin-bottom: 4rem;
+  position: relative;
+  text-align: center;
+}
 
 .portfolio-image {
   width: 100%;
@@ -646,7 +651,7 @@ canvas {
   object-fit: cover;
   border-radius: 10px;
   display: block;
-  margin: 30px auto 80px auto;
+  margin: 30px auto 20px auto;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
@@ -656,57 +661,30 @@ canvas {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* ---------- MOBILE STYLES ---------- */
-@media (max-width: 768px) {
-  .portfolio-section {
-    flex-direction: row;
-  }
-
-  .sidebar {
-    margin-right: 30px;
-    top: 47%;
-    transform: translateY(-50%);
-    width: 44px;
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  .sidebar.visible {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .sidebar ul {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    align-items: baseline;
-  }
-
-  .sidebar li {
-    font-size: 12px;
-    color: #ccc;
-    border-left: none;
-  }
-
-  .sidebar li.active {
-    padding-left: 2px;
-    color: #fff;
-    font-weight: bold;
-  }
-
-  .image-container {
-    margin-left: 10px;
-    width: calc(100% - 20px);
-    height: 75vh;
-    overflow-y: auto;
-  }
-
-  .portfolio-image {
-    height: 400px !important;
-  }
+.view-more-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(145deg, #0a0f1a, #1b2a45);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.1),
+    2px 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+.view-more-btn:hover {
+  background: linear-gradient(145deg, #172033, #24395a);
+  transform: translateX(-50%) scale(1.02);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
 /* contact-section */
 #contact {
   background-color: var(--background-color);

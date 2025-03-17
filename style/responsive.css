@@ -24,37 +24,11 @@
     margin-left: 20px !important;
     height: 50px !important;
   }
-  .desktop-overlay {
-    display: none !important;
-  }
-
-  .mobile-text {
-    display: block !important;
-  }
-
-  .portfolio-item:hover img {
-    transform: none !important;
-  }
-
-  .portfolio-item:hover .desktop-overlay {
-    opacity: 0; /* Disable overlay effect */
-  }
 
   .desktop-overlay {
     display: none !important;
   }
 
-  .mobile-text {
-    display: block !important;
-    margin-top: 5px;
-  }
-
-  .portfolio-item {
-    overflow: visible !important;
-  }
-  .portfolio-grid {
-    gap: calc(35vw / 2) !important;
-  }
   .section-title {
     font-size: 1.6rem;
   }
@@ -73,22 +47,61 @@
     font-size: 2rem !important;
   }
 
-  .portfolio_button {
-    padding: 10px 20px;
-  }
-
   .section-subtitle {
     font-size: 1rem;
   }
-  .gallery-container {
-    grid-template-columns: 1fr;
-    padding: 0px !important;
+  .portfolio-section {
+    flex-direction: row;
   }
 
-  .gallery-image {
-    width: 100%;
-    height: 250px;
-    margin: 0 auto;
+  .sidebar {
+    margin-right: 30px;
+    top: 47%;
+    transform: translateY(-50%);
+    width: 44px;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .sidebar.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: baseline;
+  }
+
+  .sidebar li {
+    font-size: 12px;
+    color: #ccc;
+    border-left: none;
+  }
+
+  .sidebar li.active {
+    padding-left: 2px;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .image-container {
+    margin-left: 10px;
+    width: calc(100% - 20px);
+    height: 75vh;
+    overflow-y: auto;
+  }
+
+  .portfolio-image {
+    height: 400px !important;
+  }
+  .view-more-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+    bottom: 15px;
+    max-width: 90%;
   }
   .carousel {
     transform: translateX(0);
@@ -311,6 +324,7 @@
   .numbers {
     margin: 10px !important;
   }
+
   #contact_box {
     padding: 60px 10px !important;
     margin: 10px;

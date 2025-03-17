@@ -100,85 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(skillsSection);
 });
 
-// Function to handle filtering and active class
-function handleFilterButtons() {
-  const filterButtons = document.querySelectorAll(".filter-button");
-  const portfolioItems = document.querySelectorAll(".portfolio-item");
-
-  // Default category set to "Portraits"
-  let defaultCategory = "Portraits";
-
-  // Find and activate the default category button
-  const defaultButton = document.querySelector(
-    `.filter-button[data-category="${defaultCategory}"]`
-  );
-  if (defaultButton) {
-    defaultButton.classList.add("active");
-  }
-
-  // Function to filter items
-  function filterItems(category) {
-    // Update active class on buttons
-    filterButtons.forEach((btn) => btn.classList.remove("active"));
-    document
-      .querySelector(`.filter-button[data-category="${category}"]`)
-      ?.classList.add("active");
-
-    // Filter portfolio items
-    portfolioItems.forEach((item) => {
-      const itemCategory = item.getAttribute("data-category");
-      item.style.display =
-        category === "all" || itemCategory === category ? "block" : "none";
-    });
-  }
-
-  // Apply filtering for default category when the page loads
-  filterItems(defaultCategory);
-
-  // Add event listeners to all filter buttons
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const category = button.getAttribute("data-category");
-      filterItems(category);
-    });
-  });
-}
-
-// Call the function to activate filtering on page load
-document.addEventListener("DOMContentLoaded", handleFilterButtons);
-
-// Initialize filter functionality
-document.addEventListener("DOMContentLoaded", handleFilterButtons);
-
-//  loaidng images
-document.addEventListener("DOMContentLoaded", () => {
-  const lazyImages = document.querySelectorAll(".lazy-load");
-
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        const src = img.dataset.src;
-
-        // Preload the image for smooth rendering
-        const imgLoader = new Image();
-        imgLoader.src = src;
-        imgLoader.onload = () => {
-          img.src = src;
-          img.classList.add("loaded");
-        };
-        imgLoader.onerror = () => {
-          console.error("Failed to load image:", src);
-        };
-
-        observer.unobserve(img);
-      }
-    });
-  });
-
-  lazyImages.forEach((img) => imageObserver.observe(img));
-});
-
 // carousel
 const carousel = document.querySelector(".carousel");
 const prevBtn = document.querySelector(".prev-btn");
@@ -930,13 +851,14 @@ function addTrustAnimation() {
 // Calling function to activate observer
 addTrustAnimation();
 
+// portfolio gallery
 document.addEventListener("DOMContentLoaded", function () {
   const images = document.querySelectorAll(".portfolio-image");
   const navItems = document.querySelectorAll(".sidebar li");
   const sidebar = document.querySelector(".sidebar");
   const imageContainer = document.querySelector(".image-container");
 
-  let manualLock = false; // When true, scroll updates are ignored.
+  let manualLock = false;
   let targetImage = null;
   let observerTarget = null;
 
@@ -955,76 +877,82 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   containerObserver.observe(imageContainer);
 
-  // Helper: set the active sidebar category.
   function setActiveCategory(index) {
     navItems.forEach((item, i) => {
       item.classList.toggle("active", i === index);
     });
   }
 
-  // Core ScrollSpy Logic using container's midpoint and top/bottom checks.
   function updateActiveCategory() {
-    if (manualLock) return; // Skip updates during a click-based scroll.
+    // If we are currently scrolling to a clicked image, do nothing
+    if (manualLock) return;
 
+    // These are used to check "close to top" or "close to bottom"
     const containerScroll = imageContainer.scrollTop;
     const containerHeight = imageContainer.clientHeight;
     const scrollHeight = imageContainer.scrollHeight;
 
-    // If near the top, force first category.
+    // If near the very top of the container
     if (containerScroll < 50) {
       setActiveCategory(0);
       return;
     }
-    // If near the bottom, force last category.
+    // If near the very bottom of the container
     const scrollFromBottom = scrollHeight - (containerScroll + containerHeight);
     if (scrollFromBottom < 50) {
       setActiveCategory(images.length - 1);
       return;
     }
-    // Otherwise, calculate which image's midpoint is closest to the container's midpoint.
-    const containerMid = containerScroll + containerHeight / 2;
+
+    // Calculate the vertical midpoint of the container in **viewport coordinates**
+    const containerRect = imageContainer.getBoundingClientRect();
+    const containerMid = containerRect.top + containerRect.height / 2;
+
+    // Find which image is closest to the container's vertical midpoint
     let currentIndex = 0;
     let minDist = Infinity;
     images.forEach((img, i) => {
-      const imgMid = img.offsetTop + img.offsetHeight / 2;
+      const imgRect = img.getBoundingClientRect();
+      // Midpoint of the image in viewport coordinates
+      const imgMid = imgRect.top + imgRect.height / 2;
+      // Distance from container's midpoint
       const dist = Math.abs(containerMid - imgMid);
+
       if (dist < minDist) {
         minDist = dist;
         currentIndex = i;
       }
     });
+
     setActiveCategory(currentIndex);
   }
 
-  // Listen for scroll events on the container.
+  // Listen for scroll changes to update active category
   imageContainer.addEventListener("scroll", updateActiveCategory);
 
-  // Attach click events for sidebar items (on both mobile and desktop).
+  // Handle clicks on sidebar nav items
   navItems.forEach((item, index) => {
     item.addEventListener("click", () => {
-      // Immediately set the clicked category as active.
       setActiveCategory(index);
-      // Lock scroll-based updates.
       manualLock = true;
       targetImage = images[index];
-
-      // Scroll the target image into view, centering it.
+      // Scroll the chosen image into view
       targetImage.scrollIntoView({ behavior: "smooth", block: "center" });
 
-      // Disconnect any previous observer on a target image.
+      // Disconnect any previous observer
       if (observerTarget) {
         observerTarget.disconnect();
       }
 
-      // Use an IntersectionObserver on the target image, with the container as the root.
+      // Use an IntersectionObserver to detect when the image is in view
       observerTarget = new IntersectionObserver(
         (entries, obs) => {
           entries.forEach((entry) => {
-            // Once the target image is at least 90% visible, release the lock.
             if (
               entry.target === targetImage &&
               entry.intersectionRatio >= 0.9
             ) {
+              // Once the image is mostly in view, unlock and update
               manualLock = false;
               updateActiveCategory();
               obs.disconnect();
@@ -1037,10 +965,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Initialize active category on page load.
+  // Initialize active category on load
   updateActiveCategory();
 });
 
+// Gallery image animation
 document.addEventListener("DOMContentLoaded", function () {
   const images = document.querySelectorAll(".lazy");
 
@@ -1048,9 +977,9 @@ document.addEventListener("DOMContentLoaded", function () {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("loaded"); // Add animation when visible
+          entry.target.classList.add("loaded");
         } else {
-          entry.target.classList.remove("loaded"); // Remove animation when out of view
+          entry.target.classList.remove("loaded");
         }
       });
     },

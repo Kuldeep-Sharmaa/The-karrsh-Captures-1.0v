@@ -444,59 +444,97 @@
 
               <!-- Image Container -->
               <div class="image-container">
-                <img
-                  src="images/banners/portraits.jpg"
-                  data-src="images/banners/portraits.jpg"
-                  class="portfolio-image lazy"
-                  alt="Portrait"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div class="portfolio-item">
+                  <img
+                    src="images/skills/aditya-siva-HlQi14Q_iO0-unsplash.webp"
+                    data-src="images/skills/aditya-siva-HlQi14Q_iO0-unsplash.webp"
+                    class="portfolio-image lazy"
+                    alt="Portrait"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <a
+                    href="category.html?category=Portraits"
+                    class="view-more-btn"
+                    >View Portraits</a
+                  >
+                </div>
 
-                <img
-                  src="images/banners/wedding.jpg"
-                  data-src="images/banners/wedding.jpg"
-                  class="portfolio-image lazy"
-                  alt="Wedding"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div class="portfolio-item">
+                  <img
+                    src="images/skills/charlie-costello-YVMINsxTIKY-unsplash.webp"
+                    data-src="images/skills/charlie-costello-YVMINsxTIKY-unsplash.webp"
+                    class="portfolio-image lazy"
+                    alt="Wedding"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <a href="category.html?category=Wedding" class="view-more-btn"
+                    >View Weddings</a
+                  >
+                </div>
 
-                <img
-                  src="images/banners/landscape.jpg"
-                  data-src="images/banners/landscape.jpg"
-                  class="portfolio-image lazy"
-                  alt="Landscape"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div class="portfolio-item">
+                  <img
+                    src="images/skills/dmitry-voronov-9IOOQzRDXag-unsplash.webp"
+                    data-src="images/skills/dmitry-voronov-9IOOQzRDXag-unsplash.webp"
+                    class="portfolio-image lazy"
+                    alt="Landscape"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <a
+                    href="category.html?category=Landscapes"
+                    class="view-more-btn"
+                    >View Landscapes</a
+                  >
+                </div>
 
-                <img
-                  src="images/banners/fashion.jpg"
-                  data-src="images/banners/fashion.jpg"
-                  class="portfolio-image lazy"
-                  alt="Fashion"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div class="portfolio-item">
+                  <img
+                    src="images/skills/fares-nimri-v6uFg-OLrCc-unsplash.webp"
+                    data-src="images/skills/fares-nimri-v6uFg-OLrCc-unsplash.webp"
+                    class="portfolio-image lazy"
+                    alt="Fashion"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <a href="category.html?category=Fashion" class="view-more-btn"
+                    >View Fashion</a
+                  >
+                </div>
 
-                <img
-                  src="images/banners/commercial.jpg"
-                  data-src="images/banners/commercial.jpg"
-                  class="portfolio-image lazy"
-                  alt="Commercial"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div class="portfolio-item">
+                  <img
+                    src="images/skills/planet-volumes-BfYnFShyX0E-unsplash.webp"
+                    data-src="images/skills/planet-volumes-BfYnFShyX0E-unsplash.webp"
+                    class="portfolio-image lazy"
+                    alt="Commercial"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <a
+                    href="category.html?category=Commercial"
+                    class="view-more-btn"
+                    >View Commercial</a
+                  >
+                </div>
 
-                <img
-                  src="images/banners/architecture.jpg"
-                  data-src="images/banners/architecture.jpg"
-                  class="portfolio-image lazy mb-5"
-                  alt="Architecture"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div class="portfolio-item">
+                  <img
+                    src="images/skills/srinivasan-venkataraman-9NmYCjfBGp0-unsplash.webp"
+                    data-src="images/skills/srinivasan-venkataraman-9NmYCjfBGp0-unsplash.webp"
+                    class="portfolio-image lazy"
+                    alt="Architecture"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <a
+                    href="category.html?category=Architecture"
+                    class="view-more-btn"
+                    >View Architecture</a
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -1519,60 +1557,7 @@
       });
     </script>
     <!-- For animtion load -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Select all Lottie animation containers
-        const animations = document.querySelectorAll(
-          ".photoshoot_animaton, .camera_animation"
-        );
 
-        if (animations.length) {
-          // Ensure Lottie is loaded before using its API
-          animations.forEach((animationElement) => {
-            const animationInstance = lottie.loadAnimation({
-              container: animationElement, // Target element
-              renderer: "svg", // Type of rendering
-              loop: false, // Set to true if you want it to loop
-              autoplay: false, // Don't autoplay; we will control it
-              path: animationElement.getAttribute("data-animation-path"), // Get animation path from attribute
-            });
-
-            // Observe the animations for intersection
-            const observer = new IntersectionObserver(
-              (entries) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                    animationInstance.play(); // Play when visible
-                  } else {
-                    animationInstance.stop(); // Stop when out of view
-                  }
-                });
-              },
-              { threshold: 0.5 }
-            );
-
-            observer.observe(animationElement);
-          });
-        } else {
-          console.error("Lottie animation elements not found.");
-        }
-
-        // Smooth Scroll Effect
-        const elements = document.querySelectorAll(".scroll-effect");
-
-        function handleScroll() {
-          elements.forEach((el) => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 50) {
-              el.classList.add("visible");
-            }
-          });
-        }
-
-        window.addEventListener("scroll", handleScroll);
-        handleScroll();
-      });
-    </script>
     <!-- Auto tying -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script>
