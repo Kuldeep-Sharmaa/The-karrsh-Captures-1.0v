@@ -44,13 +44,12 @@ const observer = new IntersectionObserver(
   (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // Trigger animation for each counter
         counters.forEach((counter) => {
           const target = parseInt(counter.getAttribute("data-target"), 10);
           if (!counter.classList.contains("animated")) {
             // Check if the animation is already applied
             animateCount(counter, target);
-            counter.classList.add("animated"); // Mark as animated
+            counter.classList.add("animated");
           }
         });
 
@@ -194,7 +193,6 @@ window.addEventListener("resize", () => {
 
 // Start auto-scroll when the page loads
 startAutoScroll();
-
 carousel.addEventListener("mouseenter", stopAutoScroll);
 carousel.addEventListener("mouseleave", startAutoScroll);
 
@@ -884,38 +882,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateActiveCategory() {
-    // If we are currently scrolling to a clicked image, do nothing
+    // If we are currently scrolling
     if (manualLock) return;
-
-    // These are used to check "close to top" or "close to bottom"
     const containerScroll = imageContainer.scrollTop;
     const containerHeight = imageContainer.clientHeight;
     const scrollHeight = imageContainer.scrollHeight;
-
-    // If near the very top of the container
     if (containerScroll < 50) {
       setActiveCategory(0);
       return;
     }
-    // If near the very bottom of the container
     const scrollFromBottom = scrollHeight - (containerScroll + containerHeight);
     if (scrollFromBottom < 50) {
       setActiveCategory(images.length - 1);
       return;
     }
-
-    // Calculate the vertical midpoint of the container in **viewport coordinates**
     const containerRect = imageContainer.getBoundingClientRect();
     const containerMid = containerRect.top + containerRect.height / 2;
-
-    // Find which image is closest to the container's vertical midpoint
     let currentIndex = 0;
     let minDist = Infinity;
     images.forEach((img, i) => {
       const imgRect = img.getBoundingClientRect();
-      // Midpoint of the image in viewport coordinates
       const imgMid = imgRect.top + imgRect.height / 2;
-      // Distance from container's midpoint
       const dist = Math.abs(containerMid - imgMid);
 
       if (dist < minDist) {
@@ -929,22 +916,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Listen for scroll changes to update active category
   imageContainer.addEventListener("scroll", updateActiveCategory);
-
-  // Handle clicks on sidebar nav items
   navItems.forEach((item, index) => {
     item.addEventListener("click", () => {
       setActiveCategory(index);
       manualLock = true;
       targetImage = images[index];
-      // Scroll the chosen image into view
       targetImage.scrollIntoView({ behavior: "smooth", block: "center" });
-
-      // Disconnect any previous observer
       if (observerTarget) {
         observerTarget.disconnect();
       }
-
-      // Use an IntersectionObserver to detect when the image is in view
       observerTarget = new IntersectionObserver(
         (entries, obs) => {
           entries.forEach((entry) => {
@@ -952,7 +932,6 @@ document.addEventListener("DOMContentLoaded", function () {
               entry.target === targetImage &&
               entry.intersectionRatio >= 0.9
             ) {
-              // Once the image is mostly in view, unlock and update
               manualLock = false;
               updateActiveCategory();
               obs.disconnect();

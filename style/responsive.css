@@ -111,7 +111,9 @@
     flex: 0 0 100% !important;
     margin: 0 auto;
   }
-
+  .masonry {
+    column-count: 2 !important;
+  }
   .carousel-controls {
     display: none;
   }
@@ -147,7 +149,7 @@
   #services {
     clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 0 95%) !important;
   }
-  /* Updated Mobile Navigation */
+
   .nav-container {
     position: absolute;
     top: 60px;
