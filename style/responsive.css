@@ -171,11 +171,13 @@
     opacity: 0;
     gap: 15px !important;
     padding-top: 7rem;
+    pointer-events: none;
   }
 
   .nav-container.show {
     right: 0;
     opacity: 1;
+    pointer-events: auto;
   }
 
   /* Nav Links */
