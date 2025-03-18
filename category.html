@@ -68,7 +68,13 @@
       crossorigin="anonymous"
     ></script>
   </head>
-
+  <style>
+    body.lock-scroll {
+      overflow-y: hidden;
+      position: fixed;
+      width: 100%;
+    }
+  </style>
   <body>
     <!-- header-section -->
     <header class="container-fluid navbar-custom-page px-5">
@@ -84,6 +90,47 @@
         <a href="./index.html#services" class="mx-3">Services</a>
         <a href="./index.html#review" class="mx-3">Reviews</a>
         <a href="./contact-TKC/" class="mx-3">Contact Us</a>
+        <!-- Social Icons on mobile -->
+
+        <div class="mobile-social">
+          <hr class="nav-divider" />
+          <a
+            href="https://www.instagram.com/the.karrsh.captures?igsh=MXhkOTQxZzduam1qNA=="
+            target="_blank"
+            class="footer-icon"
+            rel="noopener"
+            ><span class="d-none">TKC instagram</span>
+            <i class="fa-brands fa-instagram fs-3"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/share/1Av2erFxWH/?mibextid=wwXIfr"
+            target="_blank"
+            class="footer-icon"
+            rel="noopener"
+          >
+            <span class="d-none">TKC facebook</span>
+            <i class="fa-brands fa-facebook fs-3"></i>
+          </a>
+
+          <a
+            href="https://www.threads.net/@the.karrsh.captures?igshid=NTc4MTIwNjQ2YQ=="
+            target="_blank"
+            rel="noopener"
+            class="footer-icon"
+          >
+            <span class="d-none">TKC threads</span>
+            <i class="fa-brands fa-threads fs-3"></i>
+          </a>
+          <a
+            href="https://youtube.com/@thekarrshcaptures6549?si=HQ9D6gNyyp8wAIwb"
+            target="_blank"
+            rel="noopener"
+            class="footer-icon"
+          >
+            <span class="d-none">TKC You-Tube</span>
+            <i class="fa-brands fa-youtube fs-3"></i>
+          </a>
+        </div>
       </nav>
       <button type="button" class="menu-toggle">&#9776;</button>
     </header>
@@ -327,31 +374,52 @@
     <!-- navbar -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const navbar = document.querySelector(".navbar-custom");
+        // Use correct selectors from your HTML
+        const navbar = document.querySelector(".navbar-custom-page");
         const navbarToggler = document.querySelector(".menu-toggle");
         const navContainer = document.querySelector(".nav-container");
-        const navLinks = document.querySelectorAll(".nav-container a"); // Select all links
+        const navLinks = document.querySelectorAll(".nav-container a");
 
-        // Toggle menu
+        // Ensure all required elements exist
+        if (!navbar || !navbarToggler || !navContainer) {
+          console.error("One or more required navbar elements are missing.");
+          return;
+        }
+
+        // Toggle menu on click
         navbarToggler.addEventListener("click", function () {
           toggleNavbar();
         });
 
-        // Function to toggle navbar visibility
+        // Optionally close menu when any link is clicked
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            if (navContainer.classList.contains("show")) {
+              toggleNavbar();
+            }
+          });
+        });
+
         function toggleNavbar() {
           navContainer.classList.toggle("show");
           navbarToggler.classList.toggle("active");
 
-          // Change icon from ☰ to ✖
+          // Change the toggle button icon accordingly
           navbarToggler.innerHTML = navContainer.classList.contains("show")
             ? "<span>&#10006;</span>" // "X" icon
             : "<span>&#9776;</span>"; // "☰" icon
 
-          // Ensure navbar background appears when menu is open
           if (navContainer.classList.contains("show")) {
+            // Menu is open: lock the scrollbar
+            document.body.classList.add("lock-scroll");
+            // Add a scrolled style if desired
             navbar.classList.add("navbar-scrolled");
-          } else if (window.scrollY <= 50) {
-            navbar.classList.remove("navbar-scrolled");
+          } else {
+            // Menu is closed: unlock the scrollbar
+            document.body.classList.remove("lock-scroll");
+            if (window.pageYOffset <= 50) {
+              navbar.classList.remove("navbar-scrolled");
+            }
           }
         }
       });

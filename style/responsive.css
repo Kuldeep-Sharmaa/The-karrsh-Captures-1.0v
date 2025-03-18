@@ -228,8 +228,6 @@
   }
   .nav-container a:hover {
     color: var(--btn-hover);
-    box-shadow: 0 0 12px var(--btn-hover), 0 0 20px var(--btn-hover);
-    transform: scale(1.05);
   }
   .mobile-social {
     margin-top: auto;
