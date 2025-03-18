@@ -1499,19 +1499,20 @@
       }
     </script>
     <!-- navbar -->
+    <!-- Navbar Script -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const navbar = document.querySelector(".navbar-custom");
         const navbarToggler = document.querySelector(".menu-toggle");
         const navContainer = document.querySelector(".nav-container");
-        const navLinks = document.querySelectorAll(".nav-container a"); // Select all links
+        const navLinks = document.querySelectorAll(".nav-container a");
 
-        // Toggle menu
+        // Toggle menu on hamburger click
         navbarToggler.addEventListener("click", function () {
           toggleNavbar();
         });
 
-        // Close menu when a link is clicked
+        // Close menu when any nav link is clicked
         navLinks.forEach((link) => {
           link.addEventListener("click", function () {
             if (navContainer.classList.contains("show")) {
@@ -1529,23 +1530,28 @@
           }
         });
 
-        // Function to toggle navbar visibility
+        // Function to toggle navbar visibility and lock/unlock scroll
         function toggleNavbar() {
           navContainer.classList.toggle("show");
           navbarToggler.classList.toggle("active");
 
-          navbarToggler.innerHTML = navContainer.classList.contains("show")
-            ? "<span>&#10006;</span>" // "X" icon
-            : "<span>&#9776;</span>"; // "☰" icon
-
           if (navContainer.classList.contains("show")) {
+            // Lock the background scroll
+            document.body.classList.add("lock-scroll");
+            navbarToggler.innerHTML = "<span>&#10006;</span>"; // Display "X" icon
             navbar.classList.add("navbar-scrolled");
-          } else if (window.scrollY <= 50) {
-            navbar.classList.remove("navbar-scrolled");
+          } else {
+            // Unlock the background scroll
+            document.body.classList.remove("lock-scroll");
+            navbarToggler.innerHTML = "<span>&#9776;</span>"; // Display hamburger icon
+            if (window.scrollY <= 50) {
+              navbar.classList.remove("navbar-scrolled");
+            }
           }
         }
       });
     </script>
+
     <!-- Setup and start animation for SVG-->
     <script>
       document.addEventListener("DOMContentLoaded", () => {

@@ -17,6 +17,11 @@ html,
 body {
   overflow-x: hidden;
 }
+body.lock-scroll {
+  overflow-y: hidden;
+  height: 100vh;
+}
+
 /* Preloader Styling */
 #preloader {
   position: fixed;

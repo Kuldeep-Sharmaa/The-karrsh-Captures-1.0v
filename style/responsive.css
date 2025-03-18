@@ -150,44 +150,47 @@
     clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 0 95%) !important;
   }
 
-  /* Container slides in from the right */
+  /* mobile-navbar */
   .nav-container {
     position: fixed;
     top: 0;
-    right: -300px; /* Off-screen to the right */
-    width: 80%; /* Sidebar width (adjust as needed) */
+    right: -320px;
+    width: 75%;
     height: 100vh;
-    background: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
+    background: black;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6),
+      inset 0 0 20px rgba(255, 255, 255, 0.05);
     z-index: 9999;
-    transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transition: right 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+      opacity 0.4s ease-in-out;
     opacity: 0;
+    gap: 15px !important;
   }
 
-  /* Slide in the sidebar from right when .show is added */
   .nav-container.show {
     right: 0;
     opacity: 1;
   }
 
-  /* Use a UL for better structure (optional if you have <li>) */
   .nav-container ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
-  /* Each nav link wrapper (LI) for spacing & optional hover animations */
   .nav-container li {
-    margin: 15px 0; /* spacing between links */
-    transform: translateX(20px);
+    margin: 20px 0;
     opacity: 0;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateX(40px);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+      opacity 0.4s ease-in-out;
   }
-  /* Animate links in with a slight delay if desired */
   .nav-container li:nth-child(1) {
     transition-delay: 0.1s;
   }
@@ -197,38 +200,40 @@
   .nav-container li:nth-child(3) {
     transition-delay: 0.3s;
   }
-  /* ...and so on for more links */
+  .nav-container li:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+  .nav-container li:nth-child(5) {
+    transition-delay: 0.5s;
+  }
 
-  /* When nav-container has .show, fade in each LI */
   .nav-container.show li {
     transform: translateX(0);
     opacity: 1;
   }
 
-  /* Nav links */
   .nav-container a {
-    display: inline-block;
     color: #fff;
     text-decoration: none;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 4px;
-    transition: background-color 0.3s, transform 0.3s;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    position: relative;
+    transition: color 0.3s, transform 0.3s, box-shadow 0.3s;
+    border-radius: 6px;
   }
 
-  /* Stylish hover effect: subtle color shift & scale */
   .nav-container a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--btn-hover);
+    box-shadow: 0 0 12px var(--btn-hover), 0 0 20px var(--btn-hover);
     transform: scale(1.05);
-    color: var(--btn-hover); /* or any accent color */
   }
 
-  /* Hamburger menu button */
   .menu-toggle {
     display: block !important;
     margin-right: 5px !important;
-    z-index: 10000 !important; /* Ensures button is above the overlay */
+    z-index: 10000 !important;
     transition: transform 0.3s ease-in-out;
     color: #fff;
     font-size: 28px;
@@ -236,8 +241,6 @@
     border: none;
     cursor: pointer;
   }
-
-  /* Rotate hamburger to "X" */
   .menu-toggle.active {
     transform: rotate(90deg);
   }
