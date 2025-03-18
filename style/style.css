@@ -87,6 +87,12 @@ body {
 .preloader-text span:nth-child(11) {
   animation-delay: 1s;
 }
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
 #main-content {
   display: none;
@@ -133,12 +139,7 @@ body {
   display: flex;
   gap: 30px;
 }
-canvas {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+
 .nav-container a {
   color: white;
   text-decoration: none;
