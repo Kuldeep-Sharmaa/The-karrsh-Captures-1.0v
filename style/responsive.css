@@ -159,7 +159,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; /* Left-align your links */
     text-align: left;
     background: black;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -178,6 +178,7 @@
     opacity: 1;
   }
 
+  /* Nav Links */
   .nav-container a {
     display: block;
     position: relative;
@@ -220,22 +221,29 @@
     opacity: 1;
     transform: translateX(0);
   }
-
-  /* Add Arrow Icon Before Each Link */
   .nav-container a::before {
     content: "➜";
     margin-right: 8px;
     font-size: 1.2rem;
   }
+  .nav-container a:hover {
+    color: var(--btn-hover);
+    box-shadow: 0 0 12px var(--btn-hover), 0 0 20px var(--btn-hover);
+    transform: scale(1.05);
+  }
+  .mobile-social {
+    margin-top: auto;
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
   .mobile-social a::before {
     content: "";
   }
-  .mobile-social {
-    display: flex !important;
-    align-items: center;
-  }
 
-  /* Style the icons themselves */
   .mobile-social a {
     color: #fff; /* or your brand color */
     font-size: 1.8rem;
@@ -245,11 +253,13 @@
   .mobile-social a:hover {
     color: var(--btn-hover);
   }
-  /* Hover Effects for Links */
-  .nav-container a:hover {
-    color: var(--btn-hover);
-    box-shadow: 0 0 12px var(--btn-hover), 0 0 20px var(--btn-hover);
-    transform: scale(1.05);
+  .nav-divider {
+    border: none !important; /* Remove default HR styles */
+    border-top: 1px solid #fff !important; /* Thin white line */
+    width: 100%; /* Span full width of the container */
+    margin: 2rem 0; /* Spacing above/below the line */
+    opacity: 0.5; /* Slight transparency for a sleek look */
+    color: white;
   }
 
   /* Hamburger Menu Button */
@@ -264,6 +274,7 @@
     border: none;
     cursor: pointer;
   }
+
   .menu-toggle.active {
     transform: rotate(90deg);
   }
