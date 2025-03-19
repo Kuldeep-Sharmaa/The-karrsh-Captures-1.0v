@@ -202,7 +202,6 @@
                   <h1 class="display-3 fw-bold mb-3">The Karrsh Captures</h1>
                   <p class="lead mb-4"></p>
                   <a href="#about" class="start-button">
-                    <!-- From Uiverse.io by adamgiebl -->
                     <button type="button" class="btn_know">
                       Experience the Vision
                       <svg
@@ -2012,7 +2011,6 @@
               scene.add(cameraModel);
               camera.lookAt(0, 0, 0);
 
-              // Hide the model loading indicator when finished
               const modelLoadingIndicator = document.getElementById(
                 "model-loading-indicator"
               );
@@ -2032,9 +2030,8 @@
           );
         }
 
-        setTimeout(loadModel, 500); // Delay slightly to prioritize other content
+        setTimeout(loadModel, 500);
 
-        // Animation & Effects
         const clock = new THREE.Clock();
         let mouseX = 0,
           mouseY = 0;
@@ -2043,7 +2040,6 @@
           requestAnimationFrame(animate);
           let elapsedTime = clock.getElapsedTime();
 
-          // Camera Floating Animation
           camera.position.x =
             Math.sin(elapsedTime * 0.3) * 1.5 + mouseX * 0.002;
           camera.position.y =

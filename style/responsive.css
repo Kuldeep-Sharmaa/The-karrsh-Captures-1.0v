@@ -367,6 +367,28 @@
     width: 100% !important;
     height: auto;
   }
+
+  /* Prevent any hover expansion or text */
+  .go-top-btn:hover {
+    background-color: rgb(
+      20,
+      20,
+      20
+    ) !important; /* Optional slight color change */
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+  }
+
+  /* Remove any text content on hover or before */
+  .go-top-btn::before,
+  .go-top-btn:hover::before {
+    display: none !important;
+    content: "" !important;
+  }
+  .go-top-btn:hover .svgIcon {
+    transform: translateY(0%) !important;
+  }
 }
 
 @media screen and (max-width: 576px) {
