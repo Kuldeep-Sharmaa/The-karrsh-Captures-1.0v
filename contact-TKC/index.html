@@ -399,8 +399,8 @@
           navbarToggler.classList.toggle("active");
 
           navbarToggler.innerHTML = navContainer.classList.contains("show")
-            ? "<span>&#10006;</span>" // "X" icon
-            : "<span>&#9776;</span>"; // "☰" icon
+            ? "<span>&#10006;</span>"
+            : "<span>&#9776;</span>";
 
           if (navContainer.classList.contains("show")) {
             navbar.classList.add("navbar-scrolled");
@@ -513,7 +513,7 @@
             if (!validateField(input, true)) formValid = false;
           });
           if (!formValid) e.preventDefault();
-          else submitButton.disabled = true; // Optional: prevent double submit
+          else submitButton.disabled = true;
         });
       });
     </script>

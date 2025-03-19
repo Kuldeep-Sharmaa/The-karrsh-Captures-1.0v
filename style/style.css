@@ -1330,7 +1330,7 @@ canvas {
 #category-name {
   font-weight: bold;
   font-size: 4rem;
-  font-family: var(--heading-font) !important;
+  font-family: var(--main-font) !important;
   margin-bottom: 0.5rem;
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
