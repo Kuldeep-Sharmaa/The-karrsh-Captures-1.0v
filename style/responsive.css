@@ -271,6 +271,10 @@
   .nav-container-films a:nth-of-type(7) {
     transition-delay: 0.7s !important;
   }
+  .nav-container a:nth-of-type(8),
+  .nav-container-films a:nth-of-type(8) {
+    transition-delay: 0.8s !important;
+  }
 
   /* Social Links */
   .mobile-social {
