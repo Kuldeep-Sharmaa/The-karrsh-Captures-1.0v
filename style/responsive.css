@@ -424,6 +424,9 @@
   .go-top-btn:hover .svgIcon {
     transform: translateY(0%) !important;
   }
+  .additional_text {
+    font-size: 1.7rem !important;
+  }
 }
 
 @media screen and (max-width: 576px) {
