@@ -17,86 +17,7 @@ html,
 body {
   overflow-x: hidden;
 }
-/* Preloader Styling */
-#preloader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  font-family: Arial, sans-serif;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-}
 
-/* Focusing text animation */
-.preloader-text span {
-  display: inline-block;
-  animation: fadeInOut 1.2s infinite;
-  opacity: 0.2;
-}
-
-@keyframes fadeInOut {
-  0%,
-  100% {
-    opacity: 0.2;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-/* Add delay for each letter */
-.preloader-text span:nth-child(1) {
-  animation-delay: 0s;
-}
-.preloader-text span:nth-child(2) {
-  animation-delay: 0.1s;
-}
-.preloader-text span:nth-child(3) {
-  animation-delay: 0.2s;
-}
-.preloader-text span:nth-child(4) {
-  animation-delay: 0.3s;
-}
-.preloader-text span:nth-child(5) {
-  animation-delay: 0.4s;
-}
-.preloader-text span:nth-child(6) {
-  animation-delay: 0.5s;
-}
-.preloader-text span:nth-child(7) {
-  animation-delay: 0.6s;
-}
-.preloader-text span:nth-child(8) {
-  animation-delay: 0.7s;
-}
-.preloader-text span:nth-child(9) {
-  animation-delay: 0.8s;
-}
-.preloader-text span:nth-child(10) {
-  animation-delay: 0.9s;
-}
-.preloader-text span:nth-child(11) {
-  animation-delay: 1s;
-}
-canvas {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-#main-content {
-  display: none;
-}
 /* Header navrbar */
 .navbar-custom {
   position: fixed;
@@ -169,6 +90,7 @@ canvas {
 }
 
 .hero-section {
+  background-image: url(/images/banners/hero_background.jpg);
   position: relative;
   background-color: black;
   background-size: cover;
