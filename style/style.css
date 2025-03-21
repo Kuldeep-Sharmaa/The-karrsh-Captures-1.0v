@@ -90,7 +90,7 @@ body {
 }
 
 .hero-section {
-  background-image: url(/images/banners/hero_background.jpg);
+  background-image: url(./images/banners/hero_background.jpg);
   position: relative;
   background-color: black;
   background-size: cover;
