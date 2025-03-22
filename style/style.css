@@ -642,6 +642,19 @@ body {
     transform: translateX(30%);
   }
 }
+
+.lazy {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+.lazy.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* contact-section */
 #contact {
   background-color: var(--background-color);

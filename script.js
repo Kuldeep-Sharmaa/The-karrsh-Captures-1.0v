@@ -921,7 +921,11 @@ document.addEventListener("DOMContentLoaded", function () {
       setActiveCategory(index);
       manualLock = true;
       targetImage = images[index];
-      targetImage.scrollIntoView({ behavior: "smooth", block: "center" });
+      targetImage.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
+      }); // Updated here
       if (observerTarget) {
         observerTarget.disconnect();
       }
