@@ -202,7 +202,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 40px auto;
+  margin: 20px auto;
 }
 
 .about_heading {
@@ -210,32 +210,6 @@ body {
   font-size: 4rem;
   letter-spacing: 1px;
   text-align: center;
-}
-
-.animation-container {
-  position: absolute;
-  bottom: -75px;
-  left: 84%;
-  width: 200px;
-  height: auto;
-  pointer-events: none;
-  animation: riseUp 1.5s ease-out forwards;
-}
-
-@keyframes riseUp {
-  from {
-    transform: translate(-50%, 100%);
-    opacity: 0;
-  }
-  to {
-    transform: translate(-50%, -20px);
-    opacity: 1;
-  }
-}
-
-.camera_animation {
-  width: 100%;
-  height: 100%;
 }
 
 #about {
