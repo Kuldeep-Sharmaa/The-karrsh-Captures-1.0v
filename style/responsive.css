@@ -425,7 +425,7 @@
     transform: translateY(0%) !important;
   }
   .additional_text {
-    font-size: 1.7rem !important;
+    font-size: 1.5rem !important;
   }
 }
 
@@ -440,20 +440,20 @@
     padding: 2rem 0rem !important;
   }
   .about_heading {
-    font-size: 3.5rem !important;
+    font-size: 2.5rem !important;
     font-weight: bold;
   }
   .head {
-    font-size: 3.5rem !important;
+    font-size: 2.5rem !important;
     font-weight: bold;
   }
   .heading {
-    font-size: 3.5rem;
+    font-size: 2.5rem !important;
     letter-spacing: 1px;
     color: black;
   }
   .services_text h3 {
-    font-size: 3.5rem !important;
+    font-size: 3rem !important;
     color: #bcba8d;
   }
   .services_text p {
@@ -461,7 +461,7 @@
   }
 
   #contact_box h3 {
-    font-size: 3.5rem !important;
+    font-size: 3rem !important;
     color: #bcba8d;
   }
 
