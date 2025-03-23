@@ -427,6 +427,9 @@
   .additional_text {
     font-size: 1.5rem !important;
   }
+  #portfolio {
+    padding: 2rem 0rem 0rem !important;
+  }
 }
 
 @media screen and (max-width: 576px) {
