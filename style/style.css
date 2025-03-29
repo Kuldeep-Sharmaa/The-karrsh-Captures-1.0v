@@ -1439,6 +1439,25 @@ body {
 .footer-contact a:hover {
   text-decoration: underline;
 }
+/* Footer Legal Links */
+.footer-legal {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.footer-legal-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-legal-link:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
 .social-icons {
   display: flex;
   justify-content: center;
@@ -1885,4 +1904,31 @@ body {
   opacity: 1;
   bottom: unset;
   transition-duration: 0.3s;
+}
+/* privacy policy page*/
+.privacy-policy-container {
+  background-color: #ffffff;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  padding: 20px;
+  margin-top: 20px;
+}
+.privacy-policy-section {
+  margin-bottom: 20px;
+}
+.privacy-policy-section h2 {
+  margin-top: 20px;
+}
+.privacy-policy-footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9em;
+  color: #666;
+}
+.privacy-policy-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+.privacy-policy-container a:hover {
+  text-decoration: underline;
 }
