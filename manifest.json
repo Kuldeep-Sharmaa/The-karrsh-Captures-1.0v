@@ -2,7 +2,7 @@
   "name": "The Karrsh Captures",
   "short_name": "TKC",
   "description": "Capturing stunning moments with The Karrsh Captures",
-  "start_url": "./index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
