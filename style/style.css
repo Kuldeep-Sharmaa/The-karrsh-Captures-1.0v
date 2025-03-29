@@ -322,7 +322,7 @@ body {
 }
 .box {
   border-radius: 0px;
-  padding: 40px 25px;
+  padding: 40px 25px !important;
   border: 1px solid white;
 }
 .numb {
