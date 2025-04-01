@@ -468,7 +468,7 @@ body {
 
 .sidebar {
   position: sticky;
-  top: 47%;
+  top: 41%;
   width: 180px;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
@@ -1723,7 +1723,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1; /* Places the video behind other elements */
+  z-index: -1;
 }
 
 .overlay {
@@ -1736,7 +1736,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1; /*  overlay content stays above the video */
+  z-index: 1;
 }
 
 .overlay .container {
@@ -1764,7 +1764,7 @@ body {
 }
 
 .card:hover .card-title {
-  color: #00bcd4;
+  color: var(--btn-color);
 }
 
 .bg-light {
@@ -1849,6 +1849,38 @@ body {
   opacity: 1;
   transform: translateX(0);
 }
+.film-section {
+  padding: 80px 0;
+}
+.film-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.film-card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.film-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.film-card .card-body {
+  padding: 20px;
+  text-align: center;
+}
+.film-card .btn {
+  background-color: #007bff;
+  border: none;
+}
+.film-card .btn:hover {
+  background-color: #0056b3;
+}
 
 /* Go top Button */
 .go-top-btn {
@@ -1931,4 +1963,68 @@ body {
 }
 .privacy-policy-container a:hover {
   text-decoration: underline;
+}
+
+/* demo-film-section */
+#films {
+  background-color: var(--background-color);
+  padding: 80px 0px;
+}
+.film-showcase {
+  text-align: center;
+  color: #ffffff;
+}
+
+.film-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+
+.film-description {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.film-video-wrapper {
+  position: relative;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.film-bg-video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.film-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .film-title {
+    font-size: 2.2rem;
+  }
+
+  .film-description {
+    font-size: 1.1rem;
+  }
+  .film-bg-video {
+    margin-bottom: 1.3rem;
+  }
+  .film-overlay {
+    font-size: 16px;
+    bottom: -10px;
+  }
 }

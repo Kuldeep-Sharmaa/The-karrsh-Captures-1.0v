@@ -626,7 +626,7 @@ document.addEventListener("DOMContentLoaded", function () {
     `,
     },
     weddings: {
-      title: "Studio Portraits",
+      title: "Wedding photography",
       image: "images/services/wedding.svg",
       description: `<div class="service-description">
   <p>
