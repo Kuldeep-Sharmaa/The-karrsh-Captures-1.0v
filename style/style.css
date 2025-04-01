@@ -12,6 +12,7 @@
   --btn-hover: #0056b3;
   --heading-font: "Bruno Ace", serif;
   --background-color: black;
+  --main-heading-font: "Brygada 1918", serif;
 }
 html,
 body {
@@ -210,6 +211,7 @@ body {
   font-size: 4rem;
   letter-spacing: 1px;
   text-align: center;
+  font-family: var(--main-heading-font);
 }
 
 #about {
@@ -447,11 +449,13 @@ body {
   font-size: 4rem;
   letter-spacing: 1px;
   color: #bcba8d;
+  font-family: var(--main-heading-font) !important;
 }
 .heading {
   font-size: 4rem;
   letter-spacing: 1px;
   color: black;
+  font-family: var(--main-heading-font) !important;
 }
 #portfolio {
   background-color: var(--background-color);
@@ -463,7 +467,7 @@ body {
   position: relative;
   margin: 0 auto;
   max-width: 1200px;
-  height: 90vh;
+  height: 80vh;
 }
 
 .sidebar {
@@ -646,6 +650,7 @@ body {
 #contact_box h3 {
   font-size: 5rem;
   color: #bcba8d;
+  font-family: var(--main-heading-font);
 }
 
 #contact_box p {
