@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Ready to capture your best self? Let’s create something extraordinary together
   </p>
 
-<a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Studio Session</a>
+<a id="contactLink" href="./contact/" class="btn btn-primary rounded-pill mt-3">Book Your Studio Session</a>
 
 
 
@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Capture the world through a new lens. Let’s create something extraordinary.
   </p>
 
-  <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Landscape Session</a>
+  <a id="contactLink" href="./contact/" class="btn btn-primary rounded-pill mt-3">Book Your Landscape Session</a>
 </div>
 
     `,
@@ -379,7 +379,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Let's turn your dishes into visual masterpieces. Book your session today.
   </p>
 
-  <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Food Shoot</a>
+  <a id="contactLink" href="./contact/" class="btn btn-primary rounded-pill mt-3">Book Your Food Shoot</a>
 </div>
 
 
@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Let’s bring your products to life with world-class imagery.
   </p>
 
-  <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Product Shoot</a>
+  <a id="contactLink" href="./contact/" class="btn btn-primary rounded-pill mt-3">Book Your Product Shoot</a>
 </div>
 
     `,
@@ -500,7 +500,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Let’s create viral-worthy content for your brand. Book your session today!
   </p>
 
-  <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Social Media Shoot</a>
+  <a id="contactLink" href="./contact/" class="btn btn-primary rounded-pill mt-3">Book Your Social Media Shoot</a>
 </div>
 
     `,
@@ -560,7 +560,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Let’s turn listings into sold properties with premium photography.
   </p>
 
-  <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Real Estate Shoot</a>
+  <a id="contactLink" href="./contact/" class="btn btn-primary rounded-pill mt-3">Book Your Real Estate Shoot</a>
 </div>
 
     `,
@@ -620,7 +620,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Let’s create a love story that lasts forever. Book your pre-wedding shoot today!
   </p>
 
-  <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Pre-Wedding Shoot</a>
+  <a id="contactLink" href="./contact/" class="btn btn-primary rounded-pill mt-3">Book Your Pre-Wedding Shoot</a>
 </div>
 
     `,
@@ -680,7 +680,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Your wedding is a once-in-a-lifetime event. Let’s capture every cherished moment beautifully.
   </p>
 
-  <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Wedding Photography</a>
+  <a id="contactLink" href="./contact/" class="btn btn-primary rounded-pill mt-3">Book Your Wedding Photography</a>
 </div>
 
 `,
@@ -741,7 +741,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Ready to make a statement? Let’s create bold and iconic imagery together.
   </p>
 
-  <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Fashion Shoot</a>
+  <a id="contactLink" href="./contact/" class="btn btn-primary rounded-pill mt-3">Book Your Fashion Shoot</a>
 </div>
 
     `,
@@ -803,7 +803,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Your moments deserve to be remembered forever. Let’s capture them with perfection.
   </p>
 
-  <a id="contactLink" href="./contact-TKC/" class="btn btn-primary rounded-pill mt-3">Book Your Event Photography</a>
+  <a id="contactLink" href="./contact/" class="btn btn-primary rounded-pill mt-3">Book Your Event Photography</a>
 </div>
 
     `,
@@ -820,7 +820,7 @@ document.addEventListener("DOMContentLoaded", function () {
           serviceDetails[serviceKey].image;
         document.getElementById("serviceDescription").innerHTML =
           serviceDetails[serviceKey].description;
-        document.getElementById("contactLink").href = "./contact-TKC/";
+        document.getElementById("contactLink").href = "./contact/";
 
         // Calling the function to activate the animation
         addTrustAnimation();
