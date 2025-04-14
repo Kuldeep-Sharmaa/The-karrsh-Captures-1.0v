@@ -435,6 +435,34 @@
     padding: 25px 0px !important;
     border: 1px solid white;
   }
+  .film-card .card-title {
+    font-size: 0.95rem;
+    text-align: left;
+  }
+
+  .film-card .card-text {
+    font-size: 0.8rem;
+    text-align: left;
+  }
+
+  .film-card .btn {
+    font-size: 0.8rem;
+    padding: 0.45rem 0.75rem;
+  }
+  .film-title {
+    font-size: 2.2rem;
+  }
+
+  .film-description {
+    font-size: 1.1rem;
+  }
+  .film-bg-video {
+    margin-bottom: 1.3rem;
+  }
+  .film-overlay {
+    font-size: 16px;
+    bottom: -10px;
+  }
 }
 
 @media screen and (max-width: 576px) {

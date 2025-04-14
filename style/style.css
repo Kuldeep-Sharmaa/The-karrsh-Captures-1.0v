@@ -1773,7 +1773,7 @@ body {
 }
 
 .bg-light {
-  background-color: #f9f9f9;
+  background-color: #974c4c;
 }
 
 .shadow-sm {
@@ -1853,38 +1853,6 @@ body {
 .animate-film-text.visible {
   opacity: 1;
   transform: translateX(0);
-}
-.film-section {
-  padding: 80px 0;
-}
-.film-heading {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 40px;
-}
-.film-card {
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s;
-}
-
-.film-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-.film-card .card-body {
-  padding: 20px;
-  text-align: center;
-}
-.film-card .btn {
-  background-color: #007bff;
-  border: none;
-}
-.film-card .btn:hover {
-  background-color: #0056b3;
 }
 
 /* Go top Button */
@@ -1970,7 +1938,7 @@ body {
   text-decoration: underline;
 }
 
-/* demo-film-section */
+/* film-section-mainPage */
 #films {
   background-color: var(--background-color);
   padding: 80px 0px;
@@ -2017,19 +1985,95 @@ body {
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  .film-title {
-    font-size: 2.2rem;
-  }
+/* Reels Section */
+.film-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
 
-  .film-description {
-    font-size: 1.1rem;
-  }
-  .film-bg-video {
-    margin-bottom: 1.3rem;
-  }
-  .film-overlay {
-    font-size: 16px;
-    bottom: -10px;
-  }
+.film-card img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  object-fit: cover;
+  height: auto;
+}
+
+.film-card .card-body {
+  padding: 1rem;
+  text-align: center;
+}
+
+.film-card .card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.film-card .card-text {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.film-card .btn {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.film-card .btn:hover {
+  background-color: #0056b3;
+}
+.btn_reels {
+  height: 40px;
+  display: inline-block;
+  align-items: center;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  position: relative;
+  color: black;
+  background-color: transparent;
+  transition: 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  opacity: 0.9;
+}
+
+.btn_reels::after {
+  content: "";
+  border-bottom: 3px double var(--btn-color);
+  width: 0;
+  height: 100%;
+  position: absolute;
+  margin-top: -5px;
+  top: 0;
+  left: 5px;
+  visibility: hidden;
+  opacity: 1;
+  transition: 0.2s linear;
+}
+
+.btn_reels .icon_know {
+  transform: translateX(0%);
+  transition: 0.2s linear;
+  animation: attention 1.2s linear infinite;
+}
+
+.btn_reels:hover::after {
+  visibility: visible;
+  opacity: 0.9;
+  width: 90%;
+}
+
+.btn_reels:hover {
+  letter-spacing: 2px;
+  opacity: 1;
+}
+
+.btn_reels:hover > .icon_know {
+  transform: translateX(30%);
+  animation: none;
 }
