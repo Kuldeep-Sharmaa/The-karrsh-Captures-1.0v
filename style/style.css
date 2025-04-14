@@ -1422,6 +1422,12 @@ body {
   flex: 1 1 200px;
   text-align: center;
 }
+.footer-links h3,
+.footer-contact h3,
+.footer-social h3 {
+  font-family: var(--main-heading-font) !important;
+}
+
 .footer-brand h2 {
   color: #007bff;
   margin-bottom: 10px;

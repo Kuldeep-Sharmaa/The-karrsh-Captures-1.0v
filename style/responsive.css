@@ -461,7 +461,7 @@
   }
   .film-overlay {
     font-size: 16px;
-    bottom: -10px;
+    bottom: -10px !important;
   }
 }
 
